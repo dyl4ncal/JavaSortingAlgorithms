@@ -21,12 +21,12 @@ public class TestInsertionSort
         
         if(Arrays.equals(testArray, expectedOutput))
         {
-            System.out.print("Selection sort test passed? ");
+            System.out.print("Insertion sort test passed? ");
             return true;
         }
         else
         {
-            System.out.print("Selection sort test passed? ");
+            System.out.print("Insertion sort test passed? ");
             return false;
         }
     }    

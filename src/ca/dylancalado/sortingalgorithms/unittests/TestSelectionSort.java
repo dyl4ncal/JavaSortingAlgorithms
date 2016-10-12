@@ -60,18 +60,9 @@ public class TestSelectionSort
         }
     }
     
-    public static boolean testAllSelectionSortMethods()
+    public static void testAllSelectionSortMethods()
     {
-        testSwap();
-        testSelectionSort();
-        
-        if(testSwap() == true && testSelectionSort() == true)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        System.out.println(testSwap());
+        System.out.println(testSelectionSort());
     }
 }
