@@ -14,18 +14,9 @@ public class TestExperiment
         
         Experiment.createRandomArray(testArray, 10);
         
-        for(int i = 0; i < 10; ++i)
-        {
-            System.out.print(testArray[i]);
-            if(i < 9)
-            {
-                System.out.print(", ");
-            }
-        }
-        
         if(testArray != null)
         {
-            System.out.print("\nCreate random array test passed? ");
+            System.out.print("Create random array test passed? ");
             return true;
         }
         else
@@ -56,8 +47,11 @@ public class TestExperiment
         return true;
     }
     
-    public static boolean testAllExperimentMethods()
+    public static void testAllExperimentMethods()
     {
-        return true;
+        System.out.println(testCreateRandomArray());
+        System.out.println(testExperiment1());
+        System.out.println(testExperiment2());
+        System.out.println(testExperiment3());
     }
 }

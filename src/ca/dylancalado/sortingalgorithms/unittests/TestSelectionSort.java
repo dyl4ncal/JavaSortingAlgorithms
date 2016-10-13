@@ -1,7 +1,10 @@
 package ca.dylancalado.sortingalgorithms.unittests;
 
 import ca.dylancalado.sortingalgorithms.sortingcode.SelectionSort;
+import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.ASCENDING;
+import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.DESCENDING;
 import ca.dylancalado.sortingalgorithms.sortingcode.SortParameters;
+import static ca.dylancalado.sortingalgorithms.sortingcode.SortType.SELECTION_SORT;
 import java.util.Arrays;
 
 /**
@@ -11,31 +14,42 @@ import java.util.Arrays;
  */
 public class TestSelectionSort
 {
-    public static boolean testSelectionSort()
+    public static boolean testSelectionSortAscending()
     {
         int[] testArray = {3, 6, 1, 10, 4, 8, 9, 2, 5, 7};
         int[] expectedOutput = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        SortParameters p = new SortParameters(testArray, 10);
+        SortParameters p = new SortParameters(testArray, 10, ASCENDING, SELECTION_SORT);
         
         SelectionSort.sort(p);
         
-        /*for(int i = 0; i < 10; ++i)
-        {
-            System.out.print(testArray[i]); //Prints array to visually see if its sorted.
-            if(i < 9)
-            {
-                System.out.print(", ");
-            }
-        }*/
-        
         if(Arrays.equals(testArray, expectedOutput))
         {
-            System.out.print("Selection sort test passed? ");
+            System.out.print("Selection sort ascending test passed? ");
             return true;
         }
         else
         {
-            System.out.print("Selection sort test passed? ");
+            System.out.print("Selection sort ascending test passed? ");
+            return false;
+        }
+    }
+    
+    public static boolean testSelectionSortDescending()
+    {
+        int[] testArray = {3, 6, 1, 10, 4, 8, 9, 2, 5, 7};
+        int[] expectedOutput = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+        SortParameters p = new SortParameters(testArray, 10, DESCENDING, SELECTION_SORT);
+        
+        SelectionSort.sort(p);
+        
+        if(Arrays.equals(testArray, expectedOutput))
+        {
+            System.out.print("Selection sort descending test passed? ");
+            return true;
+        }
+        else
+        {
+            System.out.print("Selection sort descending test passed? ");
             return false;
         }
     }
@@ -63,6 +77,7 @@ public class TestSelectionSort
     public static void testAllSelectionSortMethods()
     {
         System.out.println(testSwap());
-        System.out.println(testSelectionSort());
+        System.out.println(testSelectionSortAscending());
+        System.out.println(testSelectionSortDescending());
     }
 }

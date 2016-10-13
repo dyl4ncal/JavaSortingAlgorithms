@@ -1,5 +1,8 @@
 package ca.dylancalado.sortingalgorithms.experimentcode;
 
+import ca.dylancalado.sortingalgorithms.sortingcode.InsertionSort;
+import ca.dylancalado.sortingalgorithms.sortingcode.SelectionSort;
+import ca.dylancalado.sortingalgorithms.sortingcode.ShellSort;
 import ca.dylancalado.sortingalgorithms.sortingcode.SortParameters;
 import java.util.Random;
 
@@ -17,7 +20,8 @@ public class Experiment
     private static SortParameters p;
     
     private static void experiment(SortParameters p, int numOfTrials)
-    {   arraySize = 10000;
+    {  
+        arraySize = 10000;
         numOfTrials = 5;
         
         for(int i = arraySize; i <= 100000; i += 10000)
@@ -32,12 +36,15 @@ public class Experiment
                 {
                     case SELECTION_SORT:
                         //Logic for: Timing, selection sort, file i/o.
+                        SelectionSort.sort(p);
                         break;
                     case INSERTION_SORT:
                         //Logic for: Timing, insertion sort, file i/o.
+                        InsertionSort.sort(p);
                         break;
                     case SHELL_SORT:
                         //Logic for: Timing, shell sort, file i/o.
+                        ShellSort.sort(p);
                         break;
                     default:
                         break;

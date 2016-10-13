@@ -7,8 +7,13 @@ package ca.dylancalado.sortingalgorithms.unittests;
  */
 public class TestShellSort
 {
-       public static boolean testAllShellSortMethods()
+    public static boolean testShellSort()
     {
         return true;
+    }
+    
+    public static void testAllShellSortMethods()
+    {
+        
     }
 }

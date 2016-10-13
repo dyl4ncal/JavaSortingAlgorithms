@@ -1,6 +1,9 @@
 package ca.dylancalado.sortingalgorithms.userinterface;
 
 import ca.dylancalado.sortingalgorithms.experimentcode.Experiment;
+import ca.dylancalado.sortingalgorithms.sortingcode.SortOrder;
+import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.ASCENDING;
+import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.DESCENDING;
 import ca.dylancalado.sortingalgorithms.unittests.TestExperiment;
 import ca.dylancalado.sortingalgorithms.unittests.TestInsertionSort;
 import ca.dylancalado.sortingalgorithms.unittests.TestSelectionSort;
@@ -100,14 +103,15 @@ public class UI
         {
             case "1":
                 System.out.println(TestSelectionSort.testSwap());
-        
-                System.out.println(TestSelectionSort.testSelectionSort());
+                System.out.println(TestSelectionSort.testSelectionSortAscending());
+                System.out.println(TestSelectionSort.testSelectionSortDescending());
                 break;
             case "2":
-                System.out.println(TestInsertionSort.testInsertionSort());
+                System.out.println(TestInsertionSort.testInsertionSortAscending());
+                System.out.println(TestInsertionSort.testInsertionSortDescending());
                 break;
             case "3":
-                
+                System.out.println(TestShellSort.testShellSort());
                 break;
             case "4":
                 System.out.println(TestExperiment.testCreateRandomArray());
@@ -119,8 +123,43 @@ public class UI
     
     public static void selectCustomScenario()
     {
-        //ask user for array size
-        //ask user for ascending/descending order
+        System.out.println("Specify size of array to be sorted:");
+        int userSize = userInput.nextInt();
+        int[] userArray = new int[userSize];
+        
+        Experiment.createRandomArray(userArray, userSize);
+        
+        System.out.println("Specify ascending or descending sort order:");
+        SortOrder order;
+        String userOrder = userInput.next();
+        if(userOrder.equals("ascending"))
+        {
+            order = ASCENDING;
+        }
+        else if(userOrder.equals("descending"))
+        {
+            order = DESCENDING;
+        }
+        else
+        {
+            System.out.println("Please enter a valid sort order (ascending/descending).");
+        }
+        
+        System.out.println("Choose the type of sort you wish to utilize:\n"
+                + "1. SelectionSort\n2. InsertionSort\n3. Shell Sort");
+        
+        switch(userInput.next())
+        {
+            case "1":
+                break;
+            case "2":
+                break;
+            case "3":
+                break;
+            default:
+                break;
+        }
+        
         //provide feedback for success, memory usage, and time required for sort
     }
 }

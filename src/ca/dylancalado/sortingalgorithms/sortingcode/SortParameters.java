@@ -20,18 +20,22 @@ public class SortParameters
         //set safe defaults
     }  
 
-    public SortParameters(int[] myArray, int myArraySize)
+    public SortParameters(int[] myArray, int myArraySize, SortOrder myOrder, SortType myType)
     {
         setArray(myArray);
         setArraySize(myArraySize);
+        setSortOrder(myOrder);
+        setSortType(myType);
     }
     
-    public SortParameters(int[] myArray, int myArraySize, int[] myGapSeq, int myGapSeqSize)
+    public SortParameters(int[] myArray, int myArraySize, int[] myGapSeq, int myGapSeqSize, SortOrder myOrder, SortType myType)
     {
         setArray(myArray);
         setArraySize(myArraySize);
         setGapSeq(myGapSeq);
         setGapSeqSize(myGapSeqSize);
+        setSortOrder(myOrder);
+        setSortType(myType);
     }          
    
     public int[] getArray()
