@@ -1,12 +1,9 @@
 package ca.dylancalado.sortingalgorithms.unittests;
 
 import ca.dylancalado.sortingalgorithms.sortingcode.GapSequenceType;
-import static ca.dylancalado.sortingalgorithms.sortingcode.GapSequenceType.KNUTH;
-import static ca.dylancalado.sortingalgorithms.sortingcode.GapSequenceType.PRATT;
-import static ca.dylancalado.sortingalgorithms.sortingcode.GapSequenceType.SHELL;
+import static ca.dylancalado.sortingalgorithms.sortingcode.GapSequenceType.*;
 import ca.dylancalado.sortingalgorithms.sortingcode.ShellSort;
-import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.ASCENDING;
-import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.DESCENDING;
+import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.*;
 import ca.dylancalado.sortingalgorithms.sortingcode.SortParameters;
 import static ca.dylancalado.sortingalgorithms.sortingcode.SortType.SHELL_SORT;
 import java.util.Arrays;
@@ -27,9 +24,9 @@ public class TestShellSort
     public static boolean testShellSortAscending()
     {
         int[] expectedOutput = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-        SortParameters p1 = new SortParameters(testArray, 20, SHELL, 4, ASCENDING, SHELL_SORT);
+        SortParameters p = new SortParameters(testArray, 20, SHELL, 4, ASCENDING, SHELL_SORT);
        
-        ShellSort.sort(p1);
+        ShellSort.sort(p);
         boolean match = Arrays.equals(testArray, expectedOutput);
         
         System.out.print("Shell sort ascending test passed? ");
@@ -39,9 +36,9 @@ public class TestShellSort
     public static boolean testShellSortDescending()
     {
         int[] expectedOutput = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-        SortParameters p2 = new SortParameters(testArray, 20, SHELL, 4, DESCENDING, SHELL_SORT);
+        SortParameters p = new SortParameters(testArray, 20, SHELL, 4, DESCENDING, SHELL_SORT);
 
-        ShellSort.sort(p2);
+        ShellSort.sort(p);
         boolean match = Arrays.equals(testArray, expectedOutput);
 
         System.out.print("Shell sort descending test passed? ");
@@ -51,9 +48,16 @@ public class TestShellSort
     public static boolean testGenerateShellGap()
     {
         int[] expectedOutput1 = {10, 5, 2, 1};
-        SortParameters p = new SortParameters(testArray, 20, SHELL, 4, ASCENDING, SHELL_SORT);
+        SortParameters p1 = new SortParameters(testArray, 20, SHELL, 4, ASCENDING, SHELL_SORT);
         
-        ShellSort.generateShellGap(p);
+        ShellSort.generateShellGap(p1);
+        
+        //Visual of the gap sequence 
+        for(int i = 0; i < p1.getGapSeqSize(); ++i)
+        {
+            System.out.print(p1.getGapSeq()[i]);
+        }
+        
         System.out.print("Generate shell sequence test passed? ");
         return true;
     }
@@ -61,9 +65,9 @@ public class TestShellSort
     public static boolean testGeneratePrattGap()
     {
         int[] expectedOutput2 = {1, 2, 3, 4, 6, 8, 9, 12};
-        SortParameters p = new SortParameters(testArray, 20, PRATT, gapSeqSize, ASCENDING, SHELL_SORT);
+        SortParameters p2 = new SortParameters(testArray, 20, PRATT, gapSeqSize, ASCENDING, SHELL_SORT);
         
-        ShellSort.generatePrattGap(p);
+        ShellSort.generatePrattGap(p2);
         System.out.print("Generate pratt sequence test passed? ");
         return true;
     }
@@ -71,9 +75,9 @@ public class TestShellSort
     public static boolean testGenerateKnuthGap()
     {
         int[] expectedOutput3 = {1, 4, 14, 40, 121};
-        SortParameters p = new SortParameters(testArray, 20, KNUTH, gapSeqSize, ASCENDING, SHELL_SORT);
+        SortParameters p3 = new SortParameters(testArray, 20, KNUTH, gapSeqSize, ASCENDING, SHELL_SORT);
         
-        ShellSort.generateKnuthGap(p);
+        ShellSort.generateKnuthGap(p3);
         System.out.print("Generate knuth sequence test passed? ");
         return true;
     }

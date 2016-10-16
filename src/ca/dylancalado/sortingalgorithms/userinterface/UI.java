@@ -2,12 +2,8 @@ package ca.dylancalado.sortingalgorithms.userinterface;
 
 import ca.dylancalado.sortingalgorithms.experimentcode.Experiment;
 import ca.dylancalado.sortingalgorithms.sortingcode.SortOrder;
-import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.ASCENDING;
-import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.DESCENDING;
-import ca.dylancalado.sortingalgorithms.unittests.TestExperiment;
-import ca.dylancalado.sortingalgorithms.unittests.TestInsertionSort;
-import ca.dylancalado.sortingalgorithms.unittests.TestSelectionSort;
-import ca.dylancalado.sortingalgorithms.unittests.TestShellSort;
+import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.*;
+import ca.dylancalado.sortingalgorithms.unittests.*;
 import java.util.Scanner;
 
 /**
@@ -28,7 +24,6 @@ public class UI
         while (true)
         {
             System.out.println("\nSorting Algorithms Main Menu:\n-----------------------------");
-
             System.out.println(menu);
 
             switch (userInput.next()) 
@@ -52,7 +47,7 @@ public class UI
                     System.exit(0);
                     break;
                 default:
-
+                    System.out.println("Invalid Input");
                     break;
             }
         }
@@ -61,12 +56,14 @@ public class UI
     public static void runAllExperiments()
     {
         //Ask user base file name where results will be logged.
+        System.out.print("Enter base file name where experimental results will be logged: ");
         Experiment.runAllExperiments();
     }
     
     public static void runExperimentByNumber()
     {
         //Ask user file name where results will be logged.
+        System.out.print("Enter file name where experimental results will be logged: ");
         System.out.println("Pick an experiment to run:\n"
                 + "1. Experiment 1\n2. Experiment 2\n3. Experiment 3");
 
@@ -81,6 +78,9 @@ public class UI
             case "3":
                 Experiment.experiment3();
                 break;
+            default:
+                System.out.println("Invalid Input");
+                break;
         }  
     }
     
@@ -94,10 +94,10 @@ public class UI
     
     public static void selectUnitTest()
     {
-        System.out.println("1. Test SelectionSort Methods\n"
-                + "2. Test InsertionSort Methods\n"
-                + "3. Test ShellSort Methods\n"
-                + "4. Test Experiment Methods\n");
+        System.out.println("1. Test Methods in SelectionSort Class\n"
+                + "2. Test Methods in InsertionSort Class\n"
+                + "3. Test Methods in ShellSort Class\n"
+                + "4. Test Methods in Experiment Class\n");
         
         switch (userInput.next())
         {
@@ -119,8 +119,12 @@ public class UI
                 break;
             case "4":
                 System.out.println(TestExperiment.testCreateRandomArray());
+                System.out.println(TestExperiment.testExperiment1());
+                System.out.println(TestExperiment.testExperiment2());
+                System.out.println(TestExperiment.testExperiment3());
                 break;
             default:
+                System.out.println("Invalid Input");
                 break;
         }           
     } 
@@ -161,9 +165,13 @@ public class UI
             case "3":
                 break;
             default:
+                System.out.println("Invalid Input");
                 break;
         }
         
         //provide feedback for success, memory usage, and time required for sort
+        System.out.println("Sort successful? ");
+        System.out.println("Memory usage: ");
+        System.out.println("Time to complete sort: ");
     }
 }

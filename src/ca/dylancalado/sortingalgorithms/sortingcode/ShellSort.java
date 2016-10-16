@@ -21,37 +21,54 @@ public class ShellSort implements SortFacade
                 int value = p.getArray()[i];
                 int j = i - gap;
                 
-                while(j >= 0 && p.getArray()[j] > value)
+                switch (p.getSortOrder())
                 {
-                    p.getArray()[j+gap] = p.getArray()[j];
-                    j -= gap;
-                }
+                    case ASCENDING:
+                        while (j >= 0 && p.getArray()[j] > value)
+                        {
+                            p.getArray()[j + gap] = p.getArray()[j];
+                            j -= gap;
+                        }
+                        break;
+                    case DESCENDING:
+                        while (j >= 0 && p.getArray()[j] < value)
+                        {
+                            p.getArray()[j + gap] = p.getArray()[j];
+                            j -= gap;
+                        }
+                        break;
+                    default:
+                        break;
+                }  
                 p.getArray()[j+gap] = value;
             }
         }
     }
 
-    public static void generateShellGap(SortParameters p)
+    public static void generateShellGap(SortParameters params)
     {
         double k = 1.0;
-        for(int i = 0; p.getGapSeq()[i] < p.getArraySize(); ++i)
+        for(int i = 0; params.getGapSeq()[i] > 1; ++i)
         {
-            p.getGapSeq()[i] = (int) floor((p.getArraySize()/pow(2.0, k)));
+            params.getGapSeq()[i] = (int) floor((params.getArraySize()/pow(2.0, k)));
             ++k;
         }
     }
     
-    public static void generatePrattGap(SortParameters p)
+    public static void generatePrattGap(SortParameters params)
     {
-        for(int i = 0; i < p.getArraySize(); ++i)
+        double p = 0.0;
+        double q = 0.0;
+        
+        for(int i = 0; params.getGapSeq()[i] < params.getArraySize(); ++i)
         {
             
         }
     }
     
-    public static void generateKnuthGap(SortParameters p)
+    public static void generateKnuthGap(SortParameters params)
     {
-        for(int i = 0; i < p.getArraySize(); ++i)
+        for(int i = 0; i < params.getArraySize(); ++i)
         {
             
         }

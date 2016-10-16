@@ -14,7 +14,7 @@ public class TestExperiment
         
         Experiment.createRandomArray(testArray, 10);
         
-        boolean match = testArray != null;
+        boolean match = (testArray != null);
         System.out.print("Create random array test passed? ");
         return match;
     }
