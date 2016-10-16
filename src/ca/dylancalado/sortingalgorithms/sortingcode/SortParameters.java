@@ -14,6 +14,7 @@ public class SortParameters
     private int gapSeqSize;
     private SortOrder order;
     private SortType type;
+    private GapSequenceType gapSeqType;
    
     public SortParameters()
     {
@@ -28,11 +29,11 @@ public class SortParameters
         setSortType(myType);
     }
     
-    public SortParameters(int[] myArray, int myArraySize, int[] myGapSeq, int myGapSeqSize, SortOrder myOrder, SortType myType)
+    public SortParameters(int[] myArray, int myArraySize, GapSequenceType myGapSeqType, int myGapSeqSize, SortOrder myOrder, SortType myType)
     {
         setArray(myArray);
         setArraySize(myArraySize);
-        setGapSeq(myGapSeq);
+        setGapSeqType(myGapSeqType);
         setGapSeqSize(myGapSeqSize);
         setSortOrder(myOrder);
         setSortType(myType);
@@ -56,6 +57,11 @@ public class SortParameters
     public SortType getSortType()
     {
         return type;
+    }
+    
+    public GapSequenceType getGapSeqType()
+    {
+        return gapSeqType;
     }
     
     public int[] getGapSeq()
@@ -86,6 +92,11 @@ public class SortParameters
     public void setSortType(SortType type)
     {
         this.type = type;
+    }
+    
+    public void setGapSeqType(GapSequenceType gapSeqType)
+    {
+        this.gapSeqType = gapSeqType;
     }
     
     public void setGapSeq(int[] gapSeq)

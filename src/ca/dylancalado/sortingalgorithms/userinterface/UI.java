@@ -111,7 +111,11 @@ public class UI
                 System.out.println(TestInsertionSort.testInsertionSortDescending());
                 break;
             case "3":
-                System.out.println(TestShellSort.testShellSort());
+                System.out.println(TestShellSort.testShellSortAscending());
+                System.out.println(TestShellSort.testShellSortDescending());
+                System.out.println(TestShellSort.testGenerateShellGap());
+                System.out.println(TestShellSort.testGeneratePrattGap());
+                System.out.println(TestShellSort.testGenerateKnuthGap());
                 break;
             case "4":
                 System.out.println(TestExperiment.testCreateRandomArray());

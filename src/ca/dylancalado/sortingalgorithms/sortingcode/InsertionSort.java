@@ -17,10 +17,25 @@ public class InsertionSort implements SortFacade
             value = p.getArray()[i];
             j = i - 1;
             
-            while (j >= 0 && p.getArray()[j] > value) 
+            switch (p.getSortOrder())
             {
-                p.getArray()[j + 1] = p.getArray()[j];
-                --j;
+                case ASCENDING:
+                    while (j >= 0 && p.getArray()[j] > value)
+                    {
+                        p.getArray()[j + 1] = p.getArray()[j];
+                        --j;
+                    }
+                    break;
+                case DESCENDING:
+                    while (j >= 0 && p.getArray()[j] < value)
+                    {
+                        p.getArray()[j + 1] = p.getArray()[j];
+                        --j;
+                    }
+                    break;
+                default:
+                    break;
+                    
             }
             p.getArray()[j+1] = value;
         }

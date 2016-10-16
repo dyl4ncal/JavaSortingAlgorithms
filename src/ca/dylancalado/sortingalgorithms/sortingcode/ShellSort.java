@@ -1,5 +1,8 @@
 package ca.dylancalado.sortingalgorithms.sortingcode;
 
+import static java.lang.Math.floor;
+import static java.lang.Math.pow;
+
 /**
  * Logic for performing a shell sort.
  * 
@@ -7,14 +10,11 @@ package ca.dylancalado.sortingalgorithms.sortingcode;
  */
 public class ShellSort implements SortFacade 
 {
-    private static int gapSeqSize;
-    private static int[] gapSeq;
-    
     public static void sort(SortParameters p)
     {
-        for(int k = gapSeqSize-1; k >= 0; --k)
+        for(int k = p.getGapSeqSize()-1; k >= 0; --k)
         {
-            int gap = gapSeq[k];
+            int gap = p.getGapSeq()[k];
             
             for(int i = gap; i < p.getArraySize(); ++i)
             {
@@ -31,24 +31,28 @@ public class ShellSort implements SortFacade
         }
     }
 
-    public static void generateGapSequence(GapSequenceType type)
+    public static void generateShellGap(SortParameters p)
     {
-        switch(type)
+        double k = 1.0;
+        for(int i = 0; p.getGapSeq()[i] < p.getArraySize(); ++i)
         {
-            case SHELL:
-                
-                break;
-            case PRATT:
-                
-                break;
-            case KNUTH:
-                
-                break;
-            case OTHER:
-                
-                break;
-            default:
-                break;
+            p.getGapSeq()[i] = (int) floor((p.getArraySize()/pow(2.0, k)));
+            ++k;
+        }
+    }
+    
+    public static void generatePrattGap(SortParameters p)
+    {
+        for(int i = 0; i < p.getArraySize(); ++i)
+        {
+            
+        }
+    }
+    
+    public static void generateKnuthGap(SortParameters p)
+    {
+        for(int i = 0; i < p.getArraySize(); ++i)
+        {
             
         }
     }

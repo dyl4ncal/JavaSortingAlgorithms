@@ -14,44 +14,32 @@ import java.util.Arrays;
  */
 public class TestInsertionSort 
 {
+    private static int[] testArray = {3, 6, 1, 10, 4, 8, 9, 2, 5, 7};
+    
     public static boolean testInsertionSortAscending()
     {
-        int[] testArray = {3, 6, 1, 10, 4, 8, 9, 2, 5, 7};
         int[] expectedOutput = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         SortParameters p = new SortParameters(testArray, 10, ASCENDING, INSERTION_SORT);
         
         InsertionSort.sort(p);
         
-        if(Arrays.equals(testArray, expectedOutput))
-        {
-            System.out.print("Insertion sort ascending test passed? ");
-            return true;
-        }
-        else
-        {
-            System.out.print("Insertion sort ascending test passed? ");
-            return false;
-        }
+        boolean match = Arrays.equals(testArray, expectedOutput);
+            
+        System.out.print("Insertion sort ascending test passed? ");
+        return match;
     }  
     
     public static boolean testInsertionSortDescending()
     {
-        int[] testArray = {3, 6, 1, 10, 4, 8, 9, 2, 5, 7};
         int[] expectedOutput = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
         SortParameters p = new SortParameters(testArray, 10, DESCENDING, INSERTION_SORT);
         
         InsertionSort.sort(p);
         
-        if(Arrays.equals(testArray, expectedOutput))
-        {
-            System.out.print("Insertion sort descending test passed? ");
-            return true;
-        }
-        else
-        {
-            System.out.print("Insertion sort descending test passed? ");
-            return false;
-        }
+        boolean match = Arrays.equals(testArray, expectedOutput);
+        
+        System.out.print("Insertion sort descending test passed? ");
+        return match;
     }    
     
     public static void testAllInsertionSortMethods()

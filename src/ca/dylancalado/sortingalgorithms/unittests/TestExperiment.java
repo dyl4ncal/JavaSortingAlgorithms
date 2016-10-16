@@ -14,16 +14,9 @@ public class TestExperiment
         
         Experiment.createRandomArray(testArray, 10);
         
-        if(testArray != null)
-        {
-            System.out.print("Create random array test passed? ");
-            return true;
-        }
-        else
-        {
-            System.out.print("Create random array test passed? ");
-            return false;
-        }
+        boolean match = testArray != null;
+        System.out.print("Create random array test passed? ");
+        return match;
     }
 
     public static boolean testExperiment1()

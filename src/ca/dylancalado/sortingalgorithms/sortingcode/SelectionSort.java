@@ -20,9 +20,22 @@ public class SelectionSort implements SortFacade
             
             for(int i = nextPosition; i < p.getArraySize(); ++i)
             {
-                if(p.getArray()[i] < p.getArray()[minElemSoFar])
+                switch (p.getSortOrder()) 
                 {
-                    minElemSoFar = i;
+                    case ASCENDING:
+                        if (p.getArray()[i] < p.getArray()[minElemSoFar])
+                        {
+                            minElemSoFar = i;
+                        }
+                        break;
+                    case DESCENDING:
+                        if (p.getArray()[i] > p.getArray()[minElemSoFar]) 
+                        {
+                            minElemSoFar = i;
+                        }
+                        break;
+                    default:
+                        break;
                 }
             }
             swap(p.getArray(), nextPosition, minElemSoFar);
