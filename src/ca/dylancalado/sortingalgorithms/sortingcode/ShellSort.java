@@ -14,7 +14,7 @@ public class ShellSort implements SortFacade
     {
         for(int k = p.getGapSeqSize()-1; k >= 0; --k)
         {
-            int gap = p.getGapSeq()[k];
+            int gap = p.getGapSeq().get(k);
             
             for(int i = gap; i < p.getArraySize(); ++i)
             {
@@ -23,13 +23,6 @@ public class ShellSort implements SortFacade
                 
                 switch (p.getSortOrder())
                 {
-                    case ASCENDING:
-                        while (j >= 0 && p.getArray()[j] > value)
-                        {
-                            p.getArray()[j + gap] = p.getArray()[j];
-                            j -= gap;
-                        }
-                        break;
                     case DESCENDING:
                         while (j >= 0 && p.getArray()[j] < value)
                         {
@@ -38,6 +31,11 @@ public class ShellSort implements SortFacade
                         }
                         break;
                     default:
+                        while (j >= 0 && p.getArray()[j] > value)
+                        {
+                            p.getArray()[j + gap] = p.getArray()[j];
+                            j -= gap;
+                        }
                         break;
                 }  
                 p.getArray()[j+gap] = value;
@@ -45,13 +43,16 @@ public class ShellSort implements SortFacade
         }
     }
 
-    public static void generateShellGap(SortParameters params)
+    public static void generateShellGap(SortParameters p)
     {
-        double k = 1.0;
-        for(int i = 0; params.getGapSeq()[i] > 1; ++i)
+        int counter = 0;
+        p.getGapSeq().add((int) floor((p.getArraySize()/pow(2.0, 1.0))));
+        
+        for(double k = 2.0; p.getGapSeq().get(counter) >= 1; ++k)
         {
-            params.getGapSeq()[i] = (int) floor((params.getArraySize()/pow(2.0, k)));
-            ++k;
+            p.getGapSeq().add((int) floor((p.getArraySize()/pow(2.0, k))));
+       
+            ++counter;
         }
     }
     
@@ -60,17 +61,10 @@ public class ShellSort implements SortFacade
         double p = 0.0;
         double q = 0.0;
         
-        for(int i = 0; params.getGapSeq()[i] < params.getArraySize(); ++i)
-        {
-            
-        }
     }
     
     public static void generateKnuthGap(SortParameters params)
     {
-        for(int i = 0; i < params.getArraySize(); ++i)
-        {
-            
-        }
+      
     }
 }

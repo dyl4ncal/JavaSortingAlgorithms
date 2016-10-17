@@ -22,12 +22,6 @@ public class SelectionSort implements SortFacade
             {
                 switch (p.getSortOrder()) 
                 {
-                    case ASCENDING:
-                        if (p.getArray()[i] < p.getArray()[minElemSoFar])
-                        {
-                            minElemSoFar = i;
-                        }
-                        break;
                     case DESCENDING:
                         if (p.getArray()[i] > p.getArray()[minElemSoFar]) 
                         {
@@ -35,6 +29,10 @@ public class SelectionSort implements SortFacade
                         }
                         break;
                     default:
+                        if (p.getArray()[i] < p.getArray()[minElemSoFar])
+                        {
+                            minElemSoFar = i;
+                        }
                         break;
                 }
             }

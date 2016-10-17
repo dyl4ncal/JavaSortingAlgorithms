@@ -19,13 +19,6 @@ public class InsertionSort implements SortFacade
             
             switch (p.getSortOrder())
             {
-                case ASCENDING:
-                    while (j >= 0 && p.getArray()[j] > value)
-                    {
-                        p.getArray()[j + 1] = p.getArray()[j];
-                        --j;
-                    }
-                    break;
                 case DESCENDING:
                     while (j >= 0 && p.getArray()[j] < value)
                     {
@@ -34,6 +27,11 @@ public class InsertionSort implements SortFacade
                     }
                     break;
                 default:
+                    while (j >= 0 && p.getArray()[j] > value)
+                    {
+                        p.getArray()[j + 1] = p.getArray()[j];
+                        --j;
+                    }
                     break;
                     
             }

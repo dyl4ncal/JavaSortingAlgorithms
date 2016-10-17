@@ -1,5 +1,7 @@
 package ca.dylancalado.sortingalgorithms.sortingcode;
 
+import java.util.ArrayList;
+
 /**
  * This class is used to create objects with the
  * desired sort parameters.
@@ -10,7 +12,7 @@ public class SortParameters
 {
     private int[] array;
     private int arraySize;
-    private int[] gapSeq;
+    private ArrayList<Integer> gapSeq = new ArrayList<>();
     private int gapSeqSize;
     private SortOrder order;
     private SortType type;
@@ -29,11 +31,12 @@ public class SortParameters
         setSortType(myType);
     }
     
-    public SortParameters(int[] myArray, int myArraySize, GapSequenceType myGapSeqType, int myGapSeqSize, SortOrder myOrder, SortType myType)
+    public SortParameters(int[] myArray, int myArraySize, GapSequenceType myGapSeqType, ArrayList myGapSeq, int myGapSeqSize, SortOrder myOrder, SortType myType)
     {
         setArray(myArray);
         setArraySize(myArraySize);
         setGapSeqType(myGapSeqType);
+        setGapSeq(myGapSeq);
         setGapSeqSize(myGapSeqSize);
         setSortOrder(myOrder);
         setSortType(myType);
@@ -64,7 +67,7 @@ public class SortParameters
         return gapSeqType;
     }
     
-    public int[] getGapSeq()
+    public ArrayList<Integer> getGapSeq()
     {
         return gapSeq;
     }
@@ -99,7 +102,7 @@ public class SortParameters
         this.gapSeqType = gapSeqType;
     }
     
-    public void setGapSeq(int[] gapSeq)
+    public void setGapSeq(ArrayList<Integer> gapSeq)
     {
         this.gapSeq = gapSeq;
     }

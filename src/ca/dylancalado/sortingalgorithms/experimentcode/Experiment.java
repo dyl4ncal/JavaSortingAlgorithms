@@ -1,9 +1,11 @@
 package ca.dylancalado.sortingalgorithms.experimentcode;
 
-import ca.dylancalado.sortingalgorithms.sortingcode.InsertionSort;
-import ca.dylancalado.sortingalgorithms.sortingcode.SelectionSort;
-import ca.dylancalado.sortingalgorithms.sortingcode.ShellSort;
+import ca.dylancalado.sortingalgorithms.sortingcode.*;
+import static ca.dylancalado.sortingalgorithms.sortingcode.GapSequenceType.*;
+import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.ASCENDING;
 import ca.dylancalado.sortingalgorithms.sortingcode.SortParameters;
+import static ca.dylancalado.sortingalgorithms.sortingcode.SortType.*;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -16,15 +18,26 @@ public class Experiment
 {
     private static int[] array;
     private static int arraySize;
+    private static ArrayList gapSeq;
+    private static int gapSeqSize;
     private static int numOfTrials;
-    private static SortParameters p;
+    private static int maxArraySize;
     
     private static void experiment(SortParameters p, int numOfTrials)
     {  
         arraySize = 10000;
         numOfTrials = 5;
         
-        for(int i = arraySize; i <= 100000; i += 10000)
+        if(p.getSortType() == SHELL_SORT)
+        {
+            maxArraySize = 300000;
+        }
+        else
+        {
+            maxArraySize = 100000;
+        }
+        
+        for(int i = arraySize; i <= maxArraySize; i += 10000)
         {
             array = new int[arraySize];
             p.setArray(array);
@@ -55,19 +68,30 @@ public class Experiment
     
     public static void experiment1()
     {
-       experiment(p, numOfTrials);
+        SortParameters p = new SortParameters(array, arraySize, ASCENDING, SELECTION_SORT);
+        experiment(p, numOfTrials);
     }
     
     public static void experiment2()
     {
-       experiment(p, numOfTrials);
+        SortParameters p = new SortParameters(array, arraySize, ASCENDING, INSERTION_SORT);
+        experiment(p, numOfTrials);
     }
     
     public static void experiment3()
     {
-       experiment(p, numOfTrials);
+        SortParameters p1 = new SortParameters(array, arraySize, SHELL, gapSeq, gapSeqSize, ASCENDING, SHELL_SORT);
+        ShellSort.generateShellGap(p1);
+        SortParameters p2 = new SortParameters(array, arraySize, PRATT, gapSeq, gapSeqSize, ASCENDING, SHELL_SORT);
+        ShellSort.generatePrattGap(p2);
+        SortParameters p3 = new SortParameters(array, arraySize, KNUTH, gapSeq, gapSeqSize, ASCENDING, SHELL_SORT);
+        ShellSort.generateKnuthGap(p3);
+        
+        experiment(p1, numOfTrials);
+        experiment(p2, numOfTrials);
+        experiment(p3, numOfTrials);
     }
-    
+  
     public static void runAllExperiments()
     {
         experiment1();
