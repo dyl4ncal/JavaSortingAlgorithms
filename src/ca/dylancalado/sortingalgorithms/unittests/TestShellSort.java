@@ -8,7 +8,6 @@ import static ca.dylancalado.sortingalgorithms.sortingcode.SortType.SHELL_SORT;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-
 /**
  * Unit tests related to shell sort.
  * 
@@ -17,7 +16,7 @@ import java.util.Arrays;
 public class TestShellSort
 {
     private static int[] testArray = {3, 6, 1, 10, 4, 8, 9, 2, 5, 7, 12, 11, 15, 13, 14, 19, 16, 17, 20, 18};
-    static ArrayList<Integer> testGapSeq = new ArrayList<>();
+    private static ArrayList<Integer> testGapSeq = new ArrayList<>();
     private static int gapSeqSize;
             
     public static boolean testShellSortAscending()
@@ -25,8 +24,8 @@ public class TestShellSort
         int[] expectedOutput = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
         SortParameters p = new SortParameters(testArray, testArray.length, SHELL, testGapSeq, gapSeqSize, ASCENDING, SHELL_SORT);
         ShellSort.generateShellGap(p);
-       
         ShellSort.sort(p);
+        
         boolean match = Arrays.equals(testArray, expectedOutput);
         
         System.out.print("Shell sort ascending test passed? ");
@@ -35,13 +34,13 @@ public class TestShellSort
     
     public static boolean testShellSortDescending()
     {
-        int[] expectedOutput = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+        int[] expectedOutput = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
         SortParameters p = new SortParameters(testArray, testArray.length, SHELL, testGapSeq, gapSeqSize, DESCENDING, SHELL_SORT);
         ShellSort.generateShellGap(p);
-
         ShellSort.sort(p);
+        
         boolean match = Arrays.equals(testArray, expectedOutput);
-
+       
         System.out.print("Shell sort descending test passed? ");
         return match;
     }
@@ -51,14 +50,17 @@ public class TestShellSort
         int[] expectedOutput1 = {10, 5, 2, 1};
         SortParameters p1 = new SortParameters(testArray, testArray.length, SHELL, testGapSeq, gapSeqSize, ASCENDING, SHELL_SORT);
         ShellSort.generateShellGap(p1);
-        
-        //Visual of the gap sequence 
-        for(int i = 0; i < p1.getGapSeqSize(); ++i)
-        {
-            System.out.print(p1.getGapSeq().get(i));
-        }
-        boolean match = Arrays.asList(expectedOutput1).equals(p1.getGapSeq());
        
+        boolean match = false;
+        
+        for(int i = 0; i < expectedOutput1.length; ++i)
+        {
+            match = p1.getGapSeq().get(i).equals(expectedOutput1[i]);
+            if(i == expectedOutput1.length)
+            {
+                return match;
+            }
+        }
         System.out.print("Generate Shell sequence test passed? ");
         return match;
     }

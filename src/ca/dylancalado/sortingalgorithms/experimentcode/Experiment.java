@@ -18,7 +18,7 @@ public class Experiment
 {
     private static int[] array;
     private static int arraySize;
-    private static ArrayList gapSeq;
+    private static ArrayList<Integer> gapSeq;
     private static int gapSeqSize;
     private static int numOfTrials;
     private static int maxArraySize;

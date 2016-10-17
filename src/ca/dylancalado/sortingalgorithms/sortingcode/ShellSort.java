@@ -51,9 +51,9 @@ public class ShellSort implements SortFacade
         for(double k = 2.0; p.getGapSeq().get(counter) >= 1; ++k)
         {
             p.getGapSeq().add((int) floor((p.getArraySize()/pow(2.0, k))));
-       
             ++counter;
         }
+        p.setGapSeqSize(counter);
     }
     
     public static void generatePrattGap(SortParameters params)
