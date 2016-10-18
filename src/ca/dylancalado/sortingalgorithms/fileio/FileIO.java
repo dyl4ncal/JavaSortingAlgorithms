@@ -1,5 +1,6 @@
 package ca.dylancalado.sortingalgorithms.fileio;
 
+import ca.dylancalado.sortingalgorithms.experimentcode.SortTimer;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -27,20 +28,20 @@ public class FileIO
     
     public static void createLogFile() throws IOException
     {
-        if (!file.createNewFile())
+        if (file.createNewFile())
         {
-            System.out.println("This file name is taken. Please choose a new name.");
+            System.out.println(file + " created successfully.\n");
         } 
         else 
         {
-            System.out.println("File is created!");
+            System.out.println(file + "already exists. Please choose a new name\n.");
         }
     }
     
     public static void writeToLogFile() throws IOException
     {
         fileWriter = new FileWriter(file);
-        fileWriter.write("Test data");
+        fileWriter.write("InputSize" + "," + "AverageSortTime" +(int) SortTimer.calculateAverageSortTime());
         fileWriter.close();
     }
 }

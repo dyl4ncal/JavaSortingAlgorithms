@@ -13,11 +13,15 @@ public class TestSortTimer
         return false;
     }
     
-    
-    
+    public static boolean testCalculateAverageSortTime()
+    {
+        System.out.print("Calculate average sort time test passed? ");
+        return false;
+    }
     
     public static void testAllSortTimerMethods()
     {
-        System.out.println(testTimeSort() + "\n");
+        System.out.println(testTimeSort());
+        System.out.println(testCalculateAverageSortTime() + "\n");
     }
 }

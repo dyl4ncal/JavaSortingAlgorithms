@@ -5,6 +5,7 @@ import ca.dylancalado.sortingalgorithms.fileio.FileIO;
 import ca.dylancalado.sortingalgorithms.sortingcode.SortOrder;
 import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.*;
 import ca.dylancalado.sortingalgorithms.unittests.*;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -16,16 +17,14 @@ public class UI
 {
     private static Scanner userInput = new Scanner(System.in);
     
-    private static String menu = "1. Run All Experiments\n2. Run Experiment by Number\n"
-                + "3. Run All Unit Tests\n4. Run Unit Test by Class/Method\n"
-                + "5. Run Specific Sorts On a Generated Random Array\n6. Exit Program";
-    
-    public static void runUI()
+    public static void runUI() throws IOException
     {
         while (true)
         {
             System.out.println("\nSorting Algorithms Main Menu:\n-----------------------------");
-            System.out.println(menu);
+            System.out.println("1. Run All Experiments\n2. Run Experiment by Number\n"
+                + "3. Run All Unit Tests\n4. Run Unit Test by Class/Method\n"
+                + "5. Run Specific Sorts On a Generated Random Array\n6. Exit Program");
 
             switch (userInput.next()) 
             {
@@ -54,19 +53,19 @@ public class UI
         }
     }
     
-    public static void runAllExperiments()
+    public static void runAllExperiments() throws IOException
     {
         System.out.print("Enter base file name where experimental results will be logged: ");
         FileIO.getFileName();
-        
+        FileIO.createLogFile();
         Experiment.runAllExperiments();
     }
     
-    public static void runExperimentByNumber()
+    public static void runExperimentByNumber() throws IOException
     {
         System.out.print("Enter file name where experimental results will be logged: ");
         FileIO.getFileName();
-        
+        FileIO.createLogFile();
         System.out.println("Pick an experiment to run:\n"
                 + "1. Experiment 1\n2. Experiment 2\n3. Experiment 3");
 
@@ -87,7 +86,7 @@ public class UI
         }  
     }
     
-    public static void runAllUnitTests()
+    public static void runAllUnitTests() throws IOException
     {
        TestSelectionSort.testAllSelectionSortMethods();
        TestInsertionSort.testAllInsertionSortMethods();
@@ -96,7 +95,7 @@ public class UI
        TestSortTimer.testAllSortTimerMethods();
     }
     
-    public static void selectUnitTest()
+    public static void selectUnitTest() throws IOException
     {
         System.out.println("1. Test Methods in SelectionSort Class\n"
                 + "2. Test Methods in InsertionSort Class\n"
@@ -130,6 +129,7 @@ public class UI
                 break;
             case "5":
                 System.out.println(TestSortTimer.testTimeSort());
+                System.out.println(TestSortTimer.testCalculateAverageSortTime());
                 break;
             default:
                 System.out.println("Invalid Input");
@@ -148,17 +148,17 @@ public class UI
         System.out.println("Specify ascending or descending sort order:");
         SortOrder order;
         String userOrder = userInput.next();
-        if(userOrder.equals("ascending"))
+        switch (userOrder)
         {
-            order = ASCENDING;
-        }
-        else if(userOrder.equals("descending"))
-        {
-            order = DESCENDING;
-        }
-        else
-        {
-            System.out.println("Please enter a valid sort order (ascending/descending).");
+            case "ascending":
+                order = ASCENDING;
+                break;
+            case "descending":
+                order = DESCENDING;
+                break;
+            default:
+                System.out.println("Please enter a valid sort order (ascending/descending).");
+                break;
         }
         
         System.out.println("Choose the type of sort you wish to utilize:\n"

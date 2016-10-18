@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ca.dylancalado.sortingalgorithms.experimentcode;
 
 /**
@@ -12,12 +7,18 @@ package ca.dylancalado.sortingalgorithms.experimentcode;
  */
 public class SortTimer
 {
-   public static long timeSort()
+    public static long timeSort()
     {
-        long tStart = System.currentTimeMillis();
-        long tFinish = System.currentTimeMillis();
-        
-        long elapsedTime = tFinish - tStart;
-        return elapsedTime;
+        long tStart = System.nanoTime();
+        long tFinish = System.nanoTime();
+        long sortTime = tFinish - tStart;
+        System.out.print(sortTime + "ns" + ", ");
+        return sortTime;
+    }
+    
+    public static long calculateAverageSortTime()
+    {
+        //Total time for 5 sort trials / 5;
+        return 1;
     }
 }

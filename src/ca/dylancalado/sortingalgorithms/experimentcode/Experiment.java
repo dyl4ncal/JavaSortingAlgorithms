@@ -43,29 +43,27 @@ public class Experiment
         {
             array = new int[arraySize];
             p.setArray(array);
-            createRandomArray(array, arraySize);
             
             for(int j = numOfTrials; j > 0; --j)
             {
+                createRandomArray(array, arraySize);
+                
                 switch(p.getSortType())
                 {
                     case SELECTION_SORT:
-                        //Logic for Timing
+                        
                         SelectionSort.sort(p);
-                        FileIO.createLogFile();
-                        FileIO.writeToLogFile();
+                        
                         break;
                     case INSERTION_SORT:
-                        //Logic for Timing
+                        
                         InsertionSort.sort(p);
-                        FileIO.createLogFile();
-                        FileIO.writeToLogFile();
+                        
                         break;
                     case SHELL_SORT:
-                        //Logic for Timing
+                        
                         ShellSort.sort(p);
-                        FileIO.createLogFile();
-                        FileIO.writeToLogFile();
+                        
                         break;
                     default:
                         System.out.println("Invalid Sort Type");
