@@ -44,6 +44,6 @@ public class TestInsertionSort
     public static void testAllInsertionSortMethods()
     {
         System.out.println(testInsertionSortAscending());
-        System.out.println(testInsertionSortDescending());
+        System.out.println(testInsertionSortDescending() + "\n");
     }
 }

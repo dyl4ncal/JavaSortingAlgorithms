@@ -1,10 +1,12 @@
 package ca.dylancalado.sortingalgorithms.experimentcode;
 
+import ca.dylancalado.sortingalgorithms.fileio.FileIO;
 import ca.dylancalado.sortingalgorithms.sortingcode.*;
 import static ca.dylancalado.sortingalgorithms.sortingcode.GapSequenceType.*;
 import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.ASCENDING;
 import ca.dylancalado.sortingalgorithms.sortingcode.SortParameters;
 import static ca.dylancalado.sortingalgorithms.sortingcode.SortType.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -18,12 +20,12 @@ public class Experiment
 {
     private static int[] array;
     private static int arraySize;
-    private static ArrayList<Integer> gapSeq;
+    private static ArrayList<Integer> gapSeq = new ArrayList<>();
     private static int gapSeqSize;
     private static int numOfTrials;
     private static int maxArraySize;
     
-    private static void experiment(SortParameters p, int numOfTrials)
+    private static void experiment(SortParameters p, int numOfTrials) throws IOException
     {  
         arraySize = 10000;
         numOfTrials = 5;
@@ -48,37 +50,44 @@ public class Experiment
                 switch(p.getSortType())
                 {
                     case SELECTION_SORT:
-                        //Logic for: Timing, selection sort, file i/o.
+                        //Logic for Timing
                         SelectionSort.sort(p);
+                        FileIO.createLogFile();
+                        FileIO.writeToLogFile();
                         break;
                     case INSERTION_SORT:
-                        //Logic for: Timing, insertion sort, file i/o.
+                        //Logic for Timing
                         InsertionSort.sort(p);
+                        FileIO.createLogFile();
+                        FileIO.writeToLogFile();
                         break;
                     case SHELL_SORT:
-                        //Logic for: Timing, shell sort, file i/o.
+                        //Logic for Timing
                         ShellSort.sort(p);
+                        FileIO.createLogFile();
+                        FileIO.writeToLogFile();
                         break;
                     default:
+                        System.out.println("Invalid Sort Type");
                         break;
                 }
             }
         } 
     }
     
-    public static void experiment1()
+    public static void experiment1() throws IOException
     {
         SortParameters p = new SortParameters(array, arraySize, ASCENDING, SELECTION_SORT);
         experiment(p, numOfTrials);
     }
     
-    public static void experiment2()
+    public static void experiment2() throws IOException
     {
         SortParameters p = new SortParameters(array, arraySize, ASCENDING, INSERTION_SORT);
         experiment(p, numOfTrials);
     }
     
-    public static void experiment3()
+    public static void experiment3() throws IOException
     {
         SortParameters p1 = new SortParameters(array, arraySize, SHELL, gapSeq, gapSeqSize, ASCENDING, SHELL_SORT);
         ShellSort.generateShellGap(p1);
@@ -92,7 +101,7 @@ public class Experiment
         experiment(p3, numOfTrials);
     }
   
-    public static void runAllExperiments()
+    public static void runAllExperiments() throws IOException
     {
         experiment1();
         experiment2();

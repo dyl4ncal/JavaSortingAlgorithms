@@ -19,7 +19,7 @@ public class TestShellSort
     private static ArrayList<Integer> testGapSeq = new ArrayList<>();
     private static int gapSeqSize;
             
-    public static boolean testShellSortAscending()
+    public static boolean testShellSortShellGapAscending()
     {
         int[] expectedOutput = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
         SortParameters p = new SortParameters(testArray, testArray.length, SHELL, testGapSeq, gapSeqSize, ASCENDING, SHELL_SORT);
@@ -28,11 +28,11 @@ public class TestShellSort
         
         boolean match = Arrays.equals(testArray, expectedOutput);
         
-        System.out.print("Shell sort ascending test passed? ");
+        System.out.print("Shell sort (Shell gap) ascending test passed? ");
         return match;
     }
     
-    public static boolean testShellSortDescending()
+    public static boolean testShellSortShellGapDescending()
     {
         int[] expectedOutput = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
         SortParameters p = new SortParameters(testArray, testArray.length, SHELL, testGapSeq, gapSeqSize, DESCENDING, SHELL_SORT);
@@ -41,7 +41,7 @@ public class TestShellSort
         
         boolean match = Arrays.equals(testArray, expectedOutput);
        
-        System.out.print("Shell sort descending test passed? ");
+        System.out.print("Shell sort (Shell gap) descending test passed? ");
         return match;
     }
     
@@ -91,10 +91,10 @@ public class TestShellSort
     
     public static void testAllShellSortMethods()
     {
-        System.out.println(testShellSortAscending());
-        System.out.println(testShellSortDescending());
+        System.out.println(testShellSortShellGapAscending());
+        System.out.println(testShellSortShellGapDescending());
         System.out.println(testGenerateShellGap());
         System.out.println(testGeneratePrattGap());
-        System.out.println(testGenerateKnuthGap());
+        System.out.println(testGenerateKnuthGap() + "\n");
     }
 }

@@ -41,7 +41,7 @@ public class TestSelectionSort
         return match;
     }
     
-    public static boolean testSwap()
+    public static boolean testSelectionSortSwap()
     {
         int[] testArray = {9, 4};
         int[] expectedOutput = {4,9};
@@ -51,14 +51,14 @@ public class TestSelectionSort
        
         boolean match = Arrays.equals(testArray, expectedOutput);
        
-        System.out.print("Swap test passed? ");
+        System.out.print("Selection sort swap test passed? ");
         return match;
     }
     
     public static void testAllSelectionSortMethods()
     {
-        System.out.println(testSwap());
+        System.out.println(testSelectionSortSwap());
         System.out.println(testSelectionSortAscending());
-        System.out.println(testSelectionSortDescending());
+        System.out.println(testSelectionSortDescending() + "\n");
     }
 }
