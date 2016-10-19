@@ -7,13 +7,21 @@ package ca.dylancalado.sortingalgorithms.experimentcode;
  */
 public class SortTimer
 {
-    public static long timeSort()
+    private static long tStart;
+    private static long tFinish;
+    private static long totalSortTime;
+    
+    public static long startTimer()
     {
-        long tStart = System.nanoTime();
-        long tFinish = System.nanoTime();
-        long sortTime = tFinish - tStart;
-        System.out.print(sortTime + "ns" + ", ");
-        return sortTime;
+        tStart = System.nanoTime();
+        return tStart;
+    }
+    
+    public static long calculateSortTime()
+    {
+        tFinish = System.nanoTime();
+        totalSortTime = tFinish - tStart;
+        return totalSortTime;
     }
     
     public static long calculateAverageSortTime()

@@ -5,6 +5,7 @@ import ca.dylancalado.sortingalgorithms.fileio.FileIO;
 import ca.dylancalado.sortingalgorithms.sortingcode.SortOrder;
 import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.*;
 import ca.dylancalado.sortingalgorithms.unittests.*;
+import static ca.dylancalado.sortingalgorithms.unittests.TestSortTimer.*;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -120,6 +121,8 @@ public class UI
                 System.out.println(TestShellSort.testGenerateKnuthGap());
                 System.out.println(TestShellSort.testShellSortShellGapAscending());
                 System.out.println(TestShellSort.testShellSortShellGapDescending());
+                System.out.println(TestShellSort.testShellSortPrattGapAscending());
+                System.out.println(TestShellSort.testShellSortPrattGapDescending());
                 break;
             case "4":
                 System.out.println(TestExperiment.testCreateRandomArray());
@@ -128,8 +131,9 @@ public class UI
                 System.out.println(TestExperiment.testExperiment3());
                 break;
             case "5":
-                System.out.println(TestSortTimer.testTimeSort());
-                System.out.println(TestSortTimer.testCalculateAverageSortTime());
+                System.out.println(testStartTimer());
+                System.out.println(testCalculateSortTime());
+                System.out.println(testCalculateAverageSortTime());
                 break;
             default:
                 System.out.println("Invalid Input");

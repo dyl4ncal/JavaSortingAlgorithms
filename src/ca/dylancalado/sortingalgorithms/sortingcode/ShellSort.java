@@ -4,7 +4,8 @@ import static java.lang.Math.floor;
 import static java.lang.Math.pow;
 
 /**
- * Logic for performing a shell sort.
+ * Logic for performing a shell sort and creating
+ * different types of gap sequences.
  * 
  * @author dylan
  */
@@ -43,28 +44,48 @@ public class ShellSort implements SortFacade
         }
     }
 
-    public static void generateShellGap(SortParameters p)
+    public static void generateShellGap(SortParameters params)
     {
         int counter = 0;
-        p.getGapSeq().add((int) floor((p.getArraySize()/pow(2.0, 1.0))));
+        params.getGapSeq().add((int) floor((params.getArraySize()/pow(2.0, 1.0))));
         
-        for(double k = 2.0; p.getGapSeq().get(counter) >= 1; ++k)
+        for(double k = 2.0; params.getGapSeq().get(counter) >= 1; ++k)
         {
-            p.getGapSeq().add((int) floor((p.getArraySize()/pow(2.0, k))));
+            params.getGapSeq().add((int) floor((params.getArraySize()/pow(2.0, k))));
             ++counter;
         }
-        p.setGapSeqSize(counter);
+        params.setGapSeqSize(counter);
     }
     
     public static void generatePrattGap(SortParameters params)
     {
-        double p = 0.0;
-        double q = 0.0;
+        int p = 0;
+        int q = 0;
+        params.getGapSeq().add(1);
         
+        for(int i = 0; params.getGapSeq().get(i) < params.getArraySize(); ++i)
+        {
+            if (2*params.getGapSeq().get(p) < 3*params.getGapSeq().get(q))
+            {
+                params.getGapSeq().add(2*params.getGapSeq().get(p));
+                ++p;
+            } 
+            else if (2*params.getGapSeq().get(p) > 3*params.getGapSeq().get(q)) 
+            {
+                params.getGapSeq().add(3*params.getGapSeq().get(q));
+                ++q;
+            } 
+            else
+            {
+                params.getGapSeq().add(2*params.getGapSeq().get(p));
+                ++p;
+                ++q;
+            }
+        }
     }
     
     public static void generateKnuthGap(SortParameters params)
     {
-      
+        
     }
 }
