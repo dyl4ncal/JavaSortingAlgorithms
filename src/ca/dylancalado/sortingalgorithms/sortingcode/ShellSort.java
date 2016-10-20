@@ -1,7 +1,6 @@
 package ca.dylancalado.sortingalgorithms.sortingcode;
 
-import static java.lang.Math.floor;
-import static java.lang.Math.pow;
+import static java.lang.Math.*;
 
 /**
  * Logic for performing a shell sort and creating
@@ -24,6 +23,13 @@ public class ShellSort implements SortFacade
                 
                 switch (p.getSortOrder())
                 {
+                    case ASCENDING:
+                        while (j >= 0 && p.getArray()[j] > value)
+                        {
+                            p.getArray()[j + gap] = p.getArray()[j];
+                            j -= gap;
+                        }
+                        break;
                     case DESCENDING:
                         while (j >= 0 && p.getArray()[j] < value)
                         {
@@ -59,11 +65,12 @@ public class ShellSort implements SortFacade
     
     public static void generatePrattGap(SortParameters params)
     {
+        int i;
         int p = 0;
         int q = 0;
         params.getGapSeq().add(1);
         
-        for(int i = 0; params.getGapSeq().get(i) < params.getArraySize(); ++i)
+        for(i = 0; params.getGapSeq().get(i) < params.getArraySize(); ++i)
         {
             if (2*params.getGapSeq().get(p) < 3*params.getGapSeq().get(q))
             {
@@ -82,10 +89,26 @@ public class ShellSort implements SortFacade
                 ++q;
             }
         }
+        params.setGapSeqSize(i);
     }
     
     public static void generateKnuthGap(SortParameters params)
     {
+        int counter = 0;
+        params.getGapSeq().add((int)(pow(3.0, 1.0)-1)/2);
         
+        for(double k = 2.0; params.getGapSeq().get(counter) < params.getArraySize(); ++k)
+        {
+            if(((pow(3.0, k)-1)/2) < ceil(params.getArraySize()/3))
+            {
+                params.getGapSeq().add((int)(pow(3.0, k)-1)/2);
+                ++counter;
+            }
+            else
+            {
+                break;
+            }
+        }
+        params.setGapSeqSize(counter);
     }
 }

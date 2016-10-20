@@ -51,9 +51,9 @@ public class TestShellSort
         int[] expectedOutput = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
         ArrayList<Integer> testGapSeq = new ArrayList<>();
         SortParameters p = new SortParameters(testArray, testArray.length, PRATT, testGapSeq, gapSeqSize, ASCENDING, SHELL_SORT);
-        ShellSort.generateShellGap(p);
+        ShellSort.generatePrattGap(p);
         ShellSort.sort(p);
-        
+      
         boolean match = Arrays.equals(testArray, expectedOutput);
         
         System.out.print("Shell sort (Pratt gap) ascending test passed? ");
@@ -65,12 +65,40 @@ public class TestShellSort
         int[] expectedOutput = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
         ArrayList<Integer> testGapSeq = new ArrayList<>();
         SortParameters p = new SortParameters(testArray, testArray.length, PRATT, testGapSeq, gapSeqSize, DESCENDING, SHELL_SORT);
-        ShellSort.generateShellGap(p);
+        ShellSort.generatePrattGap(p);
         ShellSort.sort(p);
         
         boolean match = Arrays.equals(testArray, expectedOutput);
        
         System.out.print("Shell sort (Pratt gap) descending test passed? ");
+        return match;
+    }
+    
+    public static boolean testShellSortKnuthGapAscending()
+    {
+        int[] expectedOutput = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+        ArrayList<Integer> testGapSeq = new ArrayList<>();
+        SortParameters p = new SortParameters(testArray, testArray.length, KNUTH, testGapSeq, gapSeqSize, ASCENDING, SHELL_SORT);
+        ShellSort.generateKnuthGap(p);
+        ShellSort.sort(p);
+      
+        boolean match = Arrays.equals(testArray, expectedOutput);
+        
+        System.out.print("Shell sort (Knuth gap) ascending test passed? ");
+        return match;
+    }
+
+    public static boolean testShellSortKnuthGapDescending()
+    {
+        int[] expectedOutput = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+        ArrayList<Integer> testGapSeq = new ArrayList<>();
+        SortParameters p = new SortParameters(testArray, testArray.length, KNUTH, testGapSeq, gapSeqSize, DESCENDING, SHELL_SORT);
+        ShellSort.generateKnuthGap(p);
+        ShellSort.sort(p);
+        
+        boolean match = Arrays.equals(testArray, expectedOutput);
+        
+        System.out.print("Shell sort (Knuth gap) descending test passed? ");
         return match;
     }
     
@@ -109,7 +137,7 @@ public class TestShellSort
             match = p2.getGapSeq().get(i).equals(expectedOutput2[i]);
             if(match == false)
             {
-               // break;
+               break;
             }
         }
        
@@ -119,12 +147,21 @@ public class TestShellSort
     
     public static boolean testGenerateKnuthGap()
     {
-        int[] expectedOutput3 = {1, 4, 14, 40, 121};
+        int[] expectedOutput3 = {1, 4};
         ArrayList<Integer> testGapSeq = new ArrayList<>();
         SortParameters p3 = new SortParameters(testArray, testArray.length, KNUTH, testGapSeq, gapSeqSize, ASCENDING, SHELL_SORT);
         ShellSort.generateKnuthGap(p3);
         
-        boolean match = false;
+        boolean match = true;
+        
+        for(int i = 0; i < expectedOutput3.length; ++i)
+        {
+            match = p3.getGapSeq().get(i).equals(expectedOutput3[i]);
+            if(match == false)
+            {
+               break;
+            }
+        }
        
         System.out.print("Generate Knuth sequence test passed? ");
         return match;
@@ -136,6 +173,8 @@ public class TestShellSort
         System.out.println(testShellSortShellGapDescending());
         System.out.println(testShellSortPrattGapAscending());
         System.out.println(testShellSortPrattGapDescending());
+        System.out.println(testShellSortKnuthGapAscending());
+        System.out.println(testShellSortKnuthGapDescending());
         System.out.println(testGenerateShellGap());
         System.out.println(testGeneratePrattGap());
         System.out.println(testGenerateKnuthGap() + "\n");

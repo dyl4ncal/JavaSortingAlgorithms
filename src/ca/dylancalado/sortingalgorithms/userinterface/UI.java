@@ -123,6 +123,8 @@ public class UI
                 System.out.println(TestShellSort.testShellSortShellGapDescending());
                 System.out.println(TestShellSort.testShellSortPrattGapAscending());
                 System.out.println(TestShellSort.testShellSortPrattGapDescending());
+                System.out.println(TestShellSort.testShellSortKnuthGapAscending());
+                System.out.println(TestShellSort.testShellSortKnuthGapDescending());
                 break;
             case "4":
                 System.out.println(TestExperiment.testCreateRandomArray());
