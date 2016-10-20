@@ -1,9 +1,8 @@
 package ca.dylancalado.sortingalgorithms.experimentcode;
 
-import ca.dylancalado.sortingalgorithms.fileio.FileIO;
 import ca.dylancalado.sortingalgorithms.sortingcode.*;
 import static ca.dylancalado.sortingalgorithms.sortingcode.GapSequenceType.*;
-import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.ASCENDING;
+import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.*;
 import ca.dylancalado.sortingalgorithms.sortingcode.SortParameters;
 import static ca.dylancalado.sortingalgorithms.sortingcode.SortType.*;
 import java.io.IOException;
@@ -115,5 +114,24 @@ public class Experiment
         {
             array[i] = randomNums.nextInt();
         }
+    }
+    
+    public static boolean verifySortCorrectness(int[] array, SortOrder order)
+    {
+        boolean sortSuccessful = true;
+        for (int i = 1; i < array.length; i++)
+        {
+            if(order == ASCENDING && array[i-1] > array[i]) 
+            {
+                sortSuccessful = false;
+                break;
+            }
+            else if(order == DESCENDING && array[i-1] < array[i])
+            {
+                sortSuccessful = false;
+                break;
+            }
+        }
+        return sortSuccessful;
     }
 }

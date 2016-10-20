@@ -1,9 +1,15 @@
 package ca.dylancalado.sortingalgorithms.userinterface;
 
 import ca.dylancalado.sortingalgorithms.experimentcode.Experiment;
+import ca.dylancalado.sortingalgorithms.experimentcode.SortTimer;
 import ca.dylancalado.sortingalgorithms.fileio.FileIO;
+import ca.dylancalado.sortingalgorithms.sortingcode.InsertionSort;
+import ca.dylancalado.sortingalgorithms.sortingcode.SelectionSort;
+import ca.dylancalado.sortingalgorithms.sortingcode.ShellSort;
 import ca.dylancalado.sortingalgorithms.sortingcode.SortOrder;
 import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.*;
+import ca.dylancalado.sortingalgorithms.sortingcode.SortParameters;
+import ca.dylancalado.sortingalgorithms.sortingcode.SortType;
 import ca.dylancalado.sortingalgorithms.unittests.*;
 import static ca.dylancalado.sortingalgorithms.unittests.TestSortTimer.*;
 import java.io.IOException;
@@ -16,7 +22,7 @@ import java.util.Scanner;
  */
 public class UI
 {
-    private static Scanner userInput = new Scanner(System.in);
+    private static final Scanner userInput = new Scanner(System.in);
     
     public static void runUI() throws IOException
     {
@@ -25,7 +31,7 @@ public class UI
             System.out.println("\nSorting Algorithms Main Menu:\n-----------------------------");
             System.out.println("1. Run All Experiments\n2. Run Experiment by Number\n"
                 + "3. Run All Unit Tests\n4. Run Unit Test by Class/Method\n"
-                + "5. Run Specific Sorts On a Generated Random Array\n6. Exit Program");
+                + "5. Set Up Custom Sorting Scenario\n6. Exit Program");
 
             switch (userInput.next()) 
             {
@@ -94,6 +100,7 @@ public class UI
        TestShellSort.testAllShellSortMethods();
        TestExperiment.testAllExperimentMethods();
        TestSortTimer.testAllSortTimerMethods();
+       TestMemoryUsage.testAllMemoryUsageMethods();
     }
     
     public static void selectUnitTest() throws IOException
@@ -128,6 +135,8 @@ public class UI
                 break;
             case "4":
                 System.out.println(TestExperiment.testCreateRandomArray());
+                System.out.println(TestExperiment.testVerifySortCorrectnessAscending());
+                System.out.println(TestExperiment.testVerifySortCorrectnessDescending());
                 System.out.println(TestExperiment.testExperiment1());
                 System.out.println(TestExperiment.testExperiment2());
                 System.out.println(TestExperiment.testExperiment3());
@@ -137,6 +146,9 @@ public class UI
                 System.out.println(testCalculateSortTime());
                 System.out.println(testCalculateAverageSortTime());
                 break;
+            case "6":
+                ///////////////////////////////////////////////////////
+                break;
             default:
                 System.out.println("Invalid Input");
                 break;
@@ -145,22 +157,26 @@ public class UI
     
     public static void selectCustomScenario()
     {
+        SortParameters p = new SortParameters();
         System.out.println("Specify size of array to be sorted:");
+        
         int userSize = userInput.nextInt();
+        p.setArraySize(userSize);
+        
         int[] userArray = new int[userSize];
         
         Experiment.createRandomArray(userArray, userSize);
+        p.setArray(userArray);
         
         System.out.println("Specify ascending or descending sort order:");
-        SortOrder order;
         String userOrder = userInput.next();
-        switch (userOrder)
+        switch (userOrder.toLowerCase())
         {
             case "ascending":
-                order = ASCENDING;
+                p.setSortOrder(ASCENDING);
                 break;
             case "descending":
-                order = DESCENDING;
+                p.setSortOrder(DESCENDING);
                 break;
             default:
                 System.out.println("Please enter a valid sort order (ascending/descending).");
@@ -173,19 +189,30 @@ public class UI
         switch(userInput.next())
         {
             case "1":
+                p.setSortType(SortType.SELECTION_SORT);
+                SortTimer.startTimer();
+                SelectionSort.sort(p);
+                System.out.println("Time to complete sort: " + SortTimer.calculateSortTime() + "ns");
                 break;
             case "2":
+                p.setSortType(SortType.INSERTION_SORT);
+                SortTimer.startTimer();
+                InsertionSort.sort(p);
+                System.out.println("Time to complete sort: " + SortTimer.calculateSortTime() + "ns");
                 break;
-            case "3":
+            case "3":           
+                p.setSortType(SortType.SHELL_SORT);
+                SortTimer.startTimer();
+                ShellSort.sort(p);
+                System.out.println("Time to complete sort: " + SortTimer.calculateSortTime() + "ns");
                 break;
             default:
                 System.out.println("Invalid Input");
                 break;
         }
         
-        //provide feedback for success, memory usage, and time required for sort
-        System.out.println("Sort successful? ");
+        //provide feedback for success, memory usage, and time required for sort.
+        System.out.println("Sort successful? " + Experiment.verifySortCorrectness(p.getArray(), p.getSortOrder()));
         System.out.println("Memory usage: ");
-        System.out.println("Time to complete sort: ");
     }
 }
