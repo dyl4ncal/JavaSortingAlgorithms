@@ -20,6 +20,11 @@ public class TestSortTimer
         return match;
     }
     
+    public static boolean testEndTimer()
+    {
+        return false;
+    }
+    
     public static boolean testCalculateSortTime()
     {
         SortTimer.startTimer();

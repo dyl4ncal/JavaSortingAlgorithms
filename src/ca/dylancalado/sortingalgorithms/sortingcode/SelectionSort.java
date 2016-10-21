@@ -1,5 +1,7 @@
 package ca.dylancalado.sortingalgorithms.sortingcode;
 
+import ca.dylancalado.sortingalgorithms.experimentcode.MemoryUsage;
+
 /**
  * Logic for performing a selection sort.
  * 
@@ -38,7 +40,7 @@ public class SelectionSort implements SortFacade
             }
             swap(p.getArray(), nextPosition, minElemSoFar);
             ++nextPosition;
-        }
+        }       
     }
 
     public static void swap(int[] array, int nextPos, int minElemSoFar)

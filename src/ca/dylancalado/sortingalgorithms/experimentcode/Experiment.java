@@ -50,16 +50,19 @@ public class Experiment
                 switch(p.getSortType())
                 {
                     case SELECTION_SORT:
+                        MemoryUsage.getMemoryCurrentlyUsed();
                         SortTimer.startTimer();
                         SelectionSort.sort(p);
                         SortTimer.calculateSortTime();
                         break;
                     case INSERTION_SORT:
+                        MemoryUsage.getMemoryCurrentlyUsed();
                         SortTimer.startTimer();
                         InsertionSort.sort(p);
                         SortTimer.calculateSortTime();
                         break;
                     case SHELL_SORT:
+                        MemoryUsage.getMemoryCurrentlyUsed();
                         SortTimer.startTimer();
                         ShellSort.sort(p);
                         SortTimer.calculateSortTime();

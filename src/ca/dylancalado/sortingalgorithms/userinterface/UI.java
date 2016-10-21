@@ -1,18 +1,19 @@
 package ca.dylancalado.sortingalgorithms.userinterface;
 
 import ca.dylancalado.sortingalgorithms.experimentcode.Experiment;
+import ca.dylancalado.sortingalgorithms.experimentcode.MemoryUsage;
 import ca.dylancalado.sortingalgorithms.experimentcode.SortTimer;
 import ca.dylancalado.sortingalgorithms.fileio.FileIO;
 import ca.dylancalado.sortingalgorithms.sortingcode.InsertionSort;
 import ca.dylancalado.sortingalgorithms.sortingcode.SelectionSort;
 import ca.dylancalado.sortingalgorithms.sortingcode.ShellSort;
-import ca.dylancalado.sortingalgorithms.sortingcode.SortOrder;
 import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.*;
 import ca.dylancalado.sortingalgorithms.sortingcode.SortParameters;
 import ca.dylancalado.sortingalgorithms.sortingcode.SortType;
 import ca.dylancalado.sortingalgorithms.unittests.*;
 import static ca.dylancalado.sortingalgorithms.unittests.TestSortTimer.*;
 import java.io.IOException;
+import static java.lang.Math.abs;
 import java.util.Scanner;
 
 /**
@@ -158,28 +159,28 @@ public class UI
     public static void selectCustomScenario()
     {
         SortParameters p = new SortParameters();
-        System.out.println("Specify size of array to be sorted:");
+        System.out.println("Specify size of array to be sorted(Positive Integer):");
         
         int userSize = userInput.nextInt();
-        p.setArraySize(userSize);
+        p.setArraySize(abs(userSize));
         
-        int[] userArray = new int[userSize];
+        int[] userArray = new int[abs(userSize)];
         
         Experiment.createRandomArray(userArray, userSize);
         p.setArray(userArray);
         
-        System.out.println("Specify ascending or descending sort order:");
+        System.out.println("Specify sort order you wish to use:\n1. Ascending\n2. Descending");
         String userOrder = userInput.next();
         switch (userOrder.toLowerCase())
         {
-            case "ascending":
+            case "1":
                 p.setSortOrder(ASCENDING);
                 break;
-            case "descending":
+            case "2":
                 p.setSortOrder(DESCENDING);
                 break;
             default:
-                System.out.println("Please enter a valid sort order (ascending/descending).");
+                System.out.println("Invalid Input");
                 break;
         }
         
@@ -190,21 +191,24 @@ public class UI
         {
             case "1":
                 p.setSortType(SortType.SELECTION_SORT);
+                
                 SortTimer.startTimer();
                 SelectionSort.sort(p);
-                System.out.println("Time to complete sort: " + SortTimer.calculateSortTime() + "ns");
+                SortTimer.endTimer();
                 break;
             case "2":
                 p.setSortType(SortType.INSERTION_SORT);
+               
                 SortTimer.startTimer();
                 InsertionSort.sort(p);
-                System.out.println("Time to complete sort: " + SortTimer.calculateSortTime() + "ns");
+                SortTimer.endTimer();               
                 break;
             case "3":           
                 p.setSortType(SortType.SHELL_SORT);
+                
                 SortTimer.startTimer();
                 ShellSort.sort(p);
-                System.out.println("Time to complete sort: " + SortTimer.calculateSortTime() + "ns");
+                SortTimer.endTimer();              
                 break;
             default:
                 System.out.println("Invalid Input");
@@ -213,6 +217,7 @@ public class UI
         
         //provide feedback for success, memory usage, and time required for sort.
         System.out.println("Sort successful? " + Experiment.verifySortCorrectness(p.getArray(), p.getSortOrder()));
-        System.out.println("Memory usage: ");
+        System.out.println("Time to complete sort: " + SortTimer.calculateSortTime() + "ns");
+        System.out.println("Memory usage: " + MemoryUsage.calculateMemoryUsage() + "bytes");     
     }
 }

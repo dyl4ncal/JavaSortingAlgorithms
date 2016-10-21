@@ -17,9 +17,14 @@ public class SortTimer
         return tStart;
     }
     
+    public static long endTimer()
+    {
+         tFinish = System.nanoTime();
+         return tFinish;
+    }
+    
     public static long calculateSortTime()
     {
-        tFinish = System.nanoTime();
         totalSortTime = tFinish - tStart;
         return totalSortTime;
     }
