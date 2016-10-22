@@ -39,5 +39,6 @@ public class InsertionSort implements SortFacade
             }
             p.getArray()[j+1] = value;
         }
+        MemoryUsage.calculateMemoryUsage();
     } 
 }

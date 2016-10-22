@@ -11,7 +11,7 @@ public class SelectionSort implements SortFacade
 {    
     private static int nextPosition;
     private static int minElemSoFar;
-     
+    
     public static void sort(SortParameters p)
     {
         nextPosition = 0;
@@ -40,7 +40,8 @@ public class SelectionSort implements SortFacade
             }
             swap(p.getArray(), nextPosition, minElemSoFar);
             ++nextPosition;
-        }       
+        }
+        MemoryUsage.calculateMemoryUsage();
     }
 
     public static void swap(int[] array, int nextPos, int minElemSoFar)

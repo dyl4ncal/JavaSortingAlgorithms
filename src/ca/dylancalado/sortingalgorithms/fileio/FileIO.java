@@ -1,6 +1,5 @@
 package ca.dylancalado.sortingalgorithms.fileio;
 
-import ca.dylancalado.sortingalgorithms.experimentcode.SortTimer;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,9 +16,9 @@ public class FileIO
     private static Scanner input;
     private static String name;
     private static File file;
-    private static FileWriter fileWriter;
+    private static FileWriter fw;
     
-    public static void getFileName()
+    public static void getFileName() throws IOException
     {
         input = new Scanner(System.in);
         name = input.nextLine();
@@ -38,10 +37,24 @@ public class FileIO
         }
     }
     
-    public static void writeToLogFile() throws IOException
+    public static void writeRuntimeHeader() throws IOException
     {
-        fileWriter = new FileWriter(file);
-        fileWriter.write("InputSize" + "," + "AverageSortTime" +(int) SortTimer.calculateAverageSortTime());
-        fileWriter.close();
+        fw = new FileWriter(file);
+        fw.append("InputSize,AverageSortTime,\n");
+    }
+    
+    public static void writeMemoryUsageHeader() throws IOException
+    {
+        fw.append("InputSize,MemoryUsage,\n");
+    }
+    
+    public static void writeDataToCSV(int arraySize, long time) throws IOException
+    {
+        fw.write(arraySize + "," + (int)time + "," + "\n");
+    }
+    
+    public static void closeWriter() throws IOException
+    {
+        fw.close();
     }
 }

@@ -1,5 +1,7 @@
 package ca.dylancalado.sortingalgorithms.experimentcode;
 
+import java.util.ArrayList;
+
 /**
  * This class contains the code which times the runtime of any sorting algorithm.
  * 
@@ -10,6 +12,8 @@ public class SortTimer
     private static long tStart;
     private static long tFinish;
     private static long totalSortTime;
+    private static long average;
+    private static ArrayList<Long> sortTimesList = new ArrayList<>();
     
     public static long startTimer()
     {
@@ -29,9 +33,30 @@ public class SortTimer
         return totalSortTime;
     }
     
-    public static long calculateAverageSortTime()
+    public static void storeSortTimes(long runTime)
     {
-        //Total time for 5 sort trials / 5;
-        return 1;
+        sortTimesList.add(runTime);
+    }
+    
+    public static ArrayList getStoredTimes()
+    {
+        return sortTimesList;
+    }
+    
+    public static long getAverageSortTime()
+    {
+        return average;
+    }
+    
+    public static long calculateAverageSortTime(int n, ArrayList times)
+    {
+        long sum = 0;
+        for(int i = 0; i < times.size(); ++i)
+        {
+            sum += (long) times.get(i);
+        }
+        average = sum/n;
+        
+        return average;
     }
 }

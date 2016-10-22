@@ -1,5 +1,6 @@
 package ca.dylancalado.sortingalgorithms.experimentcode;
 
+import ca.dylancalado.sortingalgorithms.fileio.FileIO;
 import ca.dylancalado.sortingalgorithms.sortingcode.*;
 import static ca.dylancalado.sortingalgorithms.sortingcode.GapSequenceType.*;
 import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.*;
@@ -23,6 +24,7 @@ public class Experiment
     private static int gapSeqSize;
     private static int numOfTrials;
     private static int maxArraySize;
+    private static long runTime;
     
     private static void experiment(SortParameters p, int numOfTrials) throws IOException
     {  
@@ -37,12 +39,13 @@ public class Experiment
         {
             maxArraySize = 100000;
         }
+        FileIO.writeRuntimeHeader();
         
         for(int i = arraySize; i <= maxArraySize; i += 10000)
         {
             array = new int[arraySize];
             p.setArray(array);
-            
+       
             for(int j = numOfTrials; j > 0; --j)
             {
                 createRandomArray(array, arraySize);
@@ -50,29 +53,38 @@ public class Experiment
                 switch(p.getSortType())
                 {
                     case SELECTION_SORT:
-                        MemoryUsage.getMemoryCurrentlyUsed();
                         SortTimer.startTimer();
                         SelectionSort.sort(p);
-                        SortTimer.calculateSortTime();
+                        SortTimer.endTimer();
+                        runTime = SortTimer.calculateSortTime();
+                        SortTimer.storeSortTimes(runTime);
+                        verifySortCorrectness(p.getArray(), p.getSortOrder());
                         break;
                     case INSERTION_SORT:
-                        MemoryUsage.getMemoryCurrentlyUsed();
                         SortTimer.startTimer();
                         InsertionSort.sort(p);
-                        SortTimer.calculateSortTime();
+                        SortTimer.endTimer();
+                        runTime = SortTimer.calculateSortTime();
+                        SortTimer.storeSortTimes(runTime);
+                        verifySortCorrectness(p.getArray(), p.getSortOrder());
                         break;
                     case SHELL_SORT:
-                        MemoryUsage.getMemoryCurrentlyUsed();
                         SortTimer.startTimer();
                         ShellSort.sort(p);
-                        SortTimer.calculateSortTime();
+                        SortTimer.endTimer();
+                        runTime = SortTimer.calculateSortTime();
+                        SortTimer.storeSortTimes(runTime);
+                        verifySortCorrectness(p.getArray(), p.getSortOrder());
                         break;
                     default:
                         System.out.println("Invalid Sort Type");
                         break;
                 }
             }
-        } 
+            long time = SortTimer.calculateAverageSortTime(5, SortTimer.getStoredTimes());
+            FileIO.writeDataToCSV(i, time);
+        }
+        FileIO.closeWriter();
     }
     
     public static void experiment1() throws IOException
@@ -119,22 +131,23 @@ public class Experiment
         }
     }
     
+    //Iterates through an array to make sure it is sorted correctly.
     public static boolean verifySortCorrectness(int[] array, SortOrder order)
     {
-        boolean sortSuccessful = true;
+        boolean result = true;
         for (int i = 1; i < array.length; i++)
         {
             if(order == ASCENDING && array[i-1] > array[i]) 
             {
-                sortSuccessful = false;
+                result = false;
                 break;
             }
             else if(order == DESCENDING && array[i-1] < array[i])
             {
-                sortSuccessful = false;
+                result = false;
                 break;
             }
         }
-        return sortSuccessful;
+        return result;
     }
 }

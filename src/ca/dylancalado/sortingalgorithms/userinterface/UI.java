@@ -110,7 +110,8 @@ public class UI
                 + "2. Test Methods in InsertionSort Class\n"
                 + "3. Test Methods in ShellSort Class\n"
                 + "4. Test Methods in Experiment Class\n"
-                + "5. Test Methods in SortTimer Class\n");
+                + "5. Test Methods in SortTimer Class\n"
+                + "6. Test Methods in MemoryUsage Class\n");
         
         switch (userInput.next())
         {
@@ -144,6 +145,7 @@ public class UI
                 break;
             case "5":
                 System.out.println(testStartTimer());
+                System.out.println(testEndTimer());
                 System.out.println(testCalculateSortTime());
                 System.out.println(testCalculateAverageSortTime());
                 break;
@@ -191,21 +193,18 @@ public class UI
         {
             case "1":
                 p.setSortType(SortType.SELECTION_SORT);
-                
                 SortTimer.startTimer();
                 SelectionSort.sort(p);
                 SortTimer.endTimer();
                 break;
             case "2":
-                p.setSortType(SortType.INSERTION_SORT);
-               
+                p.setSortType(SortType.INSERTION_SORT);             
                 SortTimer.startTimer();
                 InsertionSort.sort(p);
                 SortTimer.endTimer();               
                 break;
             case "3":           
-                p.setSortType(SortType.SHELL_SORT);
-                
+                p.setSortType(SortType.SHELL_SORT);           
                 SortTimer.startTimer();
                 ShellSort.sort(p);
                 SortTimer.endTimer();              
@@ -215,9 +214,9 @@ public class UI
                 break;
         }
         
-        //provide feedback for success, memory usage, and time required for sort.
+        //provide user feedback for success, memory usage, and time required for sort.
         System.out.println("Sort successful? " + Experiment.verifySortCorrectness(p.getArray(), p.getSortOrder()));
-        System.out.println("Time to complete sort: " + SortTimer.calculateSortTime() + "ns");
-        System.out.println("Memory usage: " + MemoryUsage.calculateMemoryUsage() + "bytes");     
+        System.out.println("Time to complete sort: " + SortTimer.calculateSortTime() + " ns");
+        System.out.println("Memory usage: " + MemoryUsage.getmemoryUsage() + " bytes");     
     }
 }
