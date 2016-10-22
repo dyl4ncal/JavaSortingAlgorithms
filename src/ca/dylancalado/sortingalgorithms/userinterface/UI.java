@@ -1,19 +1,16 @@
 package ca.dylancalado.sortingalgorithms.userinterface;
 
-import ca.dylancalado.sortingalgorithms.experimentcode.Experiment;
-import ca.dylancalado.sortingalgorithms.experimentcode.MemoryUsage;
-import ca.dylancalado.sortingalgorithms.experimentcode.SortTimer;
+import ca.dylancalado.sortingalgorithms.experimentcode.*;
 import ca.dylancalado.sortingalgorithms.fileio.FileIO;
-import ca.dylancalado.sortingalgorithms.sortingcode.InsertionSort;
-import ca.dylancalado.sortingalgorithms.sortingcode.SelectionSort;
-import ca.dylancalado.sortingalgorithms.sortingcode.ShellSort;
+import ca.dylancalado.sortingalgorithms.sortingcode.*;
+import static ca.dylancalado.sortingalgorithms.sortingcode.GapSequenceType.SHELL;
 import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.*;
-import ca.dylancalado.sortingalgorithms.sortingcode.SortParameters;
-import ca.dylancalado.sortingalgorithms.sortingcode.SortType;
+import static ca.dylancalado.sortingalgorithms.sortingcode.SortType.SHELL_SORT;
 import ca.dylancalado.sortingalgorithms.unittests.*;
 import static ca.dylancalado.sortingalgorithms.unittests.TestSortTimer.*;
 import java.io.IOException;
 import static java.lang.Math.abs;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -27,13 +24,14 @@ public class UI
     
     public static void runUI() throws IOException
     {
+        MemoryUsage.getMemoryCurrentlyUsed();
         while (true)
         {
             System.out.println("\nSorting Algorithms Main Menu:\n-----------------------------");
             System.out.println("1. Run All Experiments\n2. Run Experiment by Number\n"
-                + "3. Run All Unit Tests\n4. Run Unit Test by Class/Method\n"
+                + "3. Run All Unit Tests\n4. Run Unit Tests by Class\n"
                 + "5. Set Up Custom Sorting Scenario\n6. Exit Program");
-
+            
             switch (userInput.next()) 
             {
                 case "1":
@@ -139,9 +137,9 @@ public class UI
                 System.out.println(TestExperiment.testCreateRandomArray());
                 System.out.println(TestExperiment.testVerifySortCorrectnessAscending());
                 System.out.println(TestExperiment.testVerifySortCorrectnessDescending());
-                System.out.println(TestExperiment.testExperiment1());
-                System.out.println(TestExperiment.testExperiment2());
-                System.out.println(TestExperiment.testExperiment3());
+                //System.out.println(TestExperiment.testExperiment1());
+                //System.out.println(TestExperiment.testExperiment2());
+                //System.out.println(TestExperiment.testExperiment3());
                 break;
             case "5":
                 System.out.println(testStartTimer());
@@ -158,6 +156,7 @@ public class UI
         }           
     } 
     
+    //Method which lets the user fabricate their own sorting scenario.
     public static void selectCustomScenario()
     {
         SortParameters p = new SortParameters();
@@ -203,7 +202,27 @@ public class UI
                 InsertionSort.sort(p);
                 SortTimer.endTimer();               
                 break;
-            case "3":           
+            case "3":  
+                System.out.println("Select a gap sequence type:\n1. Shell sequence\n2. Pratt sequence\n3. Knuth sequence");
+                
+                ArrayList<Integer> gapSeq = new ArrayList<>();
+                
+                switch(userInput.next())
+                {
+                    case "1":
+                        ShellSort.generateShellGap(p);
+                        break;
+                    case "2":
+                        ShellSort.generatePrattGap(p);
+                        break;
+                    case "3":
+                        ShellSort.generateKnuthGap(p);
+                        break;
+                    default:
+                        System.out.println("Invalid Input");
+                        break;
+                }
+                SortParameters p1 = new SortParameters(userArray, userSize, SHELL, gapSeq, p.getGapSeqSize(), p.getSortOrder(), SHELL_SORT);
                 p.setSortType(SortType.SHELL_SORT);           
                 SortTimer.startTimer();
                 ShellSort.sort(p);
@@ -216,7 +235,8 @@ public class UI
         
         //provide user feedback for success, memory usage, and time required for sort.
         System.out.println("Sort successful? " + Experiment.verifySortCorrectness(p.getArray(), p.getSortOrder()));
-        System.out.println("Time to complete sort: " + SortTimer.calculateSortTime() + " ns");
-        System.out.println("Memory usage: " + MemoryUsage.getmemoryUsage() + " bytes");     
+        System.out.println("Time to complete sort: " + SortTimer.calculateSortTime() + " nanoseconds");
+        MemoryUsage.calculateMemoryUsage();
+        System.out.println("Memory usage: " + MemoryUsage.getMemoryUsage() + " bytes");     
     }
 }

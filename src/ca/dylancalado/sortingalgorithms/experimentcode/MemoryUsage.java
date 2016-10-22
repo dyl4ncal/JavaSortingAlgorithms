@@ -12,25 +12,25 @@ public class MemoryUsage
     private static long finalMemoryUsage;
     private static long memoryUsage;
     
-    /*public static long getMemoryCurrentlyUsed()
+    public static long getMemoryCurrentlyUsed()
     {
         currentlyUsedMemory = (Runtime.getRuntime().totalMemory()) - (Runtime.getRuntime().freeMemory());
         return currentlyUsedMemory;
-    }*/
+    }
     
-    /*public static long memoryUsageAfterSort()
+    public static long memoryUsageAfterSort()
     {
         finalMemoryUsage = (Runtime.getRuntime().totalMemory()) - (Runtime.getRuntime().freeMemory());
         return finalMemoryUsage;
-    }*/
+    }
     
     public static long calculateMemoryUsage()
     {
-        memoryUsage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        memoryUsage = (finalMemoryUsage - currentlyUsedMemory);
         return memoryUsage;
     }
     
-    public static long getmemoryUsage()
+    public static long getMemoryUsage()
     {
         return memoryUsage;
     }

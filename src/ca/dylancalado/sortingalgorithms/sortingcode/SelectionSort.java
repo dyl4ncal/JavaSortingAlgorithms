@@ -41,7 +41,7 @@ public class SelectionSort implements SortFacade
             swap(p.getArray(), nextPosition, minElemSoFar);
             ++nextPosition;
         }
-        MemoryUsage.calculateMemoryUsage();
+        MemoryUsage.memoryUsageAfterSort();
     }
 
     public static void swap(int[] array, int nextPos, int minElemSoFar)

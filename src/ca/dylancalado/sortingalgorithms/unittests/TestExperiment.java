@@ -37,7 +37,7 @@ public class TestExperiment
         System.out.print("Verify sort correctness descending test passed? ");
         return Experiment.verifySortCorrectness(array, SortOrder.DESCENDING) == expectedOutput;
     }
-
+    /*
     public static boolean testExperiment1() throws IOException
     {
         Experiment.experiment1();
@@ -58,14 +58,14 @@ public class TestExperiment
         System.out.print("Experiment 3 test passed? ");
         return false;
     }
-    
+    */   
     public static void testAllExperimentMethods() throws IOException
     {
         System.out.println(testCreateRandomArray());
         System.out.println(testVerifySortCorrectnessAscending());
-        System.out.println(testVerifySortCorrectnessDescending());
-        System.out.println(testExperiment1());
-        System.out.println(testExperiment2());
-        System.out.println(testExperiment3() + "\n");
+        System.out.println(testVerifySortCorrectnessDescending()+ "\n");
+        //System.out.println(testExperiment1());
+        //System.out.println(testExperiment2());
+        //System.out.println(testExperiment3() + "\n");
     }
 }
