@@ -40,6 +40,7 @@ public class Experiment
             maxArraySize = 100000;
         }
         FileIO.writeRuntimeHeader();
+        //FileIO.writeMemoryUsageHeader();///////////////////////////////////////////////*********************
         
         for(int i = arraySize; i <= maxArraySize; i += 10000)
         {
@@ -82,42 +83,74 @@ public class Experiment
                 }
             }
             long time = SortTimer.calculateAverageSortTime(5, SortTimer.getStoredTimes());
-            FileIO.writeDataToCSV(i, time);
+            FileIO.writeTimingDataToCSV(i, time);
         }
         FileIO.closeWriter();
     }
     
     public static void experiment1() throws IOException
     {
+        System.out.print("Enter name for experiment 1 data file: ");
+        FileIO.setCSVName();
+        FileIO.createCSVFile();
         SortParameters p = new SortParameters(array, arraySize, ASCENDING, SELECTION_SORT);
+        System.out.println("Experiment 1 running...");
         experiment(p, numOfTrials);
     }
     
     public static void experiment2() throws IOException
     {
+        System.out.print("Enter name for experiment 2 data file: ");
+        FileIO.setCSVName();
+        FileIO.createCSVFile();
         SortParameters p = new SortParameters(array, arraySize, ASCENDING, INSERTION_SORT);
+        System.out.println("Experiment 2 running...");
         experiment(p, numOfTrials);
     }
     
-    public static void experiment3() throws IOException
+    public static void experiment3ShellGap() throws IOException
     {
+        System.out.print("Enter name for Experiment 3 (Shell's gap) data file: ");
+        FileIO.setCSVName();
+        FileIO.createCSVFile();
         SortParameters p1 = new SortParameters(array, arraySize, SHELL, gapSeq, gapSeqSize, ASCENDING, SHELL_SORT);
+        System.out.println("Experiment 3 (Shell's gap) running...\n");
         ShellSort.generateShellGap(p1);
+        experiment(p1, numOfTrials);     
+    }
+    
+    public static void experiment3PrattGap() throws IOException
+    {
+        System.out.print("Enter name for Experiment 3 (Pratt's gap) data file: ");
+        FileIO.setCSVName();
+        FileIO.createCSVFile();
         SortParameters p2 = new SortParameters(array, arraySize, PRATT, gapSeq, gapSeqSize, ASCENDING, SHELL_SORT);
+        System.out.println("Experiment 3 (Pratt's gap) running...\n");
         ShellSort.generatePrattGap(p2);
-        SortParameters p3 = new SortParameters(array, arraySize, KNUTH, gapSeq, gapSeqSize, ASCENDING, SHELL_SORT);
-        ShellSort.generateKnuthGap(p3);
-        
-        experiment(p1, numOfTrials);
         experiment(p2, numOfTrials);
+    }
+    
+    public static void experiment3KnuthGap() throws IOException
+    {
+        System.out.print("Enter name for Experiment 3 (Knuth's gap) data file: ");
+        FileIO.setCSVName();
+        FileIO.createCSVFile();
+        SortParameters p3 = new SortParameters(array, arraySize, KNUTH, gapSeq, gapSeqSize, ASCENDING, SHELL_SORT);
+        System.out.println("Experiment 3 (Knuth's gap) running...\n");
+        ShellSort.generateKnuthGap(p3);
         experiment(p3, numOfTrials);
     }
   
     public static void runAllExperiments() throws IOException
     {
+        System.out.print("Enter base file name where all experimental results will be logged: ");
+        FileIO.setFileName();
+        FileIO.createBaseLogFile();
         experiment1();
         experiment2();
-        experiment3();
+        experiment3ShellGap();
+        experiment3PrattGap();
+        experiment3KnuthGap();
     }
 
     //Creates a random array of integers of arbitrary size.

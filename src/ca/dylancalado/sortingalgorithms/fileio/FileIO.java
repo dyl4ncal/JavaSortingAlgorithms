@@ -14,41 +14,63 @@ import java.util.Scanner;
 public class FileIO
 {
     private static Scanner input;
-    private static String name;
-    private static File file;
+    private static String fileName;
+    private static String csvName;
+    private static File baseFile;
+    private static File csvFile;
     private static FileWriter fw;
     
-    public static void getFileName() throws IOException
+    public static void setFileName() throws IOException
     {
         input = new Scanner(System.in);
-        name = input.nextLine();
-        file = new File(name.concat(".csv"));
+        fileName = input.nextLine();
+        baseFile = new File(fileName);
     }
     
-    public static void createLogFile() throws IOException
+    public static void setCSVName() throws IOException
     {
-        if (file.createNewFile())
+        input = new Scanner(System.in);
+        csvName = input.nextLine();
+        csvFile = new File(baseFile + "\\" + csvName.concat(".csv"));
+    }
+    
+    public static void createBaseLogFile() throws IOException
+    {
+        if (baseFile.mkdir())
         {
-            System.out.println(file + " created successfully.\n");
+            System.out.println(baseFile + " created successfully.\n");
         } 
         else 
         {
-            System.out.println(file + "already exists. Please choose a new name\n.");
+            System.out.println(baseFile + "already exists. The results will be stored in this same location.\n");
+        }
+    }
+    
+    public static void createCSVFile() throws IOException
+    {
+        if (csvFile.createNewFile())
+        {
+            System.out.println(csvFile + " created successfully.\n");
+        } 
+        else 
+        {
+            System.out.println(csvFile + "already exists. The results will be stored in this same location.\n.");
         }
     }
     
     public static void writeRuntimeHeader() throws IOException
     {
-        fw = new FileWriter(file);
+        fw = new FileWriter(csvFile);
         fw.append("InputSize,AverageSortTime,\n");
     }
     
     public static void writeMemoryUsageHeader() throws IOException
     {
+        fw = new FileWriter(csvFile);
         fw.append("InputSize,MemoryUsage,\n");
     }
     
-    public static void writeDataToCSV(int arraySize, long time) throws IOException
+    public static void writeTimingDataToCSV(int arraySize, long time) throws IOException
     {
         fw.write(arraySize + "," + (int)time + "," + "\n");
     }

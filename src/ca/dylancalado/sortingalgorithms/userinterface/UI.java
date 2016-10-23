@@ -61,30 +61,42 @@ public class UI
     
     public static void runAllExperiments() throws IOException
     {
-        System.out.print("Enter base file name where experimental results will be logged: ");
-        FileIO.getFileName();
-        FileIO.createLogFile();
         Experiment.runAllExperiments();
+        System.out.println("All experiments complete");
     }
     
     public static void runExperimentByNumber() throws IOException
     {
-        System.out.print("Enter file name where experimental results will be logged: ");
-        FileIO.getFileName();
-        FileIO.createLogFile();
+        System.out.print("Enter base file name where experimental results will be logged: ");
+        FileIO.setFileName();
+        FileIO.createBaseLogFile();
+        
         System.out.println("Pick an experiment to run:\n"
                 + "1. Experiment 1\n2. Experiment 2\n3. Experiment 3");
 
         switch (userInput.next())
         {
             case "1":
+                System.out.print("Enter name for Experiment 1 data file: ");
+                FileIO.setCSVName();
+                FileIO.createCSVFile();
+                System.out.println("Experiment running...");
                 Experiment.experiment1();
+                System.out.println("Experiment complete");
                 break;
             case "2":
+                System.out.print("Enter name for Experiment 2 data file: ");
+                FileIO.setCSVName();
+                FileIO.createCSVFile();
+                System.out.println("Experiment running...");
                 Experiment.experiment2();
+                System.out.println("Experiments complete");
                 break;
             case "3":
-                Experiment.experiment3();
+                Experiment.experiment3ShellGap();
+                Experiment.experiment3PrattGap();
+                Experiment.experiment3KnuthGap();
+                System.out.println("Experiment complete");
                 break;
             default:
                 System.out.println("Invalid Input");
@@ -137,9 +149,6 @@ public class UI
                 System.out.println(TestExperiment.testCreateRandomArray());
                 System.out.println(TestExperiment.testVerifySortCorrectnessAscending());
                 System.out.println(TestExperiment.testVerifySortCorrectnessDescending());
-                //System.out.println(TestExperiment.testExperiment1());
-                //System.out.println(TestExperiment.testExperiment2());
-                //System.out.println(TestExperiment.testExperiment3());
                 break;
             case "5":
                 System.out.println(testStartTimer());
@@ -191,12 +200,14 @@ public class UI
         switch(userInput.next())
         {
             case "1":
+                System.out.println("Experiment running...");
                 p.setSortType(SortType.SELECTION_SORT);
                 SortTimer.startTimer();
                 SelectionSort.sort(p);
                 SortTimer.endTimer();
                 break;
             case "2":
+                System.out.println("Experiment running...");
                 p.setSortType(SortType.INSERTION_SORT);             
                 SortTimer.startTimer();
                 InsertionSort.sort(p);
@@ -222,6 +233,7 @@ public class UI
                         System.out.println("Invalid Input");
                         break;
                 }
+                System.out.println("Experiment running...");
                 SortParameters p1 = new SortParameters(userArray, userSize, SHELL, gapSeq, p.getGapSeqSize(), p.getSortOrder(), SHELL_SORT);
                 p.setSortType(SortType.SHELL_SORT);           
                 SortTimer.startTimer();
