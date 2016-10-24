@@ -24,7 +24,6 @@ public class UI
     
     public static void runUI() throws IOException
     {
-        MemoryUsage.getMemoryCurrentlyUsed();
         while (true)
         {
             System.out.println("\nSorting Algorithms Main Menu:\n-----------------------------");
@@ -61,6 +60,8 @@ public class UI
     
     public static void runAllExperiments() throws IOException
     {
+        System.gc();
+        MemoryUsage.getMemoryCurrentlyUsed();
         Experiment.runAllExperiments();
         System.out.println("All experiments complete");
     }
@@ -74,21 +75,15 @@ public class UI
         System.out.println("Pick an experiment to run:\n"
                 + "1. Experiment 1\n2. Experiment 2\n3. Experiment 3");
 
+        System.gc();
+        MemoryUsage.getMemoryCurrentlyUsed();
         switch (userInput.next())
         {
             case "1":
-                System.out.print("Enter name for Experiment 1 data file: ");
-                FileIO.setCSVName();
-                FileIO.createCSVFile();
-                System.out.println("Experiment running...");
                 Experiment.experiment1();
                 System.out.println("Experiment complete");
                 break;
             case "2":
-                System.out.print("Enter name for Experiment 2 data file: ");
-                FileIO.setCSVName();
-                FileIO.createCSVFile();
-                System.out.println("Experiment running...");
                 Experiment.experiment2();
                 System.out.println("Experiments complete");
                 break;
@@ -168,6 +163,7 @@ public class UI
     //Method which lets the user fabricate their own sorting scenario.
     public static void selectCustomScenario()
     {
+        System.out.println("Note: For the most accurate results, run your scenario more than once and ignore the first output of results.");
         SortParameters p = new SortParameters();
         System.out.println("Specify size of array to be sorted(Positive Integer):");
         
@@ -196,10 +192,12 @@ public class UI
         
         System.out.println("Choose the type of sort you wish to utilize:\n"
                 + "1. SelectionSort\n2. InsertionSort\n3. Shell Sort");
-        
+       
         switch(userInput.next())
         {
             case "1":
+                System.gc();
+                MemoryUsage.getMemoryCurrentlyUsed();
                 System.out.println("Experiment running...");
                 p.setSortType(SortType.SELECTION_SORT);
                 SortTimer.startTimer();
@@ -207,6 +205,8 @@ public class UI
                 SortTimer.endTimer();
                 break;
             case "2":
+                System.gc();
+                MemoryUsage.getMemoryCurrentlyUsed();
                 System.out.println("Experiment running...");
                 p.setSortType(SortType.INSERTION_SORT);             
                 SortTimer.startTimer();
@@ -233,9 +233,11 @@ public class UI
                         System.out.println("Invalid Input");
                         break;
                 }
+                System.gc();
+                MemoryUsage.getMemoryCurrentlyUsed();
                 System.out.println("Experiment running...");
                 SortParameters p1 = new SortParameters(userArray, userSize, SHELL, gapSeq, p.getGapSeqSize(), p.getSortOrder(), SHELL_SORT);
-                p.setSortType(SortType.SHELL_SORT);           
+                p.setSortType(SortType.SHELL_SORT);
                 SortTimer.startTimer();
                 ShellSort.sort(p);
                 SortTimer.endTimer();              
@@ -248,7 +250,6 @@ public class UI
         //provide user feedback for success, memory usage, and time required for sort.
         System.out.println("Sort successful? " + Experiment.verifySortCorrectness(p.getArray(), p.getSortOrder()));
         System.out.println("Time to complete sort: " + SortTimer.calculateSortTime() + " nanoseconds");
-        MemoryUsage.calculateMemoryUsage();
-        System.out.println("Memory usage: " + MemoryUsage.getMemoryUsage() + " bytes");     
+        System.out.println("Memory usage: " + MemoryUsage.calculateMemoryUsage() + " bytes");     
     }
 }

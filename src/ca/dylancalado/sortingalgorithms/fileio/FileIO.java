@@ -17,8 +17,10 @@ public class FileIO
     private static String fileName;
     private static String csvName;
     private static File baseFile;
-    private static File csvFile;
-    private static FileWriter fw;
+    private static File csvTimingFile;
+    private static File csvMemoryFile;
+    private static FileWriter fw1;
+    private static FileWriter fw2;
     
     public static void setFileName() throws IOException
     {
@@ -27,11 +29,18 @@ public class FileIO
         baseFile = new File(fileName);
     }
     
-    public static void setCSVName() throws IOException
+    public static void setTimingCSVName() throws IOException
     {
         input = new Scanner(System.in);
         csvName = input.nextLine();
-        csvFile = new File(baseFile + "\\" + csvName.concat(".csv"));
+        csvTimingFile = new File(baseFile + "\\" + csvName.concat(".csv"));
+    }
+    
+    public static void setMemoryCSVName() throws IOException
+    {
+        input = new Scanner(System.in);
+        csvName = input.nextLine();
+        csvMemoryFile = new File(baseFile + "\\" + csvName.concat(".csv"));
     }
     
     public static void createBaseLogFile() throws IOException
@@ -42,41 +51,59 @@ public class FileIO
         } 
         else 
         {
-            System.out.println(baseFile + "already exists. The results will be stored in this same location.\n");
+            System.out.println(baseFile + " already exists. The results will be stored in this same location.\n");
         }
     }
     
-    public static void createCSVFile() throws IOException
+    public static void createCSVTimingFile() throws IOException
     {
-        if (csvFile.createNewFile())
+        if (csvTimingFile.createNewFile())
         {
-            System.out.println(csvFile + " created successfully.\n");
+            System.out.println(csvTimingFile + " created successfully.\n");
         } 
         else 
         {
-            System.out.println(csvFile + "already exists. The results will be stored in this same location.\n.");
+            System.out.println(csvTimingFile + " already exists. The results will be stored in this same location.\n.");
+        }
+    }
+    
+    public static void createCSVMemoryFile() throws IOException
+    {
+        if (csvMemoryFile.createNewFile())
+        {
+            System.out.println(csvMemoryFile + " created successfully.\n");
+        } 
+        else 
+        {
+            System.out.println(csvMemoryFile + "already exists. The results will be stored in this same location.\n.");
         }
     }
     
     public static void writeRuntimeHeader() throws IOException
     {
-        fw = new FileWriter(csvFile);
-        fw.append("InputSize,AverageSortTime,\n");
+        fw1 = new FileWriter(csvTimingFile);
+        fw1.append("InputSize,AverageSortTime,\n");
     }
     
     public static void writeMemoryUsageHeader() throws IOException
     {
-        fw = new FileWriter(csvFile);
-        fw.append("InputSize,MemoryUsage,\n");
+        fw2 = new FileWriter(csvMemoryFile);
+        fw2.append("InputSize,MemoryUsage,\n");
     }
     
     public static void writeTimingDataToCSV(int arraySize, long time) throws IOException
     {
-        fw.write(arraySize + "," + (int)time + "," + "\n");
+        fw1.write(arraySize + "," + (int)time + "," + "\n");
+    }
+    
+    public static void writeMemoryDataToCSV(int arraySize, long memoryUsage) throws IOException
+    {
+        fw2.write(arraySize + "," + (int)memoryUsage + "," + "\n");
     }
     
     public static void closeWriter() throws IOException
     {
-        fw.close();
+        fw1.close();
+        fw2.close();
     }
 }
