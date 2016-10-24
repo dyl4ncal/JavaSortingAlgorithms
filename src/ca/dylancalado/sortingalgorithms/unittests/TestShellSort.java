@@ -169,7 +169,7 @@ public class TestShellSort
     
     public static void testAllShellSortMethods()
     {
-        System.out.println("Unit Tests Related to Shell Sort: ");
+        System.out.println("Unit Tests Related to Shell Sort:\n");
         System.out.println(testShellSortShellGapAscending());
         System.out.println(testShellSortShellGapDescending());
         System.out.println(testShellSortPrattGapAscending());

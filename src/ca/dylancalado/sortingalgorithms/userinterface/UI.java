@@ -24,6 +24,7 @@ public class UI
     //Method to provide a user friendly menu to navigate and use the program to perform experiments, run unit tests, etc.
     public static void runUI() throws IOException
     {
+        System.out.print("\nNote: For accurate performance data, warm up the JVM by running any experiment\nonce when you first execute this program. Ignore the data it outputs.\n");
         while (true)
         {
             System.out.println("\nSorting Algorithms Main Menu:\n-----------------------------");
@@ -170,7 +171,7 @@ public class UI
     //Method which lets the user fabricate their own sorting scenario.
     public static void selectCustomScenario()
     {
-        System.out.println("Note: For the most accurate results, run your scenario more than once and ignore the first output of results.");
+        System.out.println("\nNote: For the most accurate results, run your scenario more than once\nand ignore the output of the first results.\n");
         SortParameters p = new SortParameters();
         System.out.println("Specify size of array to be sorted(Positive Integer):");
         
@@ -182,7 +183,7 @@ public class UI
         Experiment.createRandomArray(userArray, userSize);
         p.setArray(userArray);
         
-        System.out.println("Specify sort order you wish to use:\n1. Ascending\n2. Descending");
+        System.out.println("\nSpecify sort order you wish to use:\n1. Ascending\n2. Descending");
         String userOrder = userInput.next();
         switch (userOrder.toLowerCase())
         {
@@ -197,7 +198,7 @@ public class UI
                 break;
         }
         
-        System.out.println("Choose the type of sort you wish to utilize:\n"
+        System.out.println("\nChoose the type of sort you wish to utilize:\n"
                 + "1. SelectionSort\n2. InsertionSort\n3. Shell Sort");
        
         switch(userInput.next())
@@ -221,7 +222,7 @@ public class UI
                 SortTimer.endTimer();               
                 break;
             case "3":  
-                System.out.println("Select a gap sequence type:\n1. Shell sequence\n2. Pratt sequence\n3. Knuth sequence");
+                System.out.println("\nSelect a gap sequence type:\n1. Shell sequence\n2. Pratt sequence\n3. Knuth sequence");
                 
                 ArrayList<Integer> gapSeq = new ArrayList<>();
                 
@@ -255,7 +256,7 @@ public class UI
         }
         
         //provide user feedback for success, memory usage, and time required for sort.
-        System.out.println("Sort successful? " + Experiment.verifySortCorrectness(p.getArray(), p.getSortOrder()));
+        System.out.println("\nSort successful? " + Experiment.verifySortCorrectness(p.getArray(), p.getSortOrder()));
         System.out.println("Time to complete sort: " + SortTimer.calculateSortTime() + " nanoseconds");
         System.out.println("Memory usage: " + MemoryUsage.calculateMemoryUsage() + " bytes");     
     }

@@ -43,7 +43,7 @@ public class TestInsertionSort
     
     public static void testAllInsertionSortMethods()
     {
-        System.out.println("Unit Tests Related to Insertion Sort: ");
+        System.out.println("Unit Tests Related to Insertion Sort:\n");
         System.out.println(testInsertionSortAscending());
         System.out.println(testInsertionSortDescending() + "\n");
     }

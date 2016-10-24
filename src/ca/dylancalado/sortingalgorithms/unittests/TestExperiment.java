@@ -40,7 +40,7 @@ public class TestExperiment
     
     public static void testAllExperimentMethods() throws IOException
     {
-        System.out.println("Unit Tests Related to Experiments: ");
+        System.out.println("Unit Tests Related to Experiments:\n");
         System.out.println(testCreateRandomArray());
         System.out.println(testVerifySortCorrectnessAscending());
         System.out.println(testVerifySortCorrectnessDescending()+ "\n");

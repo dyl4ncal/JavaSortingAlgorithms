@@ -64,7 +64,7 @@ public class TestSortTimer
     
     public static void testAllSortTimerMethods()
     {
-        System.out.println("Unit Tests Related to Timing Sorts: ");
+        System.out.println("Unit Tests Related to Timing Sorts:\n");
         System.out.println(testStartTimer());
         System.out.println(testEndTimer());
         System.out.println(testCalculateSortTime());

@@ -64,7 +64,7 @@ public class TestMemoryUsage
     
     public static void testAllMemoryUsageMethods()
     {
-        System.out.println("Unit Tests Related to Memory Usage: ");
+        System.out.println("Unit Tests Related to Memory Usage:\n");
         System.out.println(testMemoryCurrentlyUsed());
         System.out.println(testMemoryUsageAfterSort());
         System.out.println(testCalculateMemoryUsage());
