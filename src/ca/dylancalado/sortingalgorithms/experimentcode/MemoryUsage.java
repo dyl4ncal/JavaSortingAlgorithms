@@ -16,7 +16,7 @@ public class MemoryUsage
     private static long average;
     private static ArrayList<Long> memoryUsageList = new ArrayList<>();
     
-    public static long getMemoryCurrentlyUsed()
+    public static long memoryCurrentlyUsed()
     {
         currentlyUsedMemory = (Runtime.getRuntime().totalMemory()) - (Runtime.getRuntime().freeMemory());
         return currentlyUsedMemory;

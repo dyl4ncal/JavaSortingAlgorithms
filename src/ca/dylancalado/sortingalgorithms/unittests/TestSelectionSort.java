@@ -57,6 +57,7 @@ public class TestSelectionSort
     
     public static void testAllSelectionSortMethods()
     {
+        System.out.println("Unit Tests Related to Selection Sort: ");
         System.out.println(testSelectionSortSwap());
         System.out.println(testSelectionSortAscending());
         System.out.println(testSelectionSortDescending() + "\n");

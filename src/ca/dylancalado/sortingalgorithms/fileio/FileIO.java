@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 /**
  * This class is for creating files and writing the data
- * produced in experiments to a .csv file to be viewed in excel.
+ * produced in experiments to .csv files to be viewed in excel.
  * 
  * @author Dylan
  */

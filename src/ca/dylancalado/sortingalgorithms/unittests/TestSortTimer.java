@@ -12,10 +12,10 @@ public class TestSortTimer
 {
     public static boolean testStartTimer()
     {
-        long expectedOutput = 0;
+        long notExpectedOutput = 0;
         long actualOutput = SortTimer.startTimer();
         
-        boolean match = actualOutput > expectedOutput;
+        boolean match = actualOutput > notExpectedOutput;
         
         System.out.print("Start timer test passed? ");
         return match;
@@ -23,10 +23,10 @@ public class TestSortTimer
     
     public static boolean testEndTimer()
     {
-        long expectedOutput = 0;
+        long notExpectedOutput = 0;
         long actualOutput = SortTimer.endTimer();
         
-        boolean match = actualOutput > expectedOutput;
+        boolean match = actualOutput > notExpectedOutput;
         
         System.out.print("End timer test passed? ");
         return match;
@@ -64,6 +64,7 @@ public class TestSortTimer
     
     public static void testAllSortTimerMethods()
     {
+        System.out.println("Unit Tests Related to Timing Sorts: ");
         System.out.println(testStartTimer());
         System.out.println(testEndTimer());
         System.out.println(testCalculateSortTime());

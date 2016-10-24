@@ -7,7 +7,6 @@ import static ca.dylancalado.sortingalgorithms.sortingcode.GapSequenceType.SHELL
 import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.*;
 import static ca.dylancalado.sortingalgorithms.sortingcode.SortType.SHELL_SORT;
 import ca.dylancalado.sortingalgorithms.unittests.*;
-import static ca.dylancalado.sortingalgorithms.unittests.TestSortTimer.*;
 import java.io.IOException;
 import static java.lang.Math.abs;
 import java.util.ArrayList;
@@ -22,13 +21,14 @@ public class UI
 {
     private static final Scanner userInput = new Scanner(System.in);
     
+    //Method to provide a user friendly menu to navigate and use the program to perform experiments, run unit tests, etc.
     public static void runUI() throws IOException
     {
         while (true)
         {
             System.out.println("\nSorting Algorithms Main Menu:\n-----------------------------");
             System.out.println("1. Run All Experiments\n2. Run Experiment by Number\n"
-                + "3. Run All Unit Tests\n4. Run Unit Tests by Class\n"
+                + "3. Run All Unit Tests\n4. Run Related Unit Tests\n"
                 + "5. Set Up Custom Sorting Scenario\n6. Exit Program");
             
             switch (userInput.next()) 
@@ -58,14 +58,16 @@ public class UI
         }
     }
     
+    //Method to run all experiments at once.
     public static void runAllExperiments() throws IOException
     {
         System.gc();
-        MemoryUsage.getMemoryCurrentlyUsed();
+        MemoryUsage.memoryCurrentlyUsed();
         Experiment.runAllExperiments();
         System.out.println("All experiments complete");
     }
     
+    //Method to run individual experiments.
     public static void runExperimentByNumber() throws IOException
     {
         System.out.print("Enter base file name where experimental results will be logged: ");
@@ -76,7 +78,7 @@ public class UI
                 + "1. Experiment 1\n2. Experiment 2\n3. Experiment 3");
 
         System.gc();
-        MemoryUsage.getMemoryCurrentlyUsed();
+        MemoryUsage.memoryCurrentlyUsed();
         switch (userInput.next())
         {
             case "1":
@@ -99,6 +101,7 @@ public class UI
         }  
     }
     
+    //Method to run all unit tests at once.
     public static void runAllUnitTests() throws IOException
     {
        TestSelectionSort.testAllSelectionSortMethods();
@@ -109,14 +112,15 @@ public class UI
        TestMemoryUsage.testAllMemoryUsageMethods();
     }
     
+    //Method to select related groups of unit tests.
     public static void selectUnitTest() throws IOException
     {
-        System.out.println("1. Test Methods in SelectionSort Class\n"
-                + "2. Test Methods in InsertionSort Class\n"
-                + "3. Test Methods in ShellSort Class\n"
-                + "4. Test Methods in Experiment Class\n"
-                + "5. Test Methods in SortTimer Class\n"
-                + "6. Test Methods in MemoryUsage Class\n");
+        System.out.println("1. Run Test Methods in SelectionSort Class\n"
+                + "2. Run Test Methods in InsertionSort Class\n"
+                + "3. Run Test Methods in ShellSort Class\n"
+                + "4. Run Test Methods in Experiment Class\n"
+                + "5. Run Test Methods in SortTimer Class\n"
+                + "6. Run Test Methods in MemoryUsage Class\n");
         
         switch (userInput.next())
         {
@@ -146,13 +150,16 @@ public class UI
                 System.out.println(TestExperiment.testVerifySortCorrectnessDescending());
                 break;
             case "5":
-                System.out.println(testStartTimer());
-                System.out.println(testEndTimer());
-                System.out.println(testCalculateSortTime());
-                System.out.println(testCalculateAverageSortTime());
+                System.out.println(TestSortTimer.testStartTimer());
+                System.out.println(TestSortTimer.testEndTimer());
+                System.out.println(TestSortTimer.testCalculateSortTime());
+                System.out.println(TestSortTimer.testCalculateAverageSortTime());
                 break;
             case "6":
-                ///////////////////////////////////////////////////////
+                System.out.println(TestMemoryUsage.testMemoryCurrentlyUsed());
+                System.out.println(TestMemoryUsage.testMemoryUsageAfterSort());
+                System.out.println(TestMemoryUsage.testCalculateMemoryUsage());
+                System.out.println(TestMemoryUsage.testCalculateAverageMemoryUsage());
                 break;
             default:
                 System.out.println("Invalid Input");
@@ -197,7 +204,7 @@ public class UI
         {
             case "1":
                 System.gc();
-                MemoryUsage.getMemoryCurrentlyUsed();
+                MemoryUsage.memoryCurrentlyUsed();
                 System.out.println("Experiment running...");
                 p.setSortType(SortType.SELECTION_SORT);
                 SortTimer.startTimer();
@@ -206,7 +213,7 @@ public class UI
                 break;
             case "2":
                 System.gc();
-                MemoryUsage.getMemoryCurrentlyUsed();
+                MemoryUsage.memoryCurrentlyUsed();
                 System.out.println("Experiment running...");
                 p.setSortType(SortType.INSERTION_SORT);             
                 SortTimer.startTimer();
@@ -234,7 +241,7 @@ public class UI
                         break;
                 }
                 System.gc();
-                MemoryUsage.getMemoryCurrentlyUsed();
+                MemoryUsage.memoryCurrentlyUsed();
                 System.out.println("Experiment running...");
                 SortParameters p1 = new SortParameters(userArray, userSize, SHELL, gapSeq, p.getGapSeqSize(), p.getSortOrder(), SHELL_SORT);
                 p.setSortType(SortType.SHELL_SORT);
