@@ -60,8 +60,6 @@ public class Experiment
                         SortTimer.endTimer();
                         runTime = SortTimer.calculateSortTime();
                         SortTimer.storeSortTimes(runTime);
-                        memUsage = MemoryUsage.calculateMemoryUsage();
-                        MemoryUsage.storeMemoryValues(memUsage);
                         verifySortCorrectness(p.getArray(), p.getSortOrder());
                         break;
                     case INSERTION_SORT:
@@ -70,8 +68,6 @@ public class Experiment
                         SortTimer.endTimer();
                         runTime = SortTimer.calculateSortTime();
                         SortTimer.storeSortTimes(runTime);
-                        memUsage = MemoryUsage.calculateMemoryUsage();
-                        MemoryUsage.storeMemoryValues(memUsage);
                         verifySortCorrectness(p.getArray(), p.getSortOrder());
                         break;
                     case SHELL_SORT:
@@ -80,8 +76,6 @@ public class Experiment
                         SortTimer.endTimer();
                         runTime = SortTimer.calculateSortTime();
                         SortTimer.storeSortTimes(runTime);
-                        memUsage = MemoryUsage.calculateMemoryUsage();
-                        MemoryUsage.storeMemoryValues(memUsage);
                         verifySortCorrectness(p.getArray(), p.getSortOrder());
                         break;
                     default:
@@ -91,11 +85,8 @@ public class Experiment
             }
             long averageTime = SortTimer.calculateAverageSortTime(numOfTrials, SortTimer.getStoredTimes());
             FileIO.writeTimingDataToCSV(i, averageTime);
-            long averageMemory = MemoryUsage.calculateAverageMemoryUsage(numOfTrials, MemoryUsage.getStoredMemoryValues());
-            FileIO.writeMemoryDataToCSV(i, averageMemory);
         }
         SortTimer.getStoredTimes().clear();
-        MemoryUsage.getStoredMemoryValues().clear();
         FileIO.closeWriter();
     }
     

@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * 
  * @author dylan
  */
-public class SortParameters
+public final class SortParameters
 {
     private int[] array;
     private int arraySize;
@@ -18,10 +18,7 @@ public class SortParameters
     private SortType type;
     private GapSequenceType gapSeqType;
    
-    public SortParameters()
-    {
-        //set safe defaults
-    }  
+    public SortParameters(){}  
 
     public SortParameters(int[] myArray, int myArraySize, SortOrder myOrder, SortType myType)
     {

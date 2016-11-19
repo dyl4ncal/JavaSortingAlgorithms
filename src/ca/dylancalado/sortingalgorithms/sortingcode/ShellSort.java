@@ -49,7 +49,6 @@ public class ShellSort implements SortFacade
                 p.getArray()[j+gap] = value;
             }
         }
-        MemoryUsage.memoryUsageAfterSort();
     }
 
     public static void generateShellGap(SortParameters params)
