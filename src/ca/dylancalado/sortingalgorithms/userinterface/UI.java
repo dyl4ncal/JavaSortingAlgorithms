@@ -104,6 +104,7 @@ public class UI
        TestSelectionSort.testAllSelectionSortMethods();
        TestInsertionSort.testAllInsertionSortMethods();
        TestShellSort.testAllShellSortMethods();
+       TestQuickSort.testAllQuickSortMethods();
        TestExperiment.testAllExperimentMethods();
        TestSortTimer.testAllSortTimerMethods();
     }
@@ -143,6 +144,15 @@ public class UI
                 System.out.println(TestShellSort.testShellSortKnuthGapAscending());
                 System.out.println(TestShellSort.testShellSortKnuthGapDescending());
                 break;
+            case "4":
+                break;
+            case "5":
+                System.out.println(TestQuickSort.testQuickSortGetPivotValue());
+                break;
+            case "6":
+                break;
+            case "7":
+                break;
             case "8":
                 System.out.println(TestExperiment.testCreateRandomArray());
                 System.out.println(TestExperiment.testVerifySortCorrectnessAscending());
@@ -174,6 +184,7 @@ public class UI
         
         Experiment.createRandomArray(userArray, userSize);
         p.setArray(userArray);
+        p.setOriginalArray(userArray);
         
         System.out.println("\nSpecify sort order you wish to use:\n1. Ascending\n2. Descending");
         String userOrder = userInput.next();
@@ -191,7 +202,8 @@ public class UI
         }
         
         System.out.println("\nChoose the type of sort you wish to utilize:\n"
-                + "1. SelectionSort\n2. InsertionSort\n3. Shell Sort");
+                + "1. Selection Sort\n2. Insertion Sort\n3. Shell Sort"
+                + "\n4. Merge Sort\n5. Merge Sort Hybrid\n6. Quick Sort\n7. Quick Sort Hybrid");
        
         switch(userInput.next())
         {
@@ -235,6 +247,22 @@ public class UI
                 SortTimer.startTimer();
                 ShellSort.sort(p);
                 SortTimer.endTimer();              
+                break;
+            case "4":
+                System.out.println("Experiment running...");
+                p.setSortType(SortType.MERGE_SORT);
+                SortTimer.startTimer();
+                MergeSort.sort(p);
+                SortTimer.endTimer();
+                break;
+            case "5":
+                
+                break;
+            case "6":
+                
+                break;
+            case "7":
+                
                 break;
             default:
                 System.out.println("Invalid Input");

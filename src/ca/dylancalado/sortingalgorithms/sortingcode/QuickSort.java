@@ -11,7 +11,7 @@ public class QuickSort implements SortFacade
     
     public static void sort(SortParameters p)
     {
-        int pivotValue = choosePivotValue();
+        int pivotValue = getPivotValue(p.getArray()[0], p.getArray()[p.getArraySize()/2], p.getArray()[p.getArraySize()]);
         
         int i = 0;
         int j = p.getArraySize()-1;
@@ -39,8 +39,19 @@ public class QuickSort implements SortFacade
         QuickSort.sort(p);
     }
     
-    public static int choosePivotValue()
+    public static int getPivotValue(int first, int middle, int last)
     {
-        return 0;
+        if ((first - middle) * (last - first) >= 0) // a >= b and a <= c OR a <= b and a >= c
+        {
+            return first;
+        }
+        else if ((middle - first) * (last - middle) >= 0) // b >= a and b <= c OR b <= a and b >= c
+        {
+            return middle;
+        } 
+        else 
+        {
+            return last;
+        }
     }
 }

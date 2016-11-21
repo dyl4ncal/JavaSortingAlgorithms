@@ -12,7 +12,8 @@ public class InsertionSort implements SortFacade
     
     public static void sort(SortParameters p)
     {
-        for(int i = 1; i < p.getArraySize(); ++i)
+        insertionSort(p.getArray(), 0, p.getArraySize()-1);
+        /*for(int i = 1; i < p.getArraySize(); ++i)
         {
             value = p.getArray()[i];
             j = i - 1;
@@ -36,6 +37,11 @@ public class InsertionSort implements SortFacade
                     
             }
             p.getArray()[j+1] = value;
-        }
+        }*/
     } 
+    
+    public static void insertionSort(int[] list, int left, int right)
+    {
+        
+    }
 }

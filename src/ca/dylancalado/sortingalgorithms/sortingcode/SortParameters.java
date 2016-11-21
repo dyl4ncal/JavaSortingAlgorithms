@@ -11,12 +11,17 @@ import java.util.ArrayList;
 public final class SortParameters
 {
     private int[] array;
+    private int[] originalArray;
+    private int[] leftArray;
+    private int[] rightArray;
     private int arraySize;
+    private int pivotPosition;
     private ArrayList<Integer> gapSeq = new ArrayList<>();
     private int gapSeqSize;
     private SortOrder order;
     private SortType type;
     private GapSequenceType gapSeqType;
+    
    
     public SortParameters(){}  
 
@@ -42,6 +47,17 @@ public final class SortParameters
     }  
     
     /*//Merge sort constructor.
+    public SortParameters(int[] myArray, int[] myLeftArray, int[] myRightArray, int myArraySize, SortOrder myOrder, SortType myType)
+    {
+        setArray(myArray);
+        setLeftArray(myLeftArray);
+        setRightArray(myRightArray);
+        setArraySize(myArraySize);
+        setSortOrder(myOrder);
+        setSortType(myType);
+    }*/
+    
+    /*//Quick sort constructor.
     public SortParameters(int[] myArray, int myArraySize, SortOrder myOrder, SortType myType)
     {
         setArray(myArray);
@@ -55,9 +71,29 @@ public final class SortParameters
         return array;
     }
     
+    public int[] getOriginalArray()
+    {
+        return originalArray;
+    }
+    
     public int getArraySize()
     {
         return arraySize;
+    }
+    
+    public int[] getLeftArray()
+    {
+        return leftArray;
+    }
+    
+    public int[] getRightArray()
+    {
+        return rightArray;
+    }
+    
+    public int getPivotPosition()
+    {
+        return pivotPosition;
     }
     
     public SortOrder getSortOrder()
@@ -90,9 +126,29 @@ public final class SortParameters
         this.array = array;
     }
     
+    public void setOriginalArray(int[] originalArray)
+    {
+        this.originalArray = originalArray;
+    }
+    
+    public void setLeftArray(int[] leftArray)
+    {
+        this.leftArray = leftArray;
+    }
+
+    public void setRightArray(int[] rightArray)
+    {
+        this.rightArray = rightArray;
+    }
+    
     public void setArraySize(int arraySize)
     {
         this.arraySize = arraySize;
+    }
+    
+    public void setPivotValue(int pivotPosition)
+    {
+        this.pivotPosition = pivotPosition;
     }
     
     public void setSortOrder(SortOrder order)
