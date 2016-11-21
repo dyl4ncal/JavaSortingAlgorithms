@@ -5,7 +5,10 @@ package ca.dylancalado.sortingalgorithms.sortingcode;
  * 
  * @author Dylan
  */
-public class QuickSortHybrid
+public class QuickSortHybrid implements SortFacade
 {
-    
+    public static void sort(SortParameters p)
+    {
+        
+    }
 }

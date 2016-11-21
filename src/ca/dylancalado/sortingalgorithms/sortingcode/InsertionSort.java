@@ -1,7 +1,5 @@
 package ca.dylancalado.sortingalgorithms.sortingcode;
 
-import ca.dylancalado.sortingalgorithms.experimentcode.MemoryUsage;
-
 /**
  * Logic for performing an insertion sort.
  * 

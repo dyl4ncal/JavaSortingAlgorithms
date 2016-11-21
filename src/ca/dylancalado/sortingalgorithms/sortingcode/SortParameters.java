@@ -20,6 +20,7 @@ public final class SortParameters
    
     public SortParameters(){}  
 
+    //Selection sort and insertion sort constructor.
     public SortParameters(int[] myArray, int myArraySize, SortOrder myOrder, SortType myType)
     {
         setArray(myArray);
@@ -28,6 +29,7 @@ public final class SortParameters
         setSortType(myType);
     }
     
+    //Shell sort constructor.
     public SortParameters(int[] myArray, int myArraySize, GapSequenceType myGapSeqType, ArrayList myGapSeq, int myGapSeqSize, SortOrder myOrder, SortType myType)
     {
         setArray(myArray);
@@ -37,7 +39,16 @@ public final class SortParameters
         setGapSeqSize(myGapSeqSize);
         setSortOrder(myOrder);
         setSortType(myType);
-    }          
+    }  
+    
+    /*//Merge sort constructor.
+    public SortParameters(int[] myArray, int myArraySize, SortOrder myOrder, SortType myType)
+    {
+        setArray(myArray);
+        setArraySize(myArraySize);
+        setSortOrder(myOrder);
+        setSortType(myType);
+    }*/
    
     public int[] getArray()
     {

@@ -1,6 +1,5 @@
 package ca.dylancalado.sortingalgorithms.sortingcode;
 
-import ca.dylancalado.sortingalgorithms.experimentcode.MemoryUsage;
 import static java.lang.Math.*;
 
 /**
