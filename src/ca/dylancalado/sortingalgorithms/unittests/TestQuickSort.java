@@ -23,6 +23,7 @@ public class TestQuickSort
         System.out.print("Quick sort get pivot value test passed? ");
         return match;
     }
+    
     public static void testAllQuickSortMethods()
     {
         /*System.out.println("Unit Tests Related to Selection Sort:\n");

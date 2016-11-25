@@ -10,6 +10,7 @@ import ca.dylancalado.sortingalgorithms.unittests.*;
 import java.io.IOException;
 import static java.lang.Math.abs;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -104,6 +105,7 @@ public class UI
        TestSelectionSort.testAllSelectionSortMethods();
        TestInsertionSort.testAllInsertionSortMethods();
        TestShellSort.testAllShellSortMethods();
+       TestMergeSort.testAllMergeSortMethods();
        TestQuickSort.testAllQuickSortMethods();
        TestExperiment.testAllExperimentMethods();
        TestSortTimer.testAllSortTimerMethods();
@@ -145,6 +147,7 @@ public class UI
                 System.out.println(TestShellSort.testShellSortKnuthGapDescending());
                 break;
             case "4":
+                System.out.println(TestMergeSort.testMergeSortMerge());
                 break;
             case "5":
                 System.out.println(TestQuickSort.testQuickSortGetPivotValue());
@@ -184,7 +187,6 @@ public class UI
         
         Experiment.createRandomArray(userArray, userSize);
         p.setArray(userArray);
-        p.setOriginalArray(userArray);
         
         System.out.println("\nSpecify sort order you wish to use:\n1. Ascending\n2. Descending");
         String userOrder = userInput.next();
