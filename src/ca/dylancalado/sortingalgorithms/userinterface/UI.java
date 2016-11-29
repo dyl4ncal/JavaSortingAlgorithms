@@ -147,9 +147,11 @@ public class UI
                 System.out.println(TestShellSort.testShellSortKnuthGapDescending());
                 break;
             case "4":
+                System.out.println(TestMergeSort.testMergeSortAscending());
                 System.out.println(TestMergeSort.testMergeSortMerge());
                 break;
             case "5":
+                System.out.println(TestQuickSort.testQuickSortAscending());
                 System.out.println(TestQuickSort.testQuickSortGetPivotValue());
                 break;
             case "6":

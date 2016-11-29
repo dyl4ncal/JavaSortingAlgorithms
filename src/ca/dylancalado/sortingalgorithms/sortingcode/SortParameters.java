@@ -11,6 +11,9 @@ import java.util.ArrayList;
 public final class SortParameters
 {
     private int[] array;
+    private int[] parentArray;
+    private int[] leftArray;
+    private int[] rightArray;
     private int arraySize;
     private int pivotPosition;
     private ArrayList<Integer> gapSeq = new ArrayList<>();
@@ -68,6 +71,21 @@ public final class SortParameters
         return array;
     }
     
+    /*public int[] getParentArray()
+    {
+        return parentArray;
+    }
+    
+    public int[] getLeftArray()
+    {
+        return leftArray;
+    }
+    
+    public int[] getRightArray()
+    {
+        return rightArray;
+    }*/
+    
     public int getArraySize()
     {
         return arraySize;
@@ -107,6 +125,21 @@ public final class SortParameters
     {
         this.array = array;
     }
+    
+    /*public void setParentArray(int[] parentArray)
+    {
+        this.parentArray = parentArray;
+    }
+    
+    public void setLeftArray(int[] leftArray)
+    {
+        this.leftArray = leftArray;
+    }
+    
+    public void setRightArray(int[] rightArray)
+    {
+        this.rightArray = rightArray;
+    }*/
     
     public void setArraySize(int arraySize)
     {

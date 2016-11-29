@@ -1,6 +1,10 @@
 package ca.dylancalado.sortingalgorithms.unittests;
 
 import ca.dylancalado.sortingalgorithms.sortingcode.QuickSort;
+import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.*;
+import ca.dylancalado.sortingalgorithms.sortingcode.SortParameters;
+import static ca.dylancalado.sortingalgorithms.sortingcode.SortType.QUICK_SORT;
+import java.util.Arrays;
 
 /**
  * Unit tests related to quick sort.
@@ -9,6 +13,20 @@ import ca.dylancalado.sortingalgorithms.sortingcode.QuickSort;
  */
 public class TestQuickSort 
 {
+    private static int[] testArray = {3, 6, 1, 10, 4, 8, 9, 2, 5, 7};
+    
+    public static boolean testQuickSortAscending()
+    {
+        int[] expectedOutput = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        SortParameters p = new SortParameters(testArray, 10, ASCENDING, QUICK_SORT);
+        
+        QuickSort.sort(p);
+        
+        boolean match = Arrays.equals(testArray, expectedOutput);
+        
+        System.out.print("Quick sort ascending test passed? ");
+        return match;
+    }
     public static boolean testQuickSortGetPivotValue()
     {
         int expectedOutput = 12;

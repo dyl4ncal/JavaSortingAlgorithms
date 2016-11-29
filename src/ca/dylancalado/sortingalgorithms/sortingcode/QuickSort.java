@@ -41,11 +41,11 @@ public class QuickSort implements SortFacade
     
     public static int getPivotValue(int first, int middle, int last)
     {
-        if ((first - middle) * (last - first) >= 0) // a >= b and a <= c OR a <= b and a >= c
+        if((first - middle) * (last - first) >= 0) // a >= b and a <= c OR a <= b and a >= c
         {
             return first;
         }
-        else if ((middle - first) * (last - middle) >= 0) // b >= a and b <= c OR b <= a and b >= c
+        else if((middle - first) * (last - middle) >= 0) // b >= a and b <= c OR b <= a and b >= c
         {
             return middle;
         } 
