@@ -1,7 +1,7 @@
 package ca.dylancalado.sortingalgorithms.unittests;
 
-import ca.dylancalado.sortingalgorithms.experimentcode.Experiment;
-import ca.dylancalado.sortingalgorithms.sortingcode.SortOrder;
+import ca.dylancalado.sortingalgorithms.experiments.Experiment;
+import ca.dylancalado.sortingalgorithms.sorting.SortOrder;
 import java.io.IOException;
 /**
  * Unit tests related to experiments.

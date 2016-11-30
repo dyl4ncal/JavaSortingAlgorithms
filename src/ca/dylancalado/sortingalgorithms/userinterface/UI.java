@@ -1,11 +1,17 @@
 package ca.dylancalado.sortingalgorithms.userinterface;
 
-import ca.dylancalado.sortingalgorithms.experimentcode.*;
+import ca.dylancalado.sortingalgorithms.experiments.Experiment;
+import ca.dylancalado.sortingalgorithms.experiments.SortTimer;
+import ca.dylancalado.sortingalgorithms.sorting.InsertionSort;
+import ca.dylancalado.sortingalgorithms.sorting.SortParameters;
+import ca.dylancalado.sortingalgorithms.sorting.ShellSort;
+import ca.dylancalado.sortingalgorithms.sorting.SelectionSort;
+import ca.dylancalado.sortingalgorithms.sorting.MergeSort;
+import ca.dylancalado.sortingalgorithms.sorting.SortType;
 import ca.dylancalado.sortingalgorithms.fileio.FileIO;
-import ca.dylancalado.sortingalgorithms.sortingcode.*;
-import static ca.dylancalado.sortingalgorithms.sortingcode.GapSequenceType.SHELL;
-import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.*;
-import static ca.dylancalado.sortingalgorithms.sortingcode.SortType.SHELL_SORT;
+import static ca.dylancalado.sortingalgorithms.sorting.GapSequenceType.SHELL;
+import static ca.dylancalado.sortingalgorithms.sorting.SortOrder.*;
+import static ca.dylancalado.sortingalgorithms.sorting.SortType.SHELL_SORT;
 import ca.dylancalado.sortingalgorithms.unittests.*;
 import java.io.IOException;
 import static java.lang.Math.abs;
@@ -147,12 +153,12 @@ public class UI
                 System.out.println(TestShellSort.testShellSortKnuthGapDescending());
                 break;
             case "4":
-                System.out.println(TestMergeSort.testMergeSortAscending());
                 System.out.println(TestMergeSort.testMergeSortMerge());
+                System.out.println(TestMergeSort.testMergeSortAscending());
                 break;
             case "5":
-                System.out.println(TestQuickSort.testQuickSortAscending());
                 System.out.println(TestQuickSort.testQuickSortGetPivotValue());
+                System.out.println(TestQuickSort.testQuickSortAscending());
                 break;
             case "6":
                 break;
@@ -258,6 +264,12 @@ public class UI
                 SortTimer.startTimer();
                 MergeSort.sort(p);
                 SortTimer.endTimer();
+                
+                for (int i = 0; i < p.getArray().length; ++i)////////////////////////////////
+                {
+                    System.out.print(p.getArray()[i] + " ");
+                }
+                
                 break;
             case "5":
                 

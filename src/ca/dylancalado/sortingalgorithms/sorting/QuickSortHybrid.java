@@ -1,4 +1,4 @@
-package ca.dylancalado.sortingalgorithms.sortingcode;
+package ca.dylancalado.sortingalgorithms.sorting;
 
 /**
  * Logic for performing a quick sort hybrid.

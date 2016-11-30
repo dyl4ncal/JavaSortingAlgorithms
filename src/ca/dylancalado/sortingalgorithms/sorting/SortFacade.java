@@ -1,4 +1,4 @@
-package ca.dylancalado.sortingalgorithms.sortingcode;
+package ca.dylancalado.sortingalgorithms.sorting;
 
 /**
  * This interface sits in front of each sorting algorithm and 

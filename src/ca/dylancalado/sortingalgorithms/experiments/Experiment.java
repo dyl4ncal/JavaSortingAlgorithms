@@ -1,11 +1,14 @@
-package ca.dylancalado.sortingalgorithms.experimentcode;
+package ca.dylancalado.sortingalgorithms.experiments;
 
+import ca.dylancalado.sortingalgorithms.sorting.InsertionSort;
+import ca.dylancalado.sortingalgorithms.sorting.SortOrder;
+import ca.dylancalado.sortingalgorithms.sorting.ShellSort;
+import ca.dylancalado.sortingalgorithms.sorting.SelectionSort;
 import ca.dylancalado.sortingalgorithms.fileio.FileIO;
-import ca.dylancalado.sortingalgorithms.sortingcode.*;
-import static ca.dylancalado.sortingalgorithms.sortingcode.GapSequenceType.*;
-import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.*;
-import ca.dylancalado.sortingalgorithms.sortingcode.SortParameters;
-import static ca.dylancalado.sortingalgorithms.sortingcode.SortType.*;
+import static ca.dylancalado.sortingalgorithms.sorting.GapSequenceType.*;
+import static ca.dylancalado.sortingalgorithms.sorting.SortOrder.*;
+import ca.dylancalado.sortingalgorithms.sorting.SortParameters;
+import static ca.dylancalado.sortingalgorithms.sorting.SortType.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;

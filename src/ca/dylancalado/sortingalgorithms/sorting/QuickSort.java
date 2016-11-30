@@ -1,4 +1,4 @@
-package ca.dylancalado.sortingalgorithms.sortingcode;
+package ca.dylancalado.sortingalgorithms.sorting;
 
 /**
  * Logic for performing a quick sort.
@@ -11,7 +11,8 @@ public class QuickSort implements SortFacade
     
     public static void sort(SortParameters p)
     {
-        int pivotValue = getPivotValue(p.getArray()[0], p.getArray()[p.getArraySize()/2], p.getArray()[p.getArraySize()]);
+        int pivotValue = getPivotValue(p.getArray()[0], p.getArray()[(p.getArraySize()/2)-1], p.getArray()[p.getArraySize()-1]);
+        System.out.println(pivotValue);
         
         int i = 0;
         int j = p.getArraySize()-1;
@@ -35,17 +36,22 @@ public class QuickSort implements SortFacade
         }
         pivotPosition = i;
         
+        p.setLeftIndex(0);
+        p.setRightIndex(pivotPosition-1);
         QuickSort.sort(p);
+        
+        p.setLeftIndex(pivotPosition);
+        p.setRightIndex(p.getArraySize()-1);
         QuickSort.sort(p);
     }
     
     public static int getPivotValue(int first, int middle, int last)
     {
-        if((first - middle) * (last - first) >= 0) // a >= b and a <= c OR a <= b and a >= c
+        if((first - middle) * (last - first) >= 0)
         {
             return first;
         }
-        else if((middle - first) * (last - middle) >= 0) // b >= a and b <= c OR b <= a and b >= c
+        else if((middle - first) * (last - middle) >= 0)
         {
             return middle;
         } 

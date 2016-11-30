@@ -1,10 +1,10 @@
 package ca.dylancalado.sortingalgorithms.unittests;
 
-import static ca.dylancalado.sortingalgorithms.sortingcode.GapSequenceType.*;
-import ca.dylancalado.sortingalgorithms.sortingcode.ShellSort;
-import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.*;
-import ca.dylancalado.sortingalgorithms.sortingcode.SortParameters;
-import static ca.dylancalado.sortingalgorithms.sortingcode.SortType.SHELL_SORT;
+import static ca.dylancalado.sortingalgorithms.sorting.GapSequenceType.*;
+import ca.dylancalado.sortingalgorithms.sorting.ShellSort;
+import static ca.dylancalado.sortingalgorithms.sorting.SortOrder.*;
+import ca.dylancalado.sortingalgorithms.sorting.SortParameters;
+import static ca.dylancalado.sortingalgorithms.sorting.SortType.SHELL_SORT;
 import java.util.ArrayList;
 import java.util.Arrays;
 

@@ -1,9 +1,9 @@
 package ca.dylancalado.sortingalgorithms.unittests;
 
-import ca.dylancalado.sortingalgorithms.sortingcode.MergeSort;
-import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.*;
-import ca.dylancalado.sortingalgorithms.sortingcode.SortParameters;
-import static ca.dylancalado.sortingalgorithms.sortingcode.SortType.MERGE_SORT;
+import ca.dylancalado.sortingalgorithms.sorting.MergeSort;
+import static ca.dylancalado.sortingalgorithms.sorting.SortOrder.*;
+import ca.dylancalado.sortingalgorithms.sorting.SortParameters;
+import static ca.dylancalado.sortingalgorithms.sorting.SortType.MERGE_SORT;
 import java.util.Arrays;
 
 /**
@@ -22,6 +22,11 @@ public class TestMergeSort
         MergeSort.sort(p);
         
         boolean match = Arrays.equals(testArray, expectedOutput);
+        
+        for(int i = 0; i < testArray.length; ++i)////////////////////////////////
+        {
+            System.out.print(testArray[i] + " ");
+        }
         
         System.out.print("Merge sort ascending test passed? ");
         return match;

@@ -1,4 +1,4 @@
-package ca.dylancalado.sortingalgorithms.experimentcode;
+package ca.dylancalado.sortingalgorithms.experiments;
 
 import java.util.ArrayList;
 

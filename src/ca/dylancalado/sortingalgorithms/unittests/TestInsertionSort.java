@@ -1,9 +1,9 @@
 package ca.dylancalado.sortingalgorithms.unittests;
 
-import ca.dylancalado.sortingalgorithms.sortingcode.InsertionSort;
-import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.*;
-import ca.dylancalado.sortingalgorithms.sortingcode.SortParameters;
-import static ca.dylancalado.sortingalgorithms.sortingcode.SortType.INSERTION_SORT;
+import ca.dylancalado.sortingalgorithms.sorting.InsertionSort;
+import static ca.dylancalado.sortingalgorithms.sorting.SortOrder.*;
+import ca.dylancalado.sortingalgorithms.sorting.SortParameters;
+import static ca.dylancalado.sortingalgorithms.sorting.SortType.INSERTION_SORT;
 import java.util.Arrays;
 
 /**

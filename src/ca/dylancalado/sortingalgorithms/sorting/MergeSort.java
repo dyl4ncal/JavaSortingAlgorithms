@@ -1,4 +1,4 @@
-package ca.dylancalado.sortingalgorithms.sortingcode;
+package ca.dylancalado.sortingalgorithms.sorting;
 
 import java.util.Arrays;
 
@@ -10,22 +10,21 @@ import java.util.Arrays;
 public class MergeSort implements SortFacade
 {
     public static void sort(SortParameters p)
-    {
-        int [] inputArray = p.getArray();
-        
-        int[] left = Arrays.copyOfRange(inputArray, 0, (inputArray.length / 2) - 1);
-        int[] right = Arrays.copyOfRange(inputArray, (inputArray.length / 2), inputArray.length - 1);
+    {   
+        int[] left = Arrays.copyOfRange(p.getArray(), 0, (p.getArray().length/2));
+        int[] right = Arrays.copyOfRange(p.getArray(), (p.getArray().length/2)+1, p.getArray().length);
 
         if (left.length > 1) 
         {
-            
+            p.setArray(left);
             MergeSort.sort(p);//Sort left array segment.
         }
         if (right.length > 1)
         {
+            p.setArray(right);
             MergeSort.sort(p);//Sort right array segment.
         }
-
+        
         merge(p.getArray(), left, right);
     }
     
@@ -35,32 +34,26 @@ public class MergeSort implements SortFacade
         int r = 0; 
         int j = 0;
         
-        while (l < leftArray.length && r < rightArray.length)//Check that left and right indices are within bounds.
+        while (l < leftArray.length && r < rightArray.length && j < array.length)//Check that left and right indices are within bounds.
         {
-            if (leftArray[l] <= rightArray[r])
+            if (leftArray[l] < rightArray[r])
             {
-                array[j] = leftArray[l];
-                ++l;
-                ++j;
+                array[j++] = leftArray[l++];
             }
             else
             {
-                array[j] = rightArray[r];
-                ++r;
-                ++j;
+                array[j++] = rightArray[r++];
+
             }
         }
-        while (l < leftArray.length) 
+        
+        while (l < leftArray.length && j < array.length) 
         {
-            array[j] = leftArray[l];
-            ++l;
-            ++j;
+            array[j++] = leftArray[l++];
         }
-        while (r < leftArray.length)
+        while (r < rightArray.length && j < array.length)
         {
-            array[j] = rightArray[r];
-            ++r;
-            ++j;
+            array[j++] = rightArray[r++];
         }
     }
     

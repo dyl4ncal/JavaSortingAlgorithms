@@ -1,4 +1,4 @@
-package ca.dylancalado.sortingalgorithms.sortingcode;
+package ca.dylancalado.sortingalgorithms.sorting;
 
 import java.util.ArrayList;
 
@@ -11,9 +11,8 @@ import java.util.ArrayList;
 public final class SortParameters
 {
     private int[] array;
-    private int[] parentArray;
-    private int[] leftArray;
-    private int[] rightArray;
+    private int leftIndex;
+    private int rightIndex;
     private int arraySize;
     private int pivotPosition;
     private ArrayList<Integer> gapSeq = new ArrayList<>();
@@ -57,34 +56,31 @@ public final class SortParameters
         setSortType(myType);
     }*/
     
-    /*//Quick sort constructor.
-    public SortParameters(int[] myArray, int myArraySize, SortOrder myOrder, SortType myType)
+    //Quick sort constructor.
+    public SortParameters(int[] myArray, int myArraySize, int myLeft, int myRight, SortOrder myOrder, SortType myType)
     {
         setArray(myArray);
         setArraySize(myArraySize);
+        setLeftIndex(myLeft);
+        setRightIndex(myRight);
         setSortOrder(myOrder);
         setSortType(myType);
-    }*/
+    }
    
     public int[] getArray()
     {
         return array;
     }
     
-    /*public int[] getParentArray()
+    public int getLeftIndex()
     {
-        return parentArray;
+        return leftIndex;
     }
     
-    public int[] getLeftArray()
+    public int getRightIndex()
     {
-        return leftArray;
+        return rightIndex;
     }
-    
-    public int[] getRightArray()
-    {
-        return rightArray;
-    }*/
     
     public int getArraySize()
     {
@@ -126,20 +122,15 @@ public final class SortParameters
         this.array = array;
     }
     
-    /*public void setParentArray(int[] parentArray)
+    public void setLeftIndex(int leftIndex)
     {
-        this.parentArray = parentArray;
+        this.leftIndex = leftIndex;
     }
     
-    public void setLeftArray(int[] leftArray)
+    public void setRightIndex(int rightIndex)
     {
-        this.leftArray = leftArray;
+        this.rightIndex = rightIndex;
     }
-    
-    public void setRightArray(int[] rightArray)
-    {
-        this.rightArray = rightArray;
-    }*/
     
     public void setArraySize(int arraySize)
     {

@@ -1,9 +1,9 @@
 package ca.dylancalado.sortingalgorithms.unittests;
 
-import ca.dylancalado.sortingalgorithms.sortingcode.QuickSort;
-import static ca.dylancalado.sortingalgorithms.sortingcode.SortOrder.*;
-import ca.dylancalado.sortingalgorithms.sortingcode.SortParameters;
-import static ca.dylancalado.sortingalgorithms.sortingcode.SortType.QUICK_SORT;
+import ca.dylancalado.sortingalgorithms.sorting.QuickSort;
+import static ca.dylancalado.sortingalgorithms.sorting.SortOrder.*;
+import ca.dylancalado.sortingalgorithms.sorting.SortParameters;
+import static ca.dylancalado.sortingalgorithms.sorting.SortType.QUICK_SORT;
 import java.util.Arrays;
 
 /**
@@ -18,26 +18,29 @@ public class TestQuickSort
     public static boolean testQuickSortAscending()
     {
         int[] expectedOutput = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        SortParameters p = new SortParameters(testArray, 10, ASCENDING, QUICK_SORT);
+        SortParameters p = new SortParameters(testArray, testArray.length, ASCENDING, QUICK_SORT);
         
         QuickSort.sort(p);
         
         boolean match = Arrays.equals(testArray, expectedOutput);
         
+        for(int i = 0; i < testArray.length; ++i)////////////////////////////////
+        {
+            System.out.print(testArray[i] + " ");
+        }
+        
         System.out.print("Quick sort ascending test passed? ");
         return match;
     }
+    
     public static boolean testQuickSortGetPivotValue()
     {
-        int expectedOutput = 12;
-        int a = 12;
-        int b = 5;
-        int c = 22;
+        int expectedOutput = 4;
+  
+        int actualOutput = QuickSort.getPivotValue(testArray[0], testArray[(testArray.length/2)-1], testArray[testArray.length-1]);
         
-        int actualOutput = QuickSort.getPivotValue(a, b, c);
-       
         boolean match = (actualOutput == expectedOutput);
-       
+        
         System.out.print("Quick sort get pivot value test passed? ");
         return match;
     }

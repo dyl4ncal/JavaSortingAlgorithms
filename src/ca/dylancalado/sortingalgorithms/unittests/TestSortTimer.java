@@ -1,6 +1,6 @@
 package ca.dylancalado.sortingalgorithms.unittests;
 
-import ca.dylancalado.sortingalgorithms.experimentcode.SortTimer;
+import ca.dylancalado.sortingalgorithms.experiments.SortTimer;
 import java.util.ArrayList;
 
 /**
