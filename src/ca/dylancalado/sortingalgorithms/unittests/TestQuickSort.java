@@ -33,6 +33,24 @@ public class TestQuickSort
         return match;
     }
     
+    public static boolean testQuickSortDescending()
+    {
+        int[] expectedOutput = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+        SortParameters p = new SortParameters(testArray, 10, DESCENDING, QUICK_SORT);
+        
+        QuickSort.sort(p);
+        
+        boolean match = Arrays.equals(testArray, expectedOutput);
+        
+        for(int i = 0; i < testArray.length; ++i)////////////////////////////////
+        {
+            System.out.print(testArray[i] + " ");
+        }
+        
+        System.out.print("Quick sort descending test passed? ");
+        return match;
+    }
+    
     public static boolean testQuickSortGetPivotValue()
     {
         int expectedOutput = 4;

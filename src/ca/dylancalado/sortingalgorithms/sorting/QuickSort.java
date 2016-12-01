@@ -12,7 +12,6 @@ public class QuickSort implements SortFacade
     public static void sort(SortParameters p)
     {
         int pivotValue = getPivotValue(p.getArray()[0], p.getArray()[(p.getArraySize()/2)-1], p.getArray()[p.getArraySize()-1]);
-        System.out.println(pivotValue);
         
         int i = 0;
         int j = p.getArraySize()-1;

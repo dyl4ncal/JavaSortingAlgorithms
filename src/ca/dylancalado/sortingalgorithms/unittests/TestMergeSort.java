@@ -32,6 +32,24 @@ public class TestMergeSort
         return match;
     }
     
+    public static boolean testMergeSortDescending()
+    {
+        int[] expectedOutput = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+        SortParameters p = new SortParameters(testArray, 10, DESCENDING, MERGE_SORT);
+        
+        MergeSort.sort(p);
+        
+        boolean match = Arrays.equals(testArray, expectedOutput);
+        
+        for(int i = 0; i < testArray.length; ++i)////////////////////////////////
+        {
+            System.out.print(testArray[i] + " ");
+        }
+        
+        System.out.print("Merge sort descending test passed? ");
+        return match;
+    }
+    
     public static boolean testMergeSortMerge()
     {
         int[] expectedOutput = {1, 2, 3, 4, 5, 6};

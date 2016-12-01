@@ -80,25 +80,48 @@ public class UI
         FileIO.setFileName();
         FileIO.createBaseLogFile();
         
-        System.out.println("Pick an experiment to run:\n"
-                + "1. Experiment 1\n2. Experiment 2\n3. Experiment 3");
+        System.out.println("Pick an experiment to run:\n\n(A2) are experiments from assignment 2.\n(A4) are experiments from assignment 4.\n"
+                + "1. Experiment 1(A2)\n2. Experiment 2(A2)\n3. Experiment 3(A2)\n"
+                + "4. Experiment 1(A4)\n5. Experiment 2(A4)\n6. Experiment 3(A4)\n7. Experiment 4(A4)\n"
+                + "8. Experiment 5(A4)\n9. Experiment 6(A4)\n10. Experiment 7(A4)\n");
 
         switch (userInput.next())
         {
             case "1":
-                Experiment.experiment1();
+                Experiment.experiment1A2();
                 System.out.println("Experiment complete");
                 break;
             case "2":
-                Experiment.experiment2();
+                Experiment.experiment2A2();
                 System.out.println("Experiments complete");
                 break;
             case "3":
-                Experiment.experiment3ShellGap();
-                Experiment.experiment3PrattGap();
-                Experiment.experiment3KnuthGap();
+                Experiment.experiment3ShellGapA2();
+                Experiment.experiment3PrattGapA2();
+                Experiment.experiment3KnuthGapA2();
                 System.out.println("Experiment complete");
                 break;
+            case "4":
+                
+                break;
+            case "5":
+                
+                break;
+            case "6":
+                
+                break;
+            case "7":
+                
+                break;
+            case "8":
+                
+                break;
+            case "9":
+                
+                break;
+            case "10":
+                
+                break;    
             default:
                 System.out.println("Invalid Input");
                 break;
@@ -155,10 +178,12 @@ public class UI
             case "4":
                 System.out.println(TestMergeSort.testMergeSortMerge());
                 System.out.println(TestMergeSort.testMergeSortAscending());
+                //System.out.println(TestMergeSort.testMergeSortDescending());
                 break;
             case "5":
                 System.out.println(TestQuickSort.testQuickSortGetPivotValue());
                 System.out.println(TestQuickSort.testQuickSortAscending());
+                //System.out.println(TestQuickSort.testQuickSortDescending());
                 break;
             case "6":
                 break;
