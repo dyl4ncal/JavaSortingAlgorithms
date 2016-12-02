@@ -32,6 +32,6 @@ public class MergeSortHybrid implements SortFacade
             InsertionSort.sort(p);//right
         }
 
-        MergeSort.merge(p.getArray(), left, right);
+        MergeSort.merge(p.getArray(), left, right, p);
     }
 }

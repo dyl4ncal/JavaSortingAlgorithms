@@ -178,7 +178,7 @@ public class UI
             case "4":
                 System.out.println(TestMergeSort.testMergeSortMerge());
                 System.out.println(TestMergeSort.testMergeSortAscending());
-                //System.out.println(TestMergeSort.testMergeSortDescending());
+                System.out.println(TestMergeSort.testMergeSortDescending());
                 break;
             case "5":
                 System.out.println(TestQuickSort.testQuickSortGetPivotValue());
@@ -289,12 +289,6 @@ public class UI
                 SortTimer.startTimer();
                 MergeSort.sort(p);
                 SortTimer.endTimer();
-                
-                for (int i = 0; i < p.getArray().length; ++i)////////////////////////////////
-                {
-                    System.out.print(p.getArray()[i] + " ");
-                }
-                
                 break;
             case "5":
                 
