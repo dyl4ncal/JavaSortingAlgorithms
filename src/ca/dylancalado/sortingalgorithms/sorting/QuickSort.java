@@ -1,5 +1,8 @@
 package ca.dylancalado.sortingalgorithms.sorting;
 
+import static java.lang.Integer.*;
+import java.util.Arrays;
+
 /**
  * Logic for performing a quick sort.
  * 
@@ -11,52 +14,62 @@ public class QuickSort implements SortFacade
     
     public static void sort(SortParameters p)
     {
-        int pivotValue = getPivotValue(p.getArray()[0], p.getArray()[(p.getArraySize()/2)-1], p.getArray()[p.getArraySize()-1]);
+        int[] array = p.getArray();
+        int i = p.getLeftIndex();
+        int j = p.getRightIndex();
+        int pivotValue; 
         
-        int i = 0;
-        int j = p.getArraySize()-1;
+        if(array.length % 2 != 0)
+        {
+            pivotValue = getPivotValue(array[p.getLeftIndex()], array[(array.length/2)], array[array.length-1]);//If array has odd number of elements.
+        }
+        else
+        {
+            pivotValue = getPivotValue(array[p.getLeftIndex()], array[(array.length/2-1)], array[array.length-1]);//If array has even number of elements.
+        }
         
+        System.out.println("PivotValue: " + pivotValue);
         while(i <= j)
         {
-            while(p.getArray()[i] < pivotValue)
+            while(array[i] < pivotValue)
             {
-                ++i;
+                i++;
             }
-            while(p.getArray()[j] > pivotValue)
+            while(array[j] > pivotValue)
             {
-                --j;
+                j--;
             }
             if(i <= j)
             {
-                SelectionSort.swap(p.getArray(), i, j);
-                ++i;
-                --j;
+                SelectionSort.swap(array, i, j);
+                i++;
+                j--;
             }
         }
         pivotPosition = i;
         
-        p.setLeftIndex(0);
-        p.setRightIndex(pivotPosition-1);
-        QuickSort.sort(p);
-        
-        p.setLeftIndex(pivotPosition);
-        p.setRightIndex(p.getArraySize()-1);
-        QuickSort.sort(p);
+        if(p.getLeftIndex() < j)
+        {
+            System.out.println("QS Left Called");
+            p.setLeftIndex(0);
+            p.setRightIndex(pivotPosition-1);
+            p.setArray(Arrays.copyOfRange(array, 0, pivotPosition-1));
+            QuickSort.sort(p);
+        }
+        if(p.getRightIndex() > i)
+        {
+            System.out.println("QS Right Called");
+            p.setLeftIndex(pivotPosition);
+            p.setRightIndex(array.length-1);
+            p.setArray(Arrays.copyOfRange(array, pivotPosition, array.length-1));
+            QuickSort.sort(p);
+        }
     }
     
     public static int getPivotValue(int first, int middle, int last)
     {
-        if((first - middle) * (last - first) >= 0)
-        {
-            return first;
-        }
-        else if((middle - first) * (last - middle) >= 0)
-        {
-            return middle;
-        } 
-        else 
-        {
-            return last;
-        }
+        int pivot = max(min(first,middle), min(max(first,middle),last));
+
+        return pivot;
     }
 }

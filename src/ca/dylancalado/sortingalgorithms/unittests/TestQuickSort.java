@@ -18,7 +18,7 @@ public class TestQuickSort
     public static boolean testQuickSortAscending()
     {
         int[] expectedOutput = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        SortParameters p = new SortParameters(testArray, testArray.length, ASCENDING, QUICK_SORT);
+        SortParameters p = new SortParameters(testArray, testArray.length, 0, testArray.length-1, ASCENDING, QUICK_SORT);
         
         QuickSort.sort(p);
         
@@ -53,10 +53,11 @@ public class TestQuickSort
     
     public static boolean testQuickSortGetPivotValue()
     {
+        int[] arr = {3, 6, 1, 10, 4, 8, 9, 2, 5, 7};
         int expectedOutput = 4;
   
-        int actualOutput = QuickSort.getPivotValue(testArray[0], testArray[(testArray.length/2)-1], testArray[testArray.length-1]);
-        
+        int actualOutput = QuickSort.getPivotValue(arr[0], arr[(arr.length/2)-1], arr[arr.length-1]);
+
         boolean match = (actualOutput == expectedOutput);
         
         System.out.print("Quick sort get pivot value test passed? ");
@@ -65,9 +66,9 @@ public class TestQuickSort
     
     public static void testAllQuickSortMethods()
     {
-        /*System.out.println("Unit Tests Related to Selection Sort:\n");
-        System.out.println(testSelectionSortSwap());
-        System.out.println(testSelectionSortAscending());
-        System.out.println(testSelectionSortDescending() + "\n");*/
+        System.out.println("Unit Tests Related to Quick Sort:\n");
+        System.out.println(testQuickSortGetPivotValue());
+        System.out.println(testQuickSortAscending());
+        System.out.println(testQuickSortDescending() + "\n");
     }
 }
