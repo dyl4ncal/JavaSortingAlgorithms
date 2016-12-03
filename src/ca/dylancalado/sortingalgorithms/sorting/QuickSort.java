@@ -21,11 +21,11 @@ public class QuickSort implements SortFacade
         
         if(array.length % 2 != 0)
         {
-            pivotValue = getPivotValue(array[p.getLeftIndex()], array[(array.length/2)], array[array.length-1]);//If array has odd number of elements.
+            pivotValue = getPivotValue(array[p.getLeftIndex()], array[(array.length/2-1)], array[array.length-1]);//If array has odd number of elements.
         }
         else
         {
-            pivotValue = getPivotValue(array[p.getLeftIndex()], array[(array.length/2-1)], array[array.length-1]);//If array has even number of elements.
+            pivotValue = getPivotValue(array[p.getLeftIndex()], array[(array.length/2)], array[array.length-1]);//If array has even number of elements.
         }
         
         System.out.println("PivotValue: " + pivotValue);
@@ -53,7 +53,7 @@ public class QuickSort implements SortFacade
             System.out.println("QS Left Called");
             p.setLeftIndex(0);
             p.setRightIndex(pivotPosition-1);
-            p.setArray(Arrays.copyOfRange(array, 0, pivotPosition-1));
+            p.setArray(Arrays.copyOfRange(array, 0, pivotPosition));
             QuickSort.sort(p);
         }
         if(p.getRightIndex() > i)
@@ -61,7 +61,7 @@ public class QuickSort implements SortFacade
             System.out.println("QS Right Called");
             p.setLeftIndex(pivotPosition);
             p.setRightIndex(array.length-1);
-            p.setArray(Arrays.copyOfRange(array, pivotPosition, array.length-1));
+            p.setArray(Arrays.copyOfRange(array, pivotPosition-1, array.length-1));
             QuickSort.sort(p);
         }
     }
