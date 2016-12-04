@@ -30,7 +30,7 @@ public class Experiment
     private static long runTime;
     private static long memUsage;
     
-    private static void experiment(SortParameters p, int numOfTrials) throws IOException
+    private static void nonRecursiveExperiment(SortParameters p, int numOfTrials) throws IOException
     {  
         arraySize = 10000;
         numOfTrials = 6;
@@ -104,7 +104,7 @@ public class Experiment
         FileIO.createCSVMemoryFile();
         SortParameters p = new SortParameters(array, arraySize, ASCENDING, SELECTION_SORT);
         System.out.println("Experiment 1 running...\n");
-        experiment(p, numOfTrials);
+        nonRecursiveExperiment(p, numOfTrials);
     }
     
     public static void experiment2A2() throws IOException
@@ -117,7 +117,7 @@ public class Experiment
         FileIO.createCSVMemoryFile();
         SortParameters p = new SortParameters(array, arraySize, ASCENDING, INSERTION_SORT);
         System.out.println("Experiment 2 running...\n");
-        experiment(p, numOfTrials);
+        nonRecursiveExperiment(p, numOfTrials);
     }
     
     public static void experiment3ShellGapA2() throws IOException
@@ -131,7 +131,7 @@ public class Experiment
         SortParameters p1 = new SortParameters(array, arraySize, SHELL, gapSeq, gapSeqSize, ASCENDING, SHELL_SORT);
         System.out.println("Experiment 3 (Shell's gap) running...\n");
         ShellSort.generateShellGap(p1);
-        experiment(p1, numOfTrials);     
+        nonRecursiveExperiment(p1, numOfTrials);     
     }
     
     public static void experiment3PrattGapA2() throws IOException
@@ -145,7 +145,7 @@ public class Experiment
         SortParameters p2 = new SortParameters(array, arraySize, PRATT, gapSeq, gapSeqSize, ASCENDING, SHELL_SORT);
         System.out.println("Experiment 3 (Pratt's gap) running...\n");
         ShellSort.generatePrattGap(p2);
-        experiment(p2, numOfTrials);
+        nonRecursiveExperiment(p2, numOfTrials);
     }
     
     public static void experiment3KnuthGapA2() throws IOException
@@ -159,7 +159,7 @@ public class Experiment
         SortParameters p3 = new SortParameters(array, arraySize, KNUTH, gapSeq, gapSeqSize, ASCENDING, SHELL_SORT);
         System.out.println("Experiment 3 (Knuth's gap) running...\n");
         ShellSort.generateKnuthGap(p3);
-        experiment(p3, numOfTrials);
+        nonRecursiveExperiment(p3, numOfTrials);
     }
     
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -173,7 +173,7 @@ public class Experiment
         FileIO.createCSVMemoryFile();
         SortParameters p = new SortParameters(array, arraySize, ASCENDING, MERGE_SORT);
         System.out.println("Experiment 1 running...\n");
-        experiment(p, numOfTrials);
+        nonRecursiveExperiment(p, numOfTrials);
     }
     
     public static void experiment2A4() throws IOException
@@ -186,7 +186,7 @@ public class Experiment
         FileIO.createCSVMemoryFile();
         SortParameters p = new SortParameters(array, arraySize, ASCENDING, MERGE_SORT_HYBRID);
         System.out.println("Experiment 2 running...\n");
-        experiment(p, numOfTrials);
+        nonRecursiveExperiment(p, numOfTrials);
     }
     
     public static void experiment3A4() throws IOException
@@ -199,7 +199,7 @@ public class Experiment
         FileIO.createCSVMemoryFile();
         SortParameters p = new SortParameters(array, arraySize, ASCENDING, QUICK_SORT);
         System.out.println("Experiment 3 running...\n");
-        experiment(p, numOfTrials);
+        nonRecursiveExperiment(p, numOfTrials);
     }
     
     public static void experiment4A4() throws IOException
@@ -212,7 +212,7 @@ public class Experiment
         FileIO.createCSVMemoryFile();
         SortParameters p = new SortParameters(array, arraySize, ASCENDING, QUICK_SORT_HYBRID);
         System.out.println("Experiment 4 running...\n");
-        experiment(p, numOfTrials);
+        nonRecursiveExperiment(p, numOfTrials);
     }
   
     public static void runAllExperiments() throws IOException

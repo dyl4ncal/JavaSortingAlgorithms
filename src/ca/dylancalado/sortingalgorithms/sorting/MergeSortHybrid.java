@@ -17,19 +17,25 @@ public class MergeSortHybrid implements SortInterface
 
         if (left.length > p.getHybridThreshold()) 
         {
+            p.setArray(left);
             MergeSort.sort(p);//left,threshold
         }
         else
         {
+            p.setArray(left);
+            p.setArraySize(p.getArray().length);
             InsertionSort.sort(p);//left
         }
         
-        if (right.length > p.getHybridThreshold())//right,threshold 
+        if (right.length > p.getHybridThreshold())
         {
-            MergeSort.sort(p);
+            p.setArray(right);
+            MergeSort.sort(p);//right,threshold 
         }
         else
         {
+            p.setArray(right);
+            p.setArraySize(p.getArray().length);
             InsertionSort.sort(p);//right
         }
 
