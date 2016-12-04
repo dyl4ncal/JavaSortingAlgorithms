@@ -33,7 +33,7 @@ public class Experiment
     private static void nonRecursiveExperiment(SortParameters p, int numOfTrials) throws IOException
     {  
         arraySize = 10000;
-        numOfTrials = 6;
+        numOfTrials = 5;
         
         if(p.getSortType() == SHELL_SORT)
         {
@@ -51,7 +51,7 @@ public class Experiment
             array = new int[arraySize];
             p.setArray(array);
        
-            for(int j = numOfTrials; j > 0; --j)
+            for(int j = numOfTrials; j >= 0; --j)
             {
                 createRandomArray(array, arraySize);
                 
@@ -91,6 +91,18 @@ public class Experiment
         }
         SortTimer.getStoredTimes().clear();
         FileIO.closeWriter();
+    }
+    
+    private static void recursiveExperiment(SortParameters p, int numOfTrials) throws IOException
+    {  
+        arraySize = 50000;
+        numOfTrials = 5;
+        maxArraySize = 1000000;
+        
+        FileIO.writeRuntimeHeader();
+        FileIO.writeMemoryUsageHeader();
+        
+        
     }
     
     //The following methods perform particular experiments.
@@ -173,7 +185,7 @@ public class Experiment
         FileIO.createCSVMemoryFile();
         SortParameters p = new SortParameters(array, arraySize, ASCENDING, MERGE_SORT);
         System.out.println("Experiment 1 running...\n");
-        nonRecursiveExperiment(p, numOfTrials);
+        recursiveExperiment(p, numOfTrials);
     }
     
     public static void experiment2A4() throws IOException
@@ -186,7 +198,7 @@ public class Experiment
         FileIO.createCSVMemoryFile();
         SortParameters p = new SortParameters(array, arraySize, ASCENDING, MERGE_SORT_HYBRID);
         System.out.println("Experiment 2 running...\n");
-        nonRecursiveExperiment(p, numOfTrials);
+        recursiveExperiment(p, numOfTrials);
     }
     
     public static void experiment3A4() throws IOException
@@ -199,7 +211,7 @@ public class Experiment
         FileIO.createCSVMemoryFile();
         SortParameters p = new SortParameters(array, arraySize, ASCENDING, QUICK_SORT);
         System.out.println("Experiment 3 running...\n");
-        nonRecursiveExperiment(p, numOfTrials);
+        recursiveExperiment(p, numOfTrials);
     }
     
     public static void experiment4A4() throws IOException
@@ -212,7 +224,46 @@ public class Experiment
         FileIO.createCSVMemoryFile();
         SortParameters p = new SortParameters(array, arraySize, ASCENDING, QUICK_SORT_HYBRID);
         System.out.println("Experiment 4 running...\n");
-        nonRecursiveExperiment(p, numOfTrials);
+        recursiveExperiment(p, numOfTrials);
+    }
+    
+    public static void experiment5A4() throws IOException
+    {
+        System.out.print("Enter name for Experiment 5 runtime data file: ");
+        FileIO.setTimingCSVName();
+        FileIO.createCSVTimingFile();
+        System.out.print("Enter name for Experiment 5 memory usage data file: ");
+        FileIO.setMemoryCSVName();
+        FileIO.createCSVMemoryFile();
+        SortParameters p = new SortParameters(array, arraySize, ASCENDING, QUICK_SORT_HYBRID);
+        System.out.println("Experiment 5 running...\n");
+        recursiveExperiment(p, numOfTrials);
+    }
+    
+    public static void experiment6A4() throws IOException
+    {
+        System.out.print("Enter name for Experiment 6 runtime data file: ");
+        FileIO.setTimingCSVName();
+        FileIO.createCSVTimingFile();
+        System.out.print("Enter name for Experiment 6 memory usage data file: ");
+        FileIO.setMemoryCSVName();
+        FileIO.createCSVMemoryFile();
+        SortParameters p = new SortParameters(array, arraySize, ASCENDING, QUICK_SORT_HYBRID);
+        System.out.println("Experiment 6 running...\n");
+        recursiveExperiment(p, numOfTrials);
+    }
+    
+    public static void experiment7A4() throws IOException
+    {
+        System.out.print("Enter name for Experiment 7 runtime data file: ");
+        FileIO.setTimingCSVName();
+        FileIO.createCSVTimingFile();
+        System.out.print("Enter name for Experiment 7 memory usage data file: ");
+        FileIO.setMemoryCSVName();
+        FileIO.createCSVMemoryFile();
+        SortParameters p = new SortParameters(array, arraySize, ASCENDING, QUICK_SORT_HYBRID);
+        System.out.println("Experiment 7 running...\n");
+        recursiveExperiment(p, numOfTrials);
     }
   
     public static void runAllExperiments() throws IOException
