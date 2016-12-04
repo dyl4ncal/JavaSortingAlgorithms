@@ -183,7 +183,7 @@ public class UI
             case "5":
                 System.out.println(TestQuickSort.testQuickSortGetPivotValue());
                 System.out.println(TestQuickSort.testQuickSortAscending());
-                //System.out.println(TestQuickSort.testQuickSortDescending());
+                System.out.println(TestQuickSort.testQuickSortDescending());
                 break;
             case "6":
                 break;
@@ -294,7 +294,11 @@ public class UI
                 
                 break;
             case "6":
-                
+                System.out.println("Experiment running...");
+                p.setSortType(SortType.QUICK_SORT);
+                SortTimer.startTimer();
+                MergeSort.sort(p);
+                SortTimer.endTimer();
                 break;
             case "7":
                 

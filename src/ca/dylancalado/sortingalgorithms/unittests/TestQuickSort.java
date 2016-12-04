@@ -24,11 +24,6 @@ public class TestQuickSort
         
         boolean match = Arrays.equals(testArray, expectedOutput);
         
-        for(int i = 0; i < testArray.length; ++i)////////////////////////////////
-        {
-            System.out.print(testArray[i] + " ");
-        }
-        
         System.out.print("Quick sort ascending test passed? ");
         return match;
     }
@@ -36,27 +31,22 @@ public class TestQuickSort
     public static boolean testQuickSortDescending()
     {
         int[] expectedOutput = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
-        SortParameters p = new SortParameters(testArray, 10, DESCENDING, QUICK_SORT);
+        SortParameters p = new SortParameters(testArray, testArray.length, 0, testArray.length-1, DESCENDING, QUICK_SORT);
         
         QuickSort.sort(p);
         
         boolean match = Arrays.equals(testArray, expectedOutput);
-        
-        for(int i = 0; i < testArray.length; ++i)////////////////////////////////
-        {
-            System.out.print(testArray[i] + " ");
-        }
-        
+
         System.out.print("Quick sort descending test passed? ");
         return match;
     }
     
     public static boolean testQuickSortGetPivotValue()
     {
-        int[] arr = {3, 6, 1, 10, 4, 8, 9, 2, 5, 7};
-        int expectedOutput = 4;
+        int[] arr = {3, 5, 1, 4, 2};
+        int expectedOutput = 1;
   
-        int actualOutput = QuickSort.getPivotValue(arr[0], arr[(arr.length/2)-1], arr[arr.length-1]);
+        int actualOutput = QuickSort.getPivotValue(arr, 0, 4);
 
         boolean match = (actualOutput == expectedOutput);
         
