@@ -15,8 +15,9 @@ public final class SortParameters
     private int rightIndex;
     private int arraySize;
     private int pivotPosition;
-    private ArrayList<Integer> gapSeq = new ArrayList<>();
+    private int threshold;
     private int gapSeqSize;
+    private ArrayList<Integer> gapSeq = new ArrayList<>();
     private SortOrder order;
     private SortType type;
     private GapSequenceType gapSeqType;
@@ -45,22 +46,33 @@ public final class SortParameters
         setSortType(myType);
     }  
     
-    /*//Merge sort constructor.
-    public SortParameters(int[] myArray, int[] myLeftArray, int[] myRightArray, int myArraySize, SortOrder myOrder, SortType myType)
+    //Merge sort hybrid constructor.
+    public SortParameters(int[] myArray, int myArraySize, int myThreshold, SortOrder myOrder, SortType myType)
     {
         setArray(myArray);
-        setLeftArray(myLeftArray);
-        setRightArray(myRightArray);
         setArraySize(myArraySize);
+        setHybridThreshold(myThreshold);
         setSortOrder(myOrder);
         setSortType(myType);
-    }*/
+    }
     
     //Quick sort constructor.
     public SortParameters(int[] myArray, int myArraySize, int myLeft, int myRight, SortOrder myOrder, SortType myType)
     {
         setArray(myArray);
         setArraySize(myArraySize);
+        setLeftIndex(myLeft);
+        setRightIndex(myRight);
+        setSortOrder(myOrder);
+        setSortType(myType);
+    }
+    
+    //Quick sort hybrid constructor.
+    public SortParameters(int[] myArray, int myArraySize, int myThreshold, int myLeft, int myRight, SortOrder myOrder, SortType myType)
+    {
+        setArray(myArray);
+        setArraySize(myArraySize);
+        setHybridThreshold(16);
         setLeftIndex(myLeft);
         setRightIndex(myRight);
         setSortOrder(myOrder);
@@ -90,6 +102,11 @@ public final class SortParameters
     public int getPivotPosition()
     {
         return pivotPosition;
+    }
+    
+    public int getHybridThreshold()
+    {
+        return threshold;
     }
     
     public SortOrder getSortOrder()
@@ -137,7 +154,12 @@ public final class SortParameters
         this.arraySize = arraySize;
     }
     
-    public void setPivotValue(int pivotPosition)
+    public void setHybridThreshold(int threshold)
+    {
+        this.threshold = threshold;
+    }
+    
+    public void setPivotPosition(int pivotPosition)
     {
         this.pivotPosition = pivotPosition;
     }

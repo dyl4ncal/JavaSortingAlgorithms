@@ -7,7 +7,8 @@ import static ca.dylancalado.sortingalgorithms.sorting.SortType.MERGE_SORT;
 import java.util.Arrays;
 
 /**
- *
+ * Unit tests related to merge sort.
+ * 
  * @author Dylan
  */
 public class TestMergeSort

@@ -5,7 +5,7 @@ package ca.dylancalado.sortingalgorithms.sorting;
  * 
  * @author Dylan
  */
-public class QuickSort implements SortFacade
+public class QuickSort implements SortInterface
 {
     
     private static int pivotPosition;

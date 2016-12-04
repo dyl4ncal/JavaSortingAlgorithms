@@ -7,7 +7,8 @@ import static ca.dylancalado.sortingalgorithms.sorting.SortType.QUICK_SORT_HYBRI
 import java.util.Arrays;
 
 /**
- *
+ * Unit tests related to quick sort hybrid.
+ * 
  * @author Dylan
  */
 public class TestQuickSortHybrid
@@ -17,12 +18,15 @@ public class TestQuickSortHybrid
     public static boolean testQuickSortHybridAscending()
     {
         int[] expectedOutput = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        SortParameters p = new SortParameters(testArray, testArray.length, ASCENDING, QUICK_SORT_HYBRID);
+        SortParameters p = new SortParameters(testArray, testArray.length, 16, 0, testArray.length-1, ASCENDING, QUICK_SORT_HYBRID);
         
         QuickSortHybrid.sort(p);
         
         boolean match = Arrays.equals(testArray, expectedOutput);
-
+          for(int i = 0; i < testArray.length; ++i)
+        {
+            System.out.print(testArray[i] + " ");
+        }
         System.out.print("Quick sort hybrid ascending test passed? ");
         return match;
     }
@@ -30,12 +34,15 @@ public class TestQuickSortHybrid
     public static boolean testQuickSortHybridDescending()
     {
         int[] expectedOutput = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
-        SortParameters p = new SortParameters(testArray, testArray.length, DESCENDING, QUICK_SORT_HYBRID);
+        SortParameters p = new SortParameters(testArray, testArray.length, 16, 0, testArray.length-1, DESCENDING, QUICK_SORT_HYBRID);
         
         QuickSortHybrid.sort(p);
         
         boolean match = Arrays.equals(testArray, expectedOutput);
-        
+         for(int i = 0; i < testArray.length; ++i)
+        {
+            System.out.print(testArray[i] + " ");
+        }
         System.out.print("Quick sort hybrid descending test passed? ");
         return match;
     }

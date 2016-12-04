@@ -1,20 +1,21 @@
 package ca.dylancalado.sortingalgorithms.sorting;
 
+import java.util.Arrays;
+
 /**
  * Logic for performing a merge sort hybrid.
  * 
  * @author Dylan
  */
-public class MergeSortHybrid implements SortFacade
+public class MergeSortHybrid implements SortInterface
 {
-    private static int threshold;
-    
     public static void sort(SortParameters p)
     {
-        int[] left = p.getArray();
-        int[] right = p.getArray();
+        int[] array = p.getArray();
+        int[] left = Arrays.copyOfRange(array, 0, array.length/2);
+        int[] right = Arrays.copyOfRange(array, array.length/2, array.length);
 
-        if (left.length > threshold) 
+        if (left.length > p.getHybridThreshold()) 
         {
             MergeSort.sort(p);//left,threshold
         }
@@ -23,7 +24,7 @@ public class MergeSortHybrid implements SortFacade
             InsertionSort.sort(p);//left
         }
         
-        if (right.length > threshold)//right,threshold 
+        if (right.length > p.getHybridThreshold())//right,threshold 
         {
             MergeSort.sort(p);
         }
@@ -32,6 +33,6 @@ public class MergeSortHybrid implements SortFacade
             InsertionSort.sort(p);//right
         }
 
-        MergeSort.merge(p.getArray(), left, right, p);
+        MergeSort.merge(array, left, right, p);
     }
 }

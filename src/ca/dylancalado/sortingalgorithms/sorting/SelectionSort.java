@@ -5,7 +5,7 @@ package ca.dylancalado.sortingalgorithms.sorting;
  * 
  * @author dylan
  */
-public class SelectionSort implements SortFacade
+public class SelectionSort implements SortInterface
 {    
     private static int nextPosition;
     private static int minElemSoFar;

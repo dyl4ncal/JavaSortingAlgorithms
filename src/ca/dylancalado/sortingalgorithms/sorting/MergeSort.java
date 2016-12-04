@@ -8,12 +8,11 @@ import java.util.Arrays;
  * 
  * @author Dylan
  */
-public class MergeSort implements SortFacade
+public class MergeSort implements SortInterface
 {
     public static void sort(SortParameters p)
     {   
         int[] array = p.getArray();
-        int arraySize = p.getArraySize();
         int[] left = Arrays.copyOfRange(array, 0, array.length/2);
         int[] right = Arrays.copyOfRange(array, array.length/2, array.length);
        

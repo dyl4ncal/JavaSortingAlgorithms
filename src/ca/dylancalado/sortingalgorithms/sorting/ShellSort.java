@@ -8,7 +8,7 @@ import static java.lang.Math.*;
  * 
  * @author dylan
  */
-public class ShellSort implements SortFacade 
+public class ShellSort implements SortInterface 
 {
     public static void sort(SortParameters p)
     {

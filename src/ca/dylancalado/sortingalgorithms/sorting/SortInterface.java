@@ -6,7 +6,7 @@ package ca.dylancalado.sortingalgorithms.sorting;
  * which kind of sort and other details.
  * @author dylan
  */
-public interface SortFacade
+public interface SortInterface
 {
     static void sort(SortParameters p){}
 }

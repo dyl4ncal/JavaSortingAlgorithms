@@ -7,7 +7,7 @@ import static ca.dylancalado.sortingalgorithms.sorting.SortOrder.*;
  * 
  * @author dylan
  */
-public class InsertionSort implements SortFacade
+public class InsertionSort implements SortInterface
 {
     private static int value;
     private static int j;
@@ -43,28 +43,28 @@ public class InsertionSort implements SortFacade
     //Modified Insertion Sort to work with hybrid sorts.
     public static void insertionSort(int[] list, SortOrder order, int left, int right)
     {
-        for (int i = left; i < right; i++) 
+        for (int i = left; i <= right; i++) 
         {
             int val = list[i];
-            int j = i - 1;
-
+            int k = i-1;
+            
             switch (order) 
             {
                 case ASCENDING:
-                    while (j >= 0 && list[j] > val)
+                    while (k >= 0 && list[k] > val)
                     {
-                        list[j + 1] = list[j];
-                        j--;
+                        list[k+1] = list[k];
+                        k--;
                     }
-                    list[j + 1] = val;
+                    list[k+1] = val;
                     break;
                 case DESCENDING:
-                    while (j >= 0 && list[j] < val)
+                    while (k >= 0 && list[k] < val)
                     {
-                        list[j + 1] = list[j];
-                        j--;
+                        list[k+1] = list[k];
+                        k--;
                     }
-                    list[j + 1] = val;
+                    list[k+1] = val;
                     break;
             }
         }

@@ -7,7 +7,8 @@ import static ca.dylancalado.sortingalgorithms.sorting.SortType.MERGE_SORT_HYBRI
 import java.util.Arrays;
 
 /**
- *
+ * Unit tests related to merge sort hybrid.
+ * 
  * @author Dylan
  */
 public class TestMergeSortHybrid
@@ -23,6 +24,11 @@ public class TestMergeSortHybrid
         
         boolean match = Arrays.equals(testArray, expectedOutput);
 
+        for(int i = 0; i < testArray.length; ++i)
+        {
+            System.out.print(testArray[i] + " ");
+        }
+        
         System.out.print("Merge sort hybrid ascending test passed? ");
         return match;
     }
@@ -35,6 +41,11 @@ public class TestMergeSortHybrid
         MergeSortHybrid.sort(p);
         
         boolean match = Arrays.equals(testArray, expectedOutput);
+        
+        for(int i = 0; i < testArray.length; ++i)
+        {
+            System.out.print(testArray[i] + " ");
+        }
         
         System.out.print("Merge sort hybrid descending test passed? ");
         return match;
