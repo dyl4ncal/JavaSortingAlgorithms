@@ -16,7 +16,6 @@ import ca.dylancalado.sortingalgorithms.unittests.*;
 import java.io.IOException;
 import static java.lang.Math.abs;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -136,6 +135,8 @@ public class UI
        TestShellSort.testAllShellSortMethods();
        TestMergeSort.testAllMergeSortMethods();
        TestQuickSort.testAllQuickSortMethods();
+       TestMergeSortHybrid.testAllMergeSortHybridMethods();
+       TestQuickSortHybrid.testAllQuickSortHybridMethods();
        TestExperiment.testAllExperimentMethods();
        TestSortTimer.testAllSortTimerMethods();
     }
@@ -186,8 +187,12 @@ public class UI
                 System.out.println(TestQuickSort.testQuickSortDescending());
                 break;
             case "6":
+                System.out.println(TestMergeSortHybrid.testMergeSortHybridAscending());
+                System.out.println(TestMergeSortHybrid.testMergeSortHybridDescending());
                 break;
             case "7":
+                System.out.println(TestQuickSortHybrid.testQuickSortHybridAscending());
+                System.out.println(TestQuickSortHybrid.testQuickSortHybridDescending());
                 break;
             case "8":
                 System.out.println(TestExperiment.testCreateRandomArray());
@@ -291,7 +296,11 @@ public class UI
                 SortTimer.endTimer();
                 break;
             case "5":
-                
+                System.out.println("Experiment running...");
+                p.setSortType(SortType.MERGE_SORT_HYBRID);
+                SortTimer.startTimer();
+                MergeSort.sort(p);
+                SortTimer.endTimer();
                 break;
             case "6":
                 System.out.println("Experiment running...");
@@ -301,7 +310,11 @@ public class UI
                 SortTimer.endTimer();
                 break;
             case "7":
-                
+                System.out.println("Experiment running...");
+                p.setSortType(SortType.QUICK_SORT_HYBRID);
+                SortTimer.startTimer();
+                MergeSort.sort(p);
+                SortTimer.endTimer();
                 break;
             default:
                 System.out.println("Invalid Input");

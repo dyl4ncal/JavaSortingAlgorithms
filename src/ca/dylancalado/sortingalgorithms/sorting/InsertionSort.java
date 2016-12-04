@@ -1,5 +1,7 @@
 package ca.dylancalado.sortingalgorithms.sorting;
 
+import static ca.dylancalado.sortingalgorithms.sorting.SortOrder.*;
+
 /**
  * Logic for performing an insertion sort.
  * 
@@ -12,8 +14,7 @@ public class InsertionSort implements SortFacade
     
     public static void sort(SortParameters p)
     {
-        insertionSort(p.getArray(), 0, p.getArraySize()-1);
-        /*for(int i = 1; i < p.getArraySize(); ++i)
+        for(int i = 1; i < p.getArraySize(); ++i)
         {
             value = p.getArray()[i];
             j = i - 1;
@@ -34,14 +35,38 @@ public class InsertionSort implements SortFacade
                         --j;
                     }
                     break;
-                    
             }
             p.getArray()[j+1] = value;
-        }*/
+        }
     } 
     
-    public static void insertionSort(int[] list, int left, int right)
+    //Modified Insertion Sort to work with hybrid sorts.
+    public static void insertionSort(int[] list, SortOrder order, int left, int right)
     {
-        
+        for (int i = left; i < right; i++) 
+        {
+            int val = list[i];
+            int j = i - 1;
+
+            switch (order) 
+            {
+                case ASCENDING:
+                    while (j >= 0 && list[j] > val)
+                    {
+                        list[j + 1] = list[j];
+                        j--;
+                    }
+                    list[j + 1] = val;
+                    break;
+                case DESCENDING:
+                    while (j >= 0 && list[j] < val)
+                    {
+                        list[j + 1] = list[j];
+                        j--;
+                    }
+                    list[j + 1] = val;
+                    break;
+            }
+        }
     }
 }
