@@ -147,8 +147,19 @@ public class Experiment
                         verifySortCorrectness(p.getArray(), p.getSortOrder());
                         break;
                     case QUICK_SORT_HYBRID:
+                        p.setRightIndex(arraySize-1);//////////////////////////////////////////////////////////////////////
                         SortTimer.startTimer();
                         QuickSortHybrid.sort(p);
+                        SortTimer.endTimer();
+                        runTime = SortTimer.calculateSortTime();
+                        SortTimer.storeSortTimes(runTime);
+                        memUsage = MemoryUsage.calculateMemoryUsage();
+                        MemoryUsage.storeMemoryValues(memUsage);
+                        verifySortCorrectness(p.getArray(), p.getSortOrder());
+                        break;
+                    case SHELL_SORT:
+                        SortTimer.startTimer();
+                        ShellSort.sort(p);
                         SortTimer.endTimer();
                         runTime = SortTimer.calculateSortTime();
                         SortTimer.storeSortTimes(runTime);
@@ -338,7 +349,7 @@ public class Experiment
         System.out.print("Enter name for Experiment 4(Threshold = 2) memory usage data file: ");
         FileIO.setMemoryCSVName();
         FileIO.createCSVMemoryFile();
-        SortParameters p1 = new SortParameters(array, arraySize, 2, 0, array.length-1, ASCENDING, QUICK_SORT_HYBRID);
+        SortParameters p1 = new SortParameters(array, arraySize, 2, 0, 0, ASCENDING, QUICK_SORT_HYBRID);
         System.out.println("Experiment 4 running...\n");
         recursiveExperiment(p1, numOfTrials);
         
@@ -348,7 +359,7 @@ public class Experiment
         System.out.print("Enter name for Experiment 4(Threshold = 4) memory usage data file: ");
         FileIO.setMemoryCSVName();
         FileIO.createCSVMemoryFile();
-        SortParameters p2 = new SortParameters(array, arraySize, 4, 0, array.length-1, ASCENDING, QUICK_SORT_HYBRID);
+        SortParameters p2 = new SortParameters(array, arraySize, 4, 0, 0, ASCENDING, QUICK_SORT_HYBRID);
         System.out.println("Experiment 4 running...\n");
         recursiveExperiment(p2, numOfTrials);
         
@@ -358,7 +369,7 @@ public class Experiment
         System.out.print("Enter name for Experiment 4(Threshold = 8) memory usage data file: ");
         FileIO.setMemoryCSVName();
         FileIO.createCSVMemoryFile();
-        SortParameters p3 = new SortParameters(array, arraySize, 8, 0, array.length-1, ASCENDING, QUICK_SORT_HYBRID);
+        SortParameters p3 = new SortParameters(array, arraySize, 8, 0, 0, ASCENDING, QUICK_SORT_HYBRID);
         System.out.println("Experiment 4 running...\n");
         recursiveExperiment(p3, numOfTrials);
         
@@ -368,7 +379,7 @@ public class Experiment
         System.out.print("Enter name for Experiment 4(Threshold = 16) memory usage data file: ");
         FileIO.setMemoryCSVName();
         FileIO.createCSVMemoryFile();
-        SortParameters p4 = new SortParameters(array, arraySize, 16, 0, array.length-1, ASCENDING, QUICK_SORT_HYBRID);
+        SortParameters p4 = new SortParameters(array, arraySize, 16, 0, 0, ASCENDING, QUICK_SORT_HYBRID);
         System.out.println("Experiment 4 running...\n");
         recursiveExperiment(p4, numOfTrials);
         
@@ -378,7 +389,7 @@ public class Experiment
         System.out.print("Enter name for Experiment 4(Threshold = 32) memory usage data file: ");
         FileIO.setMemoryCSVName();
         FileIO.createCSVMemoryFile();
-        SortParameters p5 = new SortParameters(array, arraySize, 32, 0, array.length-1, ASCENDING, QUICK_SORT_HYBRID);
+        SortParameters p5 = new SortParameters(array, arraySize, 32, 0, 0, ASCENDING, QUICK_SORT_HYBRID);
         System.out.println("Experiment 4 running...\n");
         recursiveExperiment(p5, numOfTrials);
         
@@ -388,7 +399,7 @@ public class Experiment
         System.out.print("Enter name for Experiment 4(Threshold = 64) memory usage data file: ");
         FileIO.setMemoryCSVName();
         FileIO.createCSVMemoryFile();
-        SortParameters p6 = new SortParameters(array, arraySize, 64, 0, array.length-1, ASCENDING, QUICK_SORT_HYBRID);
+        SortParameters p6 = new SortParameters(array, arraySize, 64, 0, 0, ASCENDING, QUICK_SORT_HYBRID);
         System.out.println("Experiment 4 running...\n");
         recursiveExperiment(p6, numOfTrials); 
     }
@@ -411,7 +422,7 @@ public class Experiment
         System.out.print("Enter name for Experiment 5(Merge Sort Hybrid) memory usage data file: ");
         FileIO.setMemoryCSVName();
         FileIO.createCSVMemoryFile();
-        SortParameters p2 = new SortParameters(array, arraySize, ASCENDING, MERGE_SORT_HYBRID);
+        SortParameters p2 = new SortParameters(array, arraySize, 64, ASCENDING, MERGE_SORT_HYBRID);
         System.out.println("Experiment 5 running...\n");
         recursiveExperiment(p2, numOfTrials);
     }
@@ -434,7 +445,7 @@ public class Experiment
         System.out.print("Enter name for Experiment 6(Quick Sort Hybrid) memory usage data file: ");
         FileIO.setMemoryCSVName();
         FileIO.createCSVMemoryFile();
-        SortParameters p2 = new SortParameters(array, arraySize, ASCENDING, QUICK_SORT_HYBRID);
+        SortParameters p2 = new SortParameters(array, arraySize, 64, 0, 0, ASCENDING, QUICK_SORT_HYBRID);
         System.out.println("Experiment 6 running...\n");
         recursiveExperiment(p2, numOfTrials); 
     }
@@ -457,7 +468,7 @@ public class Experiment
         System.out.print("Enter name for Experiment 7(Merge Sort Hybrid) memory usage data file: ");
         FileIO.setMemoryCSVName();
         FileIO.createCSVMemoryFile();
-        SortParameters p2 = new SortParameters(array, arraySize, ASCENDING, MERGE_SORT_HYBRID);
+        SortParameters p2 = new SortParameters(array, arraySize, 64, ASCENDING, MERGE_SORT_HYBRID);
         System.out.println("Experiment 7 running...\n");
         recursiveExperiment(p2, numOfTrials);
         
@@ -467,7 +478,7 @@ public class Experiment
         System.out.print("Enter name for Experiment 7(Quick Sort Hybrid) memory usage data file: ");
         FileIO.setMemoryCSVName();
         FileIO.createCSVMemoryFile();
-        SortParameters p3 = new SortParameters(array, arraySize, ASCENDING, QUICK_SORT_HYBRID);
+        SortParameters p3 = new SortParameters(array, arraySize, 64, 0, 0, ASCENDING, QUICK_SORT_HYBRID);
         System.out.println("Experiment 7 running...\n");
         recursiveExperiment(p3, numOfTrials);
     }
