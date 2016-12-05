@@ -88,38 +88,45 @@ public class UI
         {
             case "1":
                 Experiment.experiment1A2();
-                System.out.println("Experiment complete");
+                System.out.println("Selection sort experiment complete!");
                 break;
             case "2":
                 Experiment.experiment2A2();
-                System.out.println("Experiments complete");
+                System.out.println("Insertion sort experiment complete!");
                 break;
             case "3":
                 Experiment.experiment3ShellGapA2();
                 Experiment.experiment3PrattGapA2();
                 Experiment.experiment3KnuthGapA2();
-                System.out.println("Experiment complete");
+                System.out.println("Shell sort experiments complete!");
                 break;
             case "4":
-                
+                Experiment.experiment1A4();
+                System.out.println("Merge sort experiment complete!");
                 break;
             case "5":
-                
+                Experiment.experiment2A4();
+                System.out.println("Merge sort hybrid experiment complete!");
                 break;
             case "6":
-                
+                Experiment.experiment3A4();
+                System.out.println("Quick sort experiment complete!");
                 break;
             case "7":
-                
+                Experiment.experiment4A4();
+                System.out.println("Quick sort hybrid experiment complete!");
                 break;
             case "8":
-                
+                Experiment.experiment5A4();
+                System.out.println("MergeVs.mergeHybrid experiment complete!");
                 break;
             case "9":
-                
+                Experiment.experiment6A4();
+                System.out.println("QuickVs.quickHybrid experiment complete!");
                 break;
             case "10":
-                
+                Experiment.experiment7A4();
+                System.out.println("ShellVs.mergeHybridVs.quickHybrid experiment complete!");
                 break;    
             default:
                 System.out.println("Invalid Input");

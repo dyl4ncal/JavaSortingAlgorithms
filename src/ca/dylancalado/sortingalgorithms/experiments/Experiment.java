@@ -1,13 +1,9 @@
 package ca.dylancalado.sortingalgorithms.experiments;
 
-import ca.dylancalado.sortingalgorithms.sorting.InsertionSort;
-import ca.dylancalado.sortingalgorithms.sorting.SortOrder;
-import ca.dylancalado.sortingalgorithms.sorting.ShellSort;
-import ca.dylancalado.sortingalgorithms.sorting.SelectionSort;
+import ca.dylancalado.sortingalgorithms.sorting.*;
 import ca.dylancalado.sortingalgorithms.fileio.FileIO;
 import static ca.dylancalado.sortingalgorithms.sorting.GapSequenceType.*;
 import static ca.dylancalado.sortingalgorithms.sorting.SortOrder.*;
-import ca.dylancalado.sortingalgorithms.sorting.SortParameters;
 import static ca.dylancalado.sortingalgorithms.sorting.SortType.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,6 +26,7 @@ public class Experiment
     private static long runTime;
     private static long memUsage;
     
+    //Logic for performing non-recursive type experiments(Selection, Insertion, and Shell Sort)
     private static void nonRecursiveExperiment(SortParameters p, int numOfTrials) throws IOException
     {  
         arraySize = 10000;
@@ -93,6 +90,7 @@ public class Experiment
         FileIO.closeWriter();
     }
     
+    //Logic for performing recursive type experiments(Merge, Quick, and Hybrid Sorts)
     private static void recursiveExperiment(SortParameters p, int numOfTrials) throws IOException
     {  
         arraySize = 50000;
@@ -102,7 +100,58 @@ public class Experiment
         FileIO.writeRuntimeHeader();
         FileIO.writeMemoryUsageHeader();
         
-        
+        for(int i = arraySize; i <= maxArraySize; i += 50000)
+        {
+            array = new int[arraySize];
+            p.setArray(array);
+       
+            for(int j = numOfTrials; j >= 0; --j)
+            {
+                createRandomArray(array, arraySize);
+                
+                switch(p.getSortType())
+                {
+                    case MERGE_SORT:
+                        SortTimer.startTimer();
+                        MergeSort.sort(p);
+                        SortTimer.endTimer();
+                        runTime = SortTimer.calculateSortTime();
+                        SortTimer.storeSortTimes(runTime);
+                        verifySortCorrectness(p.getArray(), p.getSortOrder());
+                        break;
+                    case QUICK_SORT:
+                        SortTimer.startTimer();
+                        QuickSort.sort(p);
+                        SortTimer.endTimer();
+                        runTime = SortTimer.calculateSortTime();
+                        SortTimer.storeSortTimes(runTime);
+                        verifySortCorrectness(p.getArray(), p.getSortOrder());
+                        break;
+                    case MERGE_SORT_HYBRID:
+                        SortTimer.startTimer();
+                        MergeSortHybrid.sort(p);
+                        SortTimer.endTimer();
+                        runTime = SortTimer.calculateSortTime();
+                        SortTimer.storeSortTimes(runTime);
+                        verifySortCorrectness(p.getArray(), p.getSortOrder());
+                        break;
+                    case QUICK_SORT_HYBRID:
+                        SortTimer.startTimer();
+                        QuickSortHybrid.sort(p);
+                        SortTimer.endTimer();
+                        runTime = SortTimer.calculateSortTime();
+                        SortTimer.storeSortTimes(runTime);
+                        verifySortCorrectness(p.getArray(), p.getSortOrder());
+                    default:
+                        System.out.println("Invalid Sort Type");
+                        break;
+                }
+            }
+            long averageTime = SortTimer.calculateAverageSortTime(numOfTrials, SortTimer.getStoredTimes());
+            FileIO.writeTimingDataToCSV(i, averageTime);
+        }
+        SortTimer.getStoredTimes().clear();
+        FileIO.closeWriter();
     }
     
     //The following methods perform particular experiments.
@@ -276,6 +325,13 @@ public class Experiment
         experiment3ShellGapA2();
         experiment3PrattGapA2();
         experiment3KnuthGapA2();
+        experiment1A4();
+        experiment2A4();
+        experiment3A4();
+        experiment4A4();
+        experiment5A4();
+        experiment6A4();
+        experiment7A4();
     }
 
     //Creates a random array of integers of arbitrary size.
