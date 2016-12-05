@@ -1,5 +1,7 @@
 package ca.dylancalado.sortingalgorithms.sorting;
 
+import ca.dylancalado.sortingalgorithms.experiments.MemoryUsage;
+
 /**
  * Logic for performing a quick sort.
  * 
@@ -70,6 +72,7 @@ public class QuickSort implements SortInterface
             p.setRightIndex(right);
             QuickSort.sort(p);
         }
+        MemoryUsage.memoryUsageAfterSort();
     }
     
     public static int getPivotValue(int[] arr, int first, int last)

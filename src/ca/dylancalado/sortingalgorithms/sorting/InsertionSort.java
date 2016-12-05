@@ -1,5 +1,6 @@
 package ca.dylancalado.sortingalgorithms.sorting;
 
+import ca.dylancalado.sortingalgorithms.experiments.MemoryUsage;
 import static ca.dylancalado.sortingalgorithms.sorting.SortOrder.*;
 
 /**
@@ -38,6 +39,7 @@ public class InsertionSort implements SortInterface
             }
             p.getArray()[j+1] = value;
         }
+        MemoryUsage.memoryUsageAfterSort();
     } 
     
     //Modified Insertion Sort to work with hybrid sorts.
@@ -68,5 +70,6 @@ public class InsertionSort implements SortInterface
                     break;
             }
         }
+        MemoryUsage.memoryUsageAfterSort();
     }
 }

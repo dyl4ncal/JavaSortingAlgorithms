@@ -1,5 +1,6 @@
 package ca.dylancalado.sortingalgorithms.sorting;
 
+import ca.dylancalado.sortingalgorithms.experiments.MemoryUsage;
 import java.util.Arrays;
 
 /**
@@ -40,5 +41,6 @@ public class MergeSortHybrid implements SortInterface
         }
 
         MergeSort.merge(array, left, right, p);
+        MemoryUsage.memoryUsageAfterSort();
     }
 }

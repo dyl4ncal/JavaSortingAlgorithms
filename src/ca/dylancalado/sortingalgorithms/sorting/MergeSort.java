@@ -1,5 +1,6 @@
 package ca.dylancalado.sortingalgorithms.sorting;
 
+import ca.dylancalado.sortingalgorithms.experiments.MemoryUsage;
 import static ca.dylancalado.sortingalgorithms.sorting.SortOrder.*;
 import java.util.Arrays;
 
@@ -28,6 +29,7 @@ public class MergeSort implements SortInterface
         }
  
         merge(array, left, right, p);
+        MemoryUsage.memoryUsageAfterSort();
     }
     
     public static void merge(int[] array, int[] leftArray, int[] rightArray, SortParameters p)

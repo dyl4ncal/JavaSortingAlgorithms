@@ -23,10 +23,7 @@ public class TestQuickSortHybrid
         QuickSortHybrid.sort(p);
         
         boolean match = Arrays.equals(testArray, expectedOutput);
-          for(int i = 0; i < testArray.length; ++i)
-        {
-            System.out.print(testArray[i] + " ");
-        }
+
         System.out.print("Quick sort hybrid ascending test passed? ");
         return match;
     }
@@ -39,10 +36,7 @@ public class TestQuickSortHybrid
         QuickSortHybrid.sort(p);
         
         boolean match = Arrays.equals(testArray, expectedOutput);
-         for(int i = 0; i < testArray.length; ++i)
-        {
-            System.out.print(testArray[i] + " ");
-        }
+        
         System.out.print("Quick sort hybrid descending test passed? ");
         return match;
     }

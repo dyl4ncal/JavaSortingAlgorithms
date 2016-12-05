@@ -1,5 +1,7 @@
 package ca.dylancalado.sortingalgorithms.sorting;
 
+import ca.dylancalado.sortingalgorithms.experiments.MemoryUsage;
+
 /**
  * Logic for performing a selection sort.
  * 
@@ -39,6 +41,7 @@ public class SelectionSort implements SortInterface
             swap(p.getArray(), nextPosition, minElemSoFar);
             ++nextPosition;
         }
+        MemoryUsage.memoryUsageAfterSort();
     }
 
     public static void swap(int[] array, int nextPos, int minElemSoFar)

@@ -1,5 +1,6 @@
 package ca.dylancalado.sortingalgorithms.sorting;
 
+import ca.dylancalado.sortingalgorithms.experiments.MemoryUsage;
 import static ca.dylancalado.sortingalgorithms.sorting.QuickSort.getPivotValue;
 
 /**
@@ -80,5 +81,6 @@ public class QuickSortHybrid implements SortInterface
             p.setRightIndex(right);
             QuickSort.sort(p);
         }
+        MemoryUsage.memoryUsageAfterSort();
     }
 }

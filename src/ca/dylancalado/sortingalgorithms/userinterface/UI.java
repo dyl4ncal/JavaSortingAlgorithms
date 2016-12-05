@@ -1,6 +1,7 @@
 package ca.dylancalado.sortingalgorithms.userinterface;
 
 import ca.dylancalado.sortingalgorithms.experiments.Experiment;
+import ca.dylancalado.sortingalgorithms.experiments.MemoryUsage;
 import ca.dylancalado.sortingalgorithms.experiments.SortTimer;
 import ca.dylancalado.sortingalgorithms.sorting.InsertionSort;
 import ca.dylancalado.sortingalgorithms.sorting.SortParameters;
@@ -68,6 +69,8 @@ public class UI
     //Method to run all experiments at once.
     public static void runAllExperiments() throws IOException
     {
+        System.gc();
+        MemoryUsage.memoryCurrentlyUsed();
         Experiment.runAllExperiments();
         System.out.println("All experiments complete");
     }
@@ -84,49 +87,51 @@ public class UI
                 + "4. Experiment 1(A4)\n5. Experiment 2(A4)\n6. Experiment 3(A4)\n7. Experiment 4(A4)\n"
                 + "8. Experiment 5(A4)\n9. Experiment 6(A4)\n10. Experiment 7(A4)\n");
 
+        System.gc();
+        MemoryUsage.memoryCurrentlyUsed();
         switch (userInput.next())
         {
             case "1":
                 Experiment.experiment1A2();
-                System.out.println("Selection sort experiment complete!");
+                System.out.println("\nSelection sort experiment complete!");
                 break;
             case "2":
                 Experiment.experiment2A2();
-                System.out.println("Insertion sort experiment complete!");
+                System.out.println("\nInsertion sort experiment complete!");
                 break;
             case "3":
                 Experiment.experiment3ShellGapA2();
                 Experiment.experiment3PrattGapA2();
                 Experiment.experiment3KnuthGapA2();
-                System.out.println("Shell sort experiments complete!");
+                System.out.println("\nShell sort experiments complete!");
                 break;
             case "4":
                 Experiment.experiment1A4();
-                System.out.println("Merge sort experiment complete!");
+                System.out.println("\nMerge sort experiment complete!");
                 break;
             case "5":
                 Experiment.experiment2A4();
-                System.out.println("Merge sort hybrid experiment complete!");
+                System.out.println("\nMerge sort hybrid experiment complete!");
                 break;
             case "6":
                 Experiment.experiment3A4();
-                System.out.println("Quick sort experiment complete!");
+                System.out.println("\nQuick sort experiment complete!");
                 break;
             case "7":
                 Experiment.experiment4A4();
-                System.out.println("Quick sort hybrid experiment complete!");
+                System.out.println("\nQuick sort hybrid experiment complete!");
                 break;
             case "8":
                 Experiment.experiment5A4();
-                System.out.println("MergeVs.mergeHybrid experiment complete!");
+                System.out.println("\nMergeVs.mergeHybrid experiment complete!");
                 break;
             case "9":
                 Experiment.experiment6A4();
-                System.out.println("QuickVs.quickHybrid experiment complete!");
+                System.out.println("\nQuickVs.quickHybrid experiment complete!");
                 break;
             case "10":
                 Experiment.experiment7A4();
-                System.out.println("ShellVs.mergeHybridVs.quickHybrid experiment complete!");
+                System.out.println("\nShellVs.mergeHybridVs.quickHybrid experiment complete!");
                 break;    
             default:
                 System.out.println("Invalid Input");
@@ -229,9 +234,8 @@ public class UI
         p.setArraySize(abs(userSize));
         
         int[] userArray = new int[abs(userSize)];
-        
-        Experiment.createRandomArray(userArray, userSize);
-        p.setArray(userArray);
+ 
+        p.setArray(Experiment.createRandomArray(userArray, userSize));
         
         System.out.println("\nSpecify sort order you wish to use:\n1. Ascending\n2. Descending");
         String userOrder = userInput.next();
@@ -255,6 +259,8 @@ public class UI
         switch(userInput.next())
         {
             case "1":
+                System.gc();
+                MemoryUsage.memoryCurrentlyUsed();
                 System.out.println("Experiment running...");
                 p.setSortType(SortType.SELECTION_SORT);
                 SortTimer.startTimer();
@@ -262,6 +268,8 @@ public class UI
                 SortTimer.endTimer();
                 break;
             case "2":
+                System.gc();
+                MemoryUsage.memoryCurrentlyUsed();
                 System.out.println("Experiment running...");
                 p.setSortType(SortType.INSERTION_SORT);             
                 SortTimer.startTimer();
@@ -288,6 +296,8 @@ public class UI
                         System.out.println("Invalid Input");
                         break;
                 }
+                System.gc();
+                MemoryUsage.memoryCurrentlyUsed();
                 System.out.println("Experiment running...");
                 SortParameters p1 = new SortParameters(userArray, userSize, SHELL, gapSeq, p.getGapSeqSize(), p.getSortOrder(), SHELL_SORT);
                 p.setSortType(SortType.SHELL_SORT);
@@ -296,6 +306,8 @@ public class UI
                 SortTimer.endTimer();              
                 break;
             case "4":
+                System.gc();
+                MemoryUsage.memoryCurrentlyUsed();
                 System.out.println("Experiment running...");
                 p.setSortType(SortType.MERGE_SORT);
                 SortTimer.startTimer();
@@ -303,6 +315,8 @@ public class UI
                 SortTimer.endTimer();
                 break;
             case "5":
+                System.gc();
+                MemoryUsage.memoryCurrentlyUsed();
                 System.out.println("Experiment running...");
                 p.setSortType(SortType.MERGE_SORT_HYBRID);
                 SortTimer.startTimer();
@@ -310,6 +324,8 @@ public class UI
                 SortTimer.endTimer();
                 break;
             case "6":
+                System.gc();
+                MemoryUsage.memoryCurrentlyUsed();
                 System.out.println("Experiment running...");
                 p.setSortType(SortType.QUICK_SORT);
                 SortTimer.startTimer();
@@ -317,6 +333,8 @@ public class UI
                 SortTimer.endTimer();
                 break;
             case "7":
+                System.gc();
+                MemoryUsage.memoryCurrentlyUsed();
                 System.out.println("Experiment running...");
                 p.setSortType(SortType.QUICK_SORT_HYBRID);
                 SortTimer.startTimer();
@@ -331,6 +349,6 @@ public class UI
         //provide user feedback for success, memory usage, and time required for sort.
         System.out.println("\nSort successful? " + Experiment.verifySortCorrectness(p.getArray(), p.getSortOrder()));
         System.out.println("Time to complete sort: " + SortTimer.calculateSortTime() + " nanoseconds");
-        System.out.println("Memory usage: ");    
+        System.out.println("Memory usage: " + MemoryUsage.calculateMemoryUsage() + " bytes");   
     }
 }

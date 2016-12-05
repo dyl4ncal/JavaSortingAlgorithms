@@ -1,5 +1,6 @@
 package ca.dylancalado.sortingalgorithms.sorting;
 
+import ca.dylancalado.sortingalgorithms.experiments.MemoryUsage;
 import static java.lang.Math.*;
 
 /**
@@ -48,6 +49,7 @@ public class ShellSort implements SortInterface
                 p.getArray()[j+gap] = value;
             }
         }
+        MemoryUsage.memoryUsageAfterSort();
     }
 
     public static void generateShellGap(SortParameters params)

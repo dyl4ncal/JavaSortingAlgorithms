@@ -45,13 +45,11 @@ public class Experiment
         
         for(int i = arraySize; i <= maxArraySize; i += 10000)
         {
-            array = new int[arraySize];
-            p.setArray(array);
-       
+            array = new int[i];
+         
             for(int j = numOfTrials; j >= 0; --j)
             {
-                createRandomArray(array, arraySize);
-                
+                p.setArray(createRandomArray(array, arraySize));
                 switch(p.getSortType())
                 {
                     case SELECTION_SORT:
@@ -60,6 +58,8 @@ public class Experiment
                         SortTimer.endTimer();
                         runTime = SortTimer.calculateSortTime();
                         SortTimer.storeSortTimes(runTime);
+                        memUsage = MemoryUsage.calculateMemoryUsage();
+                        MemoryUsage.storeMemoryValues(memUsage);
                         verifySortCorrectness(p.getArray(), p.getSortOrder());
                         break;
                     case INSERTION_SORT:
@@ -68,6 +68,8 @@ public class Experiment
                         SortTimer.endTimer();
                         runTime = SortTimer.calculateSortTime();
                         SortTimer.storeSortTimes(runTime);
+                        memUsage = MemoryUsage.calculateMemoryUsage();
+                        MemoryUsage.storeMemoryValues(memUsage);
                         verifySortCorrectness(p.getArray(), p.getSortOrder());
                         break;
                     case SHELL_SORT:
@@ -76,6 +78,8 @@ public class Experiment
                         SortTimer.endTimer();
                         runTime = SortTimer.calculateSortTime();
                         SortTimer.storeSortTimes(runTime);
+                        memUsage = MemoryUsage.calculateMemoryUsage();
+                        MemoryUsage.storeMemoryValues(memUsage);
                         verifySortCorrectness(p.getArray(), p.getSortOrder());
                         break;
                     default:
@@ -85,8 +89,11 @@ public class Experiment
             }
             long averageTime = SortTimer.calculateAverageSortTime(numOfTrials, SortTimer.getStoredTimes());
             FileIO.writeTimingDataToCSV(i, averageTime);
+            long averageMemory = MemoryUsage.calculateAverageMemoryUsage(numOfTrials, MemoryUsage.getStoredMemoryValues());
+            FileIO.writeMemoryDataToCSV(i, averageMemory);
         }
         SortTimer.getStoredTimes().clear();
+        MemoryUsage.getStoredMemoryValues().clear();
         FileIO.closeWriter();
     }
     
@@ -102,13 +109,11 @@ public class Experiment
         
         for(int i = arraySize; i <= maxArraySize; i += 50000)
         {
-            array = new int[arraySize];
-            p.setArray(array);
+            array = new int[i];
        
             for(int j = numOfTrials; j >= 0; --j)
-            {
-                createRandomArray(array, arraySize);
-                
+            { 
+                p.setArray(createRandomArray(array, arraySize));
                 switch(p.getSortType())
                 {
                     case MERGE_SORT:
@@ -117,6 +122,8 @@ public class Experiment
                         SortTimer.endTimer();
                         runTime = SortTimer.calculateSortTime();
                         SortTimer.storeSortTimes(runTime);
+                        memUsage = MemoryUsage.calculateMemoryUsage();
+                        MemoryUsage.storeMemoryValues(memUsage);
                         verifySortCorrectness(p.getArray(), p.getSortOrder());
                         break;
                     case QUICK_SORT:
@@ -125,6 +132,8 @@ public class Experiment
                         SortTimer.endTimer();
                         runTime = SortTimer.calculateSortTime();
                         SortTimer.storeSortTimes(runTime);
+                        memUsage = MemoryUsage.calculateMemoryUsage();
+                        MemoryUsage.storeMemoryValues(memUsage);
                         verifySortCorrectness(p.getArray(), p.getSortOrder());
                         break;
                     case MERGE_SORT_HYBRID:
@@ -133,6 +142,8 @@ public class Experiment
                         SortTimer.endTimer();
                         runTime = SortTimer.calculateSortTime();
                         SortTimer.storeSortTimes(runTime);
+                        memUsage = MemoryUsage.calculateMemoryUsage();
+                        MemoryUsage.storeMemoryValues(memUsage);
                         verifySortCorrectness(p.getArray(), p.getSortOrder());
                         break;
                     case QUICK_SORT_HYBRID:
@@ -141,7 +152,10 @@ public class Experiment
                         SortTimer.endTimer();
                         runTime = SortTimer.calculateSortTime();
                         SortTimer.storeSortTimes(runTime);
+                        memUsage = MemoryUsage.calculateMemoryUsage();
+                        MemoryUsage.storeMemoryValues(memUsage);
                         verifySortCorrectness(p.getArray(), p.getSortOrder());
+                        break;
                     default:
                         System.out.println("Invalid Sort Type");
                         break;
@@ -149,8 +163,11 @@ public class Experiment
             }
             long averageTime = SortTimer.calculateAverageSortTime(numOfTrials, SortTimer.getStoredTimes());
             FileIO.writeTimingDataToCSV(i, averageTime);
+            long averageMemory = MemoryUsage.calculateAverageMemoryUsage(numOfTrials, MemoryUsage.getStoredMemoryValues());
+            FileIO.writeMemoryDataToCSV(i, averageMemory);
         }
         SortTimer.getStoredTimes().clear();
+        MemoryUsage.getStoredMemoryValues().clear();
         FileIO.closeWriter();
     }
     
@@ -223,7 +240,6 @@ public class Experiment
         nonRecursiveExperiment(p3, numOfTrials);
     }
     
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////
     public static void experiment1A4() throws IOException
     {
         System.out.print("Enter name for Experiment 1 runtime data file: ");
@@ -239,15 +255,66 @@ public class Experiment
     
     public static void experiment2A4() throws IOException
     {
-        System.out.print("Enter name for Experiment 2 runtime data file: ");
+        System.out.print("Enter name for Experiment 2(Threshold = 2) runtime data file: ");
         FileIO.setTimingCSVName();
         FileIO.createCSVTimingFile();
-        System.out.print("Enter name for Experiment 2 memory usage data file: ");
+        System.out.print("Enter name for Experiment 2(Threshold = 2) memory usage data file: ");
         FileIO.setMemoryCSVName();
         FileIO.createCSVMemoryFile();
-        SortParameters p = new SortParameters(array, arraySize, ASCENDING, MERGE_SORT_HYBRID);
+        SortParameters p1 = new SortParameters(array, arraySize, 2, ASCENDING, MERGE_SORT_HYBRID);
         System.out.println("Experiment 2 running...\n");
-        recursiveExperiment(p, numOfTrials);
+        recursiveExperiment(p1, numOfTrials);
+        
+        
+        System.out.print("Enter name for Experiment 2(Threshold = 4) runtime data file: ");
+        FileIO.setTimingCSVName();
+        FileIO.createCSVTimingFile();
+        System.out.print("Enter name for Experiment 2(Threshold = 4) memory usage data file: ");
+        FileIO.setMemoryCSVName();
+        FileIO.createCSVMemoryFile();
+        SortParameters p2 = new SortParameters(array, arraySize, 4, ASCENDING, MERGE_SORT_HYBRID);
+        System.out.println("Experiment 2 running...\n");
+        recursiveExperiment(p2, numOfTrials);
+        
+        System.out.print("Enter name for Experiment 2(Threshold = 8) runtime data file: ");
+        FileIO.setTimingCSVName();
+        FileIO.createCSVTimingFile();
+        System.out.print("Enter name for Experiment 2(Threshold = 8) memory usage data file: ");
+        FileIO.setMemoryCSVName();
+        FileIO.createCSVMemoryFile();
+        SortParameters p3 = new SortParameters(array, arraySize, 8, ASCENDING, MERGE_SORT_HYBRID);
+        System.out.println("Experiment 2 running...\n");
+        recursiveExperiment(p3, numOfTrials);
+        
+        System.out.print("Enter name for Experiment 2(Threshold = 16) runtime data file: ");
+        FileIO.setTimingCSVName();
+        FileIO.createCSVTimingFile();
+        System.out.print("Enter name for Experiment (Threshold = 16) memory usage data file: ");
+        FileIO.setMemoryCSVName();
+        FileIO.createCSVMemoryFile();
+        SortParameters p4 = new SortParameters(array, arraySize, 16, ASCENDING, MERGE_SORT_HYBRID);
+        System.out.println("Experiment 2 running...\n");
+        recursiveExperiment(p4, numOfTrials);
+        
+        System.out.print("Enter name for Experiment 2(Threshold = 32) runtime data file: ");
+        FileIO.setTimingCSVName();
+        FileIO.createCSVTimingFile();
+        System.out.print("Enter name for Experiment 2(Threshold = 32) memory usage data file: ");
+        FileIO.setMemoryCSVName();
+        FileIO.createCSVMemoryFile();
+        SortParameters p5 = new SortParameters(array, arraySize, 32, ASCENDING, MERGE_SORT_HYBRID);
+        System.out.println("Experiment 2 running...\n");
+        recursiveExperiment(p5, numOfTrials);
+        
+        System.out.print("Enter name for Experiment 2(Threshold = 64) runtime data file: ");
+        FileIO.setTimingCSVName();
+        FileIO.createCSVTimingFile();
+        System.out.print("Enter name for Experiment 2(Threshold = 64) memory usage data file: ");
+        FileIO.setMemoryCSVName();
+        FileIO.createCSVMemoryFile();
+        SortParameters p6 = new SortParameters(array, arraySize, 64, ASCENDING, MERGE_SORT_HYBRID);
+        System.out.println("Experiment 2 running...\n");
+        recursiveExperiment(p6, numOfTrials);
     }
     
     public static void experiment3A4() throws IOException
@@ -265,54 +332,144 @@ public class Experiment
     
     public static void experiment4A4() throws IOException
     {
-        System.out.print("Enter name for Experiment 4 runtime data file: ");
+        System.out.print("Enter name for Experiment 4(Threshold = 2) runtime data file: ");
         FileIO.setTimingCSVName();
         FileIO.createCSVTimingFile();
-        System.out.print("Enter name for Experiment 4 memory usage data file: ");
+        System.out.print("Enter name for Experiment 4(Threshold = 2) memory usage data file: ");
         FileIO.setMemoryCSVName();
         FileIO.createCSVMemoryFile();
-        SortParameters p = new SortParameters(array, arraySize, ASCENDING, QUICK_SORT_HYBRID);
+        SortParameters p1 = new SortParameters(array, arraySize, 2, 0, array.length-1, ASCENDING, QUICK_SORT_HYBRID);
         System.out.println("Experiment 4 running...\n");
-        recursiveExperiment(p, numOfTrials);
+        recursiveExperiment(p1, numOfTrials);
+        
+        System.out.print("Enter name for Experiment 4(Threshold = 4) runtime data file: ");
+        FileIO.setTimingCSVName();
+        FileIO.createCSVTimingFile();
+        System.out.print("Enter name for Experiment 4(Threshold = 4) memory usage data file: ");
+        FileIO.setMemoryCSVName();
+        FileIO.createCSVMemoryFile();
+        SortParameters p2 = new SortParameters(array, arraySize, 4, 0, array.length-1, ASCENDING, QUICK_SORT_HYBRID);
+        System.out.println("Experiment 4 running...\n");
+        recursiveExperiment(p2, numOfTrials);
+        
+        System.out.print("Enter name for Experiment 4(Threshold = 8) runtime data file: ");
+        FileIO.setTimingCSVName();
+        FileIO.createCSVTimingFile();
+        System.out.print("Enter name for Experiment 4(Threshold = 8) memory usage data file: ");
+        FileIO.setMemoryCSVName();
+        FileIO.createCSVMemoryFile();
+        SortParameters p3 = new SortParameters(array, arraySize, 8, 0, array.length-1, ASCENDING, QUICK_SORT_HYBRID);
+        System.out.println("Experiment 4 running...\n");
+        recursiveExperiment(p3, numOfTrials);
+        
+        System.out.print("Enter name for Experiment 4(Threshold = 16) runtime data file: ");
+        FileIO.setTimingCSVName();
+        FileIO.createCSVTimingFile();
+        System.out.print("Enter name for Experiment 4(Threshold = 16) memory usage data file: ");
+        FileIO.setMemoryCSVName();
+        FileIO.createCSVMemoryFile();
+        SortParameters p4 = new SortParameters(array, arraySize, 16, 0, array.length-1, ASCENDING, QUICK_SORT_HYBRID);
+        System.out.println("Experiment 4 running...\n");
+        recursiveExperiment(p4, numOfTrials);
+        
+        System.out.print("Enter name for Experiment 4(Threshold = 32) runtime data file: ");
+        FileIO.setTimingCSVName();
+        FileIO.createCSVTimingFile();
+        System.out.print("Enter name for Experiment 4(Threshold = 32) memory usage data file: ");
+        FileIO.setMemoryCSVName();
+        FileIO.createCSVMemoryFile();
+        SortParameters p5 = new SortParameters(array, arraySize, 32, 0, array.length-1, ASCENDING, QUICK_SORT_HYBRID);
+        System.out.println("Experiment 4 running...\n");
+        recursiveExperiment(p5, numOfTrials);
+        
+        System.out.print("Enter name for Experiment 4(Threshold = 64) runtime data file: ");
+        FileIO.setTimingCSVName();
+        FileIO.createCSVTimingFile();
+        System.out.print("Enter name for Experiment 4(Threshold = 64) memory usage data file: ");
+        FileIO.setMemoryCSVName();
+        FileIO.createCSVMemoryFile();
+        SortParameters p6 = new SortParameters(array, arraySize, 64, 0, array.length-1, ASCENDING, QUICK_SORT_HYBRID);
+        System.out.println("Experiment 4 running...\n");
+        recursiveExperiment(p6, numOfTrials); 
     }
     
     public static void experiment5A4() throws IOException
     {
-        System.out.print("Enter name for Experiment 5 runtime data file: ");
+        System.out.print("Enter name for Experiment 5(Merge Sort) runtime data file: ");
         FileIO.setTimingCSVName();
         FileIO.createCSVTimingFile();
-        System.out.print("Enter name for Experiment 5 memory usage data file: ");
+        System.out.print("Enter name for Experiment 5(Merge Sort) memory usage data file: ");
         FileIO.setMemoryCSVName();
         FileIO.createCSVMemoryFile();
-        SortParameters p = new SortParameters(array, arraySize, ASCENDING, QUICK_SORT_HYBRID);
+        SortParameters p1 = new SortParameters(array, arraySize, ASCENDING, MERGE_SORT);
         System.out.println("Experiment 5 running...\n");
-        recursiveExperiment(p, numOfTrials);
+        recursiveExperiment(p1, numOfTrials);
+        
+        System.out.print("Enter name for Experiment 5(Merge Sort Hybrid) runtime data file: ");
+        FileIO.setTimingCSVName();
+        FileIO.createCSVTimingFile();
+        System.out.print("Enter name for Experiment 5(Merge Sort Hybrid) memory usage data file: ");
+        FileIO.setMemoryCSVName();
+        FileIO.createCSVMemoryFile();
+        SortParameters p2 = new SortParameters(array, arraySize, ASCENDING, MERGE_SORT_HYBRID);
+        System.out.println("Experiment 5 running...\n");
+        recursiveExperiment(p2, numOfTrials);
     }
     
     public static void experiment6A4() throws IOException
     {
-        System.out.print("Enter name for Experiment 6 runtime data file: ");
+        System.out.print("Enter name for Experiment 6(Quick Sort) runtime data file: ");
         FileIO.setTimingCSVName();
         FileIO.createCSVTimingFile();
-        System.out.print("Enter name for Experiment 6 memory usage data file: ");
+        System.out.print("Enter name for Experiment 6(Quick Sort) memory usage data file: ");
         FileIO.setMemoryCSVName();
         FileIO.createCSVMemoryFile();
-        SortParameters p = new SortParameters(array, arraySize, ASCENDING, QUICK_SORT_HYBRID);
+        SortParameters p1 = new SortParameters(array, arraySize, ASCENDING, QUICK_SORT);
         System.out.println("Experiment 6 running...\n");
-        recursiveExperiment(p, numOfTrials);
+        recursiveExperiment(p1, numOfTrials);
+        
+        System.out.print("Enter name for Experiment 6(Quick Sort Hybrid) runtime data file: ");
+        FileIO.setTimingCSVName();
+        FileIO.createCSVTimingFile();
+        System.out.print("Enter name for Experiment 6(Quick Sort Hybrid) memory usage data file: ");
+        FileIO.setMemoryCSVName();
+        FileIO.createCSVMemoryFile();
+        SortParameters p2 = new SortParameters(array, arraySize, ASCENDING, QUICK_SORT_HYBRID);
+        System.out.println("Experiment 6 running...\n");
+        recursiveExperiment(p2, numOfTrials); 
     }
     
     public static void experiment7A4() throws IOException
     {
-        System.out.print("Enter name for Experiment 7 runtime data file: ");
+        System.out.print("Enter name for Experiment 7(Shell Sort) runtime data file: ");
         FileIO.setTimingCSVName();
         FileIO.createCSVTimingFile();
-        System.out.print("Enter name for Experiment 7 memory usage data file: ");
+        System.out.print("Enter name for Experiment 7(Shell Sort) memory usage data file: ");
         FileIO.setMemoryCSVName();
         FileIO.createCSVMemoryFile();
-        SortParameters p = new SortParameters(array, arraySize, ASCENDING, QUICK_SORT_HYBRID);
+        SortParameters p1 = new SortParameters(array, arraySize, KNUTH, gapSeq, gapSeqSize, ASCENDING, SHELL_SORT);
         System.out.println("Experiment 7 running...\n");
-        recursiveExperiment(p, numOfTrials);
+        recursiveExperiment(p1, numOfTrials);
+        
+        System.out.print("Enter name for Experiment 7(Merge Sort Hybrid) runtime data file: ");
+        FileIO.setTimingCSVName();
+        FileIO.createCSVTimingFile();
+        System.out.print("Enter name for Experiment 7(Merge Sort Hybrid) memory usage data file: ");
+        FileIO.setMemoryCSVName();
+        FileIO.createCSVMemoryFile();
+        SortParameters p2 = new SortParameters(array, arraySize, ASCENDING, MERGE_SORT_HYBRID);
+        System.out.println("Experiment 7 running...\n");
+        recursiveExperiment(p2, numOfTrials);
+        
+        System.out.print("Enter name for Experiment 7(Quick Sort Hybrid) runtime data file: ");
+        FileIO.setTimingCSVName();
+        FileIO.createCSVTimingFile();
+        System.out.print("Enter name for Experiment 7(Quick Sort Hybrid) memory usage data file: ");
+        FileIO.setMemoryCSVName();
+        FileIO.createCSVMemoryFile();
+        SortParameters p3 = new SortParameters(array, arraySize, ASCENDING, QUICK_SORT_HYBRID);
+        System.out.println("Experiment 7 running...\n");
+        recursiveExperiment(p3, numOfTrials);
     }
   
     public static void runAllExperiments() throws IOException
@@ -335,7 +492,7 @@ public class Experiment
     }
 
     //Creates a random array of integers of arbitrary size.
-    public static void createRandomArray(int[] array, int arraySize)
+    public static int[] createRandomArray(int[] array, int arraySize)
     {
         Random randomNums = new Random();
         
@@ -343,6 +500,7 @@ public class Experiment
         {
             array[i] = randomNums.nextInt();
         }
+        return array;
     }
     
     //Iterates through an array to make sure it is sorted correctly.
